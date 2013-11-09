@@ -100,7 +100,7 @@
 1. `ascii_segmentor` 標識西文段落〔譬如在西文模式下〕字母直接上屛
 2. `matcher` 配合`recognizer`標識符合特定規則的段落，如網址、反查等，加上特定`tag`
 3. **`abc_segmentor`** 標識常規的文字段落，加上`abc`這個`tag`
-4. **`punct_segmentor`** 標識句讀段落〔鍵入標點符號用〕加上`punct`這個`tag`
+4. `punct_segmentor` 標識句讀段落〔鍵入標點符號用〕加上`punct`這個`tag`
 5. `fallback_segmentor` 標識其他未標識段落
 6. **`affix_segmentor`** 用戶自定義`tag`
   - 此項可加載多個實例，後接`@`+`tag`名
@@ -183,6 +183,20 @@ name:
 1. `alphabet:` 定義本方案輸入鍵
 2. `delimiter:` 上屛時的音節間分音符
 3. `algebra:` 拼寫運算規則，由之算出的拼寫匯入`prism`中
+4. `max_code_length:` 形碼最大碼長，超過則頂字上屛
+5. `auto_select:` 自動上屛
+6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，形碼無重碼自動上屛
+7. `use_space:` 以空格作輸入碼
+
+    ```
+    speller的演算包含：
+       xform --改寫〔不保留原形〕
+       derive --衍生〔保留原形〕
+       abbrev --簡拼〔出字優先級較上兩組更低〕
+       fuzz --畧拼〔此種簡拼僅組詞，不出單字〕
+       xlit --變換〔適合大量一對一變換〕
+       erase --刪除
+```
 
    ####示例
    ```
@@ -245,7 +259,7 @@ name:
 8. **`dictionary:`** 翻譯器將調取此字典文件
 9. **`prism:`** 設定由此主翻譯器的`speller`生成的棱鏡文件名，或此副編譯器調用的棱鏡名
 10. **`user_dict:`** 設定用戶詞典名 
-11. **`db_class:`** 設定用戶詞典類型
+11. **`db_class:`** 設定用戶詞典類型，有`stabledb`和`text`
 12. **`preedit_format:`** 上屛碼自定義
 13. **`comment_format:`** 提示碼自定義
 14. **`spelling_hints:`** 設定多少字以內候選標註完整帶調拼音〔對`script_translator`有效〕
@@ -261,8 +275,7 @@ name:
    蒼頡主翻譯器
    ```
    translator:
-     dictionary: &dict
-       cangjie6.extended
+     dictionary: cangjie6
      enable_charset_filter: true
      enable_sentence: true
      enable_encoder: true
@@ -274,7 +287,6 @@ name:
        - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片|"
      comment_format:
        - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片・|"
-       - xform/^[abcdefghijklmnopqrstuvwxyz~]+$//
      disable_user_dict_for_patterns:
        - "^z.*$"
      initial_quality: 0.75
@@ -286,15 +298,14 @@ name:
      tag: pinyin
      dictionary: luna_pinyin
      enable_charset_filter: true
-     prefix: 'P'
-     suffix: ';'
+     prefix: 'P' #須配合recognizer
+     suffix: ';' #須配合recognizer
      preedit_format:
        - "xform/([nl])v/$1ü/"
        - "xform/([nl])ue/$1üe/"
        - "xform/([jqxy])v/$1u/"
      tips: "【漢拼】"
      closing_tips: "【蒼頡】"
-     initial_quality: 0.2
 ```
 
    拼音・簡化字主翻譯器
@@ -311,7 +322,7 @@ name:
 #### 四、`reverse_lookup_filter`
   * 此濾鏡須掛在`translator`上，不影響該`translator`工作
   
-1. `tags:` 設定其作用���範圍
+1. `tags:` 設定其作用���範圍
 2. `overwrite_comment:` 是否覆蓋其他提示
 3. `dictionary:` 反查所得提示碼之碼表
 4. `comment_format:` 自定義提示碼格式
@@ -332,7 +343,7 @@ name:
 
 1. `option_name:` 對應`swiches`中設定的切換項名
 2. `opencc_config:` 用字轉換定義文件
-3. `tags:` 設定轉換���範圍
+3. `tags:` 設定轉換���範圍
 4. `tips:` 設定是否提示轉換前的字，可塡`none`〔或不塡〕、`char`〔僅對單字有效〕、`all`
 
    ####示例
@@ -344,4 +355,151 @@ name:
      tips: none
 ```
 
+
+#### 六、*`chord_composer`*
+  * 並擊把鍵盤分兩半，相當於兩塊鍵盤。兩邊同時擊鍵，系統默認在其中一半上按的鍵先於另一半，由此得出上屛碼
+
+1. `alphabet:` 字母表，包含用於並擊的按鍵。擊鍵雖有先後，形成並擊時，一律以字母表順序排列
+2. `algebra:` 拼寫運算規則，將一組並擊編碼轉換爲拼音音節
+3. `output_format:` 並擊完成後套用的式樣，追加隔音符號
+4. `prompt_format:` 並擊過程中套用的式樣，加方括弧
+
+   ###示例
+   ```
+   chord_composer:
+     # 字母表，包含用於並擊的按鍵
+     # 擊鍵雖有先後，形成並擊時，一律以字母表順序排列
+     alphabet: "swxdecfrvgtbnjum ki,lo."
+     # 拼寫運算規則，將一組並擊編碼轉換爲拼音音節
+     algebra:
+       # 先將物理按鍵字符對應到宮保拼音鍵位中的拼音字母
+       - 'xlit|swxdecfrvgtbnjum ki,lo.|sczhlfgdbktpRiuVaNIUeoE|'
+       # 以下根據宮保拼音的鍵位分別變換聲母、韻母部分
+       # 組合聲母
+       - xform/^zf/zh/
+       - xform/^cl/ch/
+       - xform/^fb/m/
+       - xform/^ld/n/
+       - xform/^hg/r/
+       # g,k,h 接 i/ü 時作 ji/ju, qi/qu, xi/xu
+       - xform/^[gz]([iV])/j$1/
+       - xform/^[kc]([iV])/q$1/
+       - xform/^[hs]([iV])/x$1/
+       # 空格鍵單擊時產生空白
+       - 'xform/^a$/ /'
+       # 特例：以組合鍵[ae]輸入拼音‹a›
+       - xform/ae$/a/
+       # 單擊時產生字符 , .
+       - xform/^U$/,/
+       - xform/^E$/./
+       # 上排三鍵並擊 ong, uang
+       - xform/(ua?)Io$/$1Ne/
+       - xform/aI$/ai/
+       - xform/I[oe]$/ei/
+       - xform/uI$/uei/
+       # I 鍵亦可用作韻母 ‹i›
+       - xform/^gI$/ji/
+       - xform/^kI$/qi/
+       - xform/^hI$/xi/
+       - xform/I$/i/
+       # 下排三鍵並擊 iong
+       - xform/VUE$/VNe/
+       # [ü] 活用爲介音 ‹i-› 以利於並擊 iao, iu
+       - xform/V(a?)U$/i$1U/
+       - xform/aU$/ao/
+       - xform/UE?$/ou/
+       - xform/([aiuV])Ne$/$1ng/
+       # ‹eng› 省略 ‹e›
+       - xform/Ne$/eng/
+       - xform/^ung$/weng/
+       - xform/ung$/ong/
+       - xform/Vng$/iong/
+       - xform/([aiuV])N$/$1n/
+       # ‹en› 省略 ‹e›
+       - xform/N$/en/
+       - xform/^un$/wen/
+       - xform/R$/er/
+       # 漢語拼音方案的拼寫規則
+       - xform/^i(ng?)$/yi$1/
+       - xform/^i$/yi/
+       - xform/^i/y/
+       - xform/^u$/wu/
+       - xform/^u/w/
+       - xform/^V/yu/
+       - xform/^([jqx])V/$1u/
+       # 一些容錯
+       - xform/^([zcsr]h?)i([aoe])/$1$2/
+       - xform/^([zcsr]h?)i(ng?)$/$1e$2/
+       # 拼寫規則
+       - xform/iou$/iu/
+       - xform/uei$/ui/
+       - xlit/VE/ve/
+       # 聲母獨用時補足隠含的韻母
+       - xform/^([bpf])$/$1u/
+       - xform/^([mdtnlgkh])$/$1e/
+       - xform/^([mdtnlgkh])$/$1e/
+       - xform/^([zcsr]h?)$/$1i/
+     # 並擊完成後套用的式樣，追加隔音符號
+     output_format:
+       - "xform/^([a-z]+)$/$1'/"
+     # 並擊過程中套用的式樣，加方括弧
+     prompt_format:
+       - "xform/^(.*)$/[$1]/"
+```
+
 #### 七、其它
+  * 包括`recognizer`、`key_binder`、`punctuator`
+
+1. **`import_preset:` 由外部統一文件導入**
+2. `recognizer:`下設`patterns:` 配合`segmentor`的`prefix`和`suffix`完成段落劃分、`tag`分配
+3. `key_binder:`下設`bindings:` 設置功能性快捷鍵
+4. `punctuator:`下設`full_shape:`和`half_shape:` 分别控制全角模式下的符號和半角模式下的符號，另有`use_space:`空格頂字
+
+   ####示例
+   ```
+   key_binder:
+     import_preset: default
+     bindings:
+       - {accept: semicolon, send: 2, when: has_menu} #分號選第二重碼
+       - {accept: apostrophe, send: 3, when: has_menu} #引號選第三重碼
+       - {accept: "Control+1", select: .next, when: always}
+       - {accept: "Control+2", toggle: full_shape, when: always}
+       - {accept: "Control+3", toggle: simplification, when: always}
+       - {accept: "Control+4", toggle: extended_charset, when: always}
+
+   punctuator:
+     import_preset: symbols
+     half_shape:
+       "'": {pair: ["「", "」"]} #第一次按是「，第二次是」
+       "(": ["〔", "［"] #彈出選單
+       .: {commit: "。"} #無選單，直接上屛。優先級最高
+
+   recognizer:
+     import_preset: default
+     patterns:
+       email: "^[a-z][-_.0-9a-z]*@.*$"
+       url: "^(www[.]|https?:|ftp:|mailto:).*$"
+       reverse_lookup: "`[a-z]*;?$"
+       pinyin_lookup: "`P[a-z]*;?$"
+       jyutping_lookup: "`J[a-z]*;?$"
+       pinyin: "(?<!`)P[a-z']*;?$"
+       jyutping: "(?<!`)J[a-z']*;?$"
+```
+
+###其它
+---
+
+```
+menu:
+  alternative_select_keys: ASDFGHJKL #如編碼字符佔用數字鍵則須另設選字鍵
+  page_size: 5 #選單每䈎顯示個數
+
+style:
+  `font_face:` "HanaMinA, HanaMinB" #字體
+  `font_point:` 15 #字號
+  `horizontal:` false #橫／直排
+  `line_spacing:` 1 #行距
+```
+
+# `Dict.yaml` 詳解
+========
