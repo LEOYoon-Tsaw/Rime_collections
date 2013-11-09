@@ -74,3 +74,22 @@ switches:
 
 ### 引擎
 ---
+引擎分四組：
+1. `processors:` 這批組件處理各類按鍵消息
+2. `segmentors:` 這批組件識別不同內容類型，將輸入碼分段並加上`tag`
+3. `translators:` 這批組件翻譯特定類型的編碼段爲一組候選文字
+4. `filters:` 這批組件過濾翻譯的結果
+
+#### `processors`
+	1. `ascii_composer` 處理西文模式及中西文切
+	2. `recognizer` 與`matcher`搭配，處理符合特定規則的輸入碼，如網址、反查等`tags`
+	3. `key_binder` 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁、開關快捷鍵等
+	4. `speller` 拼寫處理器，接受字符按鍵，編輯輸入
+	5. `punctuator` 句讀處理器，將單個字符按鍵直接映射爲標點符號或文字
+	6. `selector` 選字處理器，處理數字選字鍵〔可���以換成別的哦〕、上、下候選定位、換頁
+	7. `navigator` 處理輸入欄內的光標移動
+	8. `express_editor` 編輯器，處理空格、回車上屏、回退鍵
+	9. `fluency_editor` 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換 express_editor
+	10. `chord_composer` 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案
+
+#### `segmentors`
