@@ -10,7 +10,7 @@
 ### 描述檔
 ---
 
-1. `name:` 此處爲方案的顯示名偁〔既出現於方案選單中以示人的，通常爲中文〕
+1. `name:` 此處爲方案的顯示名偁〔即出現於方案選單中以示人的，通常爲中文〕
 2. `schema_id:` 此處爲方案內部名，在代碼中引用此方案時以此名爲正，通常由英文、數字、下劃線組成
 3. `author:` 這裏爲發明人、撰寫者。如果您對方案做出了修改，請保留原作者名，並將自己的名字加在後面。
 4. `description:` 請簡要描述方案歷史、碼表來源、該方案規則等
@@ -77,6 +77,7 @@
 
 ### 引擎
 ---
+  * 以下<b>加粗</b>項爲可細配者，<i>斜體</i>者爲不常用者
 
 引擎分四組：
 
@@ -84,44 +85,44 @@
   - 這批組件處理各類按鍵消息
 
 1. `ascii_composer` 處理西文模式及中西文切
-2. **`recognizer`** 與`matcher`搭配，處理符合特定規則的輸入碼，如網址、反查等`tags`
-3. **`key_binder`** 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁、開關快捷鍵等
-4. **`speller`** 拼寫處理器，接受字符按鍵，編輯輸入
-5. **`punctuator`** 句讀處理器，將單個字符按鍵直接映射爲標點符號或文字
+2. <b>`recognizer`</b> 與`matcher`搭配，處理符合特定規則的輸入碼，如網址、反查等`tags`
+3. <b>`key_binder`</b> 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁、開關快捷鍵等
+4. <b>`speller`</b> 拼寫處理器，接受字符按鍵，編輯輸入
+5. <b>`punctuator`</b> 句讀處理器，將單個字符按鍵直接映射爲標點符號或文字
 6. `selector` 選字處理器，處理數字選字鍵〔可以換成別的哦〕、上、下候選定位、換頁
 7. `navigator` 處理輸入欄內的光標移動
 8. `express_editor` 編輯器，處理空格、回車上屏、回退鍵
-9. *`fluency_editor`* 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換` express_editor`
-10. *`chord_composer`* 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案
+9. <i>`fluency_editor`</i> 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換` express_editor`
+10. <i>`chord_composer`</i> 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案
 
 #### 二、`segmentors`
   - 這批組件識別不同內容類型，將輸入碼分段並加上`tag`
 
 1. `ascii_segmentor` 標識西文段落〔譬如在西文模式下〕字母直接上屛
 2. `matcher` 配合`recognizer`標識符合特定規則的段落，如網址、反查等，加上特定`tag`
-3. **`abc_segmentor`** 標識常規的文字段落，加上`abc`這個`tag`
+3. <b>`abc_segmentor`</b> 標識常規的文字段落，加上`abc`這個`tag`
 4. `punct_segmentor` 標識句讀段落〔鍵入標點符號用〕加上`punct`這個`tag`
 5. `fallback_segmentor` 標識其他未標識段落
-6. **`affix_segmentor`** 用戶自定義`tag`
+6. <b>`affix_segmentor`</b> 用戶自定義`tag`
   - 此項可加載多個實例，後接`@`+`tag`名
 
 #### 三、`translators`
   - 這批組件翻譯特定類型的編碼段爲一組候選文字
 
 1. `echo_translator` 沒有其他候選字時，回顯輸入碼〔輸入碼可以`Shift`+`Enter`上屛〕
-2. `punct_translator` 配合**`punct_segmentor`**轉換標點符號
-3. **`table_translator`** 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
+2. `punct_translator` 配合<b>`punct_segmentor`</b>轉換標點符號
+3. <b>`table_translator`</b> 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
   - 此項可加載多個實例，後接`@`+翻譯器名〔如：`cangjie`、`wubi`等〕
-4. **`script_translator`** 腳本翻譯器，用於拼音、粵拼等基於音節表的輸入方案
+4. <b>`script_translator`</b> 腳本翻譯器，用於拼音、粵拼等基於音節表的輸入方案
   - 此項可加載多個實例，後接`@`+翻譯器名〔如：`pinyin`、`jyutping`等〕
-5. *`reverse_lookup_translator`* 反查翻譯器，用另一種編碼方案查碼
+5. <i>`reverse_lookup_translator`</i> 反查翻譯器，用另一種編碼方案查碼
 
 #### 四、`filters`
   - 這批組件過濾翻譯的結果
 
-1. **`simplifier`** 用字轉換
-2. `uniquifier` 過濾重複的候選字，有可能來自**`simplifier`**
-3. **`reverse_lookup_filter`** 反查濾鏡，以更靈活的方式反查，Rime1.0後替代*`reverse_lookup_translator`*
+1. <b>`simplifier`</b> 用字轉換
+2. `uniquifier` 過濾重複的候選字，有可能來<b>`simplifier`</b>
+3. <b>`reverse_lookup_filter`</b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i>`reverse_lookup_translator`</i>
   - 此項可加載多個實例，後接`@`+濾鏡名〔如：`pinyin_lookup`、`jyutping_lookup`等〕
 
    ####示例
@@ -165,6 +166,8 @@
 
 ### 細項配置
 ---
+  * 凡`comment_format`、`preedit_format`、`speller/algebra`所用之正則表達式，請參閱[「Perl正則表達式」](http://www.boost.org/doc/libs/1_49_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html)
+
 
 引擎中所舉之加粗者均可在下方詳細描述，格式爲：
 
@@ -229,7 +232,7 @@ name:
 5. `closing_tips:` 設定其結束輸入提示符，可不塡，不塡則無提示符
 6. `extra_tags:` 爲此`segmentor`所標記的段落插上其它`tag`
 
-   *當`affix_segmentor`和`translator`重名時，兩者可併在一處配置，此處1-5條對應下面16-20條。`abc_segmentor`僅可設`extra_tags`*
+   <i>當`affix_segmentor`和`translator`重名時，兩者可併在一處配置，此處1-5條對應下面16-20條。`abc_segmentor`僅可設`extra_tags`</i>
 
    ####示例
    
@@ -248,22 +251,22 @@ name:
 #### 三、`translator`
   - 每個方案有一個主`translator`，在引擎列表中不以`@`+翻譯器名定義，在細項配置時直接以`translator:`命名。以下加粗項爲可在主`translator`中定義之項，其它可在副〔以`@`+翻譯器名命名〕`translator`中定義
 
-1. **`enable_charset_filter:`** 是否開啓字符集過濾
-2. **`enable_sentence:`** 是否開啓自動造句
-3. **`enable_encoder:`** 是否開啓自動造詞〔對`table`translator`有效〕
-4. **`encode_commit_history:`** 是否對已上屛詞自動成詞〔對`table`translator`有效〕
-5. **`max_phrase_length:`** 最大自動成詞詞長〔對`table_translator`有效〕
-6. **`enable_user_dict:`** 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
-7. **`disable_user_dict_for_patterns:`** 禁止某些編碼錄入用戶詞典
+1. <b>`enable_charset_filter:`</b> 是否開啓字符集過濾
+2. <b>`enable_sentence:`</b> 是否開啓自動造句
+3. <b>`enable_encoder:`</b> 是否開啓自動造詞〔對`table`translator`有效〕
+4. <b>`encode_commit_history:`</b> 是否對已上屛詞自動成詞〔對`table`translator`有效〕
+5. <b>`max_phrase_length:`</b> 最大自動成詞詞長〔對`table_translator`有效〕
+6. <b>`enable_user_dict:`</b> 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
+7. <b>`disable_user_dict_for_patterns:`</b> 禁止某些編碼錄入用戶詞典
   - 以上選塡`true`或`false`
-8. **`dictionary:`** 翻譯器將調取此字典文件
-9. **`prism:`** 設定由此主翻譯器的`speller`生成的棱鏡文件名，或此副編譯器調用的棱鏡名
-10. **`user_dict:`** 設定用戶詞典名 
-11. **`db_class:`** 設定用戶詞典類型，有`stabledb`和`text`
-12. **`preedit_format:`** 上屛碼自定義
-13. **`comment_format:`** 提示碼自定義
-14. **`spelling_hints:`** 設定多少字以內候選標註完整帶調拼音〔對`script_translator`有效〕
-15. **`initial_quality:`** 設定此翻譯器出字優先級
+8. <b>`dictionary:`</b> 翻譯器將調取此字典文件
+9. <b>`prism:`</b> 設定由此主翻譯器的`speller`生成的棱鏡文件名，或此副編譯器調用的棱鏡名
+10. <b>`user_dict:`</b> 設定用戶詞典名 
+11. <b>`db_class:`</b> 設定用戶詞典類型，可設`stabledb`或`text`
+12. <b>`preedit_format:`</b> 上屛碼自定義
+13. <b>`comment_format:`</b> 提示碼自定義
+14. <b>`spelling_hints:`</b> 設定多少字以內候選標註完整帶調拼音〔對`script_translator`有效〕
+15. <b>`initial_quality:`</b> 設定此翻譯器出字優先級
 16. `tag:` 設定此翻譯器針對的`tag`。可不塡，不塡則僅針對`abc`
 17. `prefix:` 設定此翻譯器的前綴標識，可不塡，不塡則無前綴
 18. `suffix:` 設定此翻譯器的尾綴標識，可不塡，不塡則無尾綴
@@ -356,7 +359,7 @@ name:
 ```
 
 
-#### *六、`chord_composer`*
+#### <i>六、`chord_composer`</i>
   * 並擊把鍵盤分兩半，相當於兩塊鍵盤。兩邊同時擊鍵，系統默認在其中一半上按的鍵先於另一半，由此得出上屛碼
 
 1. `alphabet:` 字母表，包含用於並擊的按鍵。擊鍵雖有先後，形成並擊時，一律以字母表順序排列
@@ -450,7 +453,7 @@ name:
 #### 七、其它
   * 包括`recognizer`、`key_binder`、`punctuator`
 
-1. **`import_preset:`** 由外部統一文件導入
+1. <b>`import_preset:`</b> 由外部統一文件導入
 2. `recognizer:`下設`patterns:` 配合`segmentor`的`prefix`和`suffix`完成段落劃分、`tag`分配
 3. `key_binder:`下設`bindings:` 設置功能性快捷鍵
 4. `punctuator:`下設`full_shape:`和`half_shape:` 分别控制全角模式下的符號和半角模式下的符號，另有`use_space:`空格頂字
@@ -495,10 +498,10 @@ menu:
   page_size: 5 #選單每䈎顯示個數
 
 style:
-  `font_face:` "HanaMinA, HanaMinB" #字體
-  `font_point:` 15 #字號
-  `horizontal:` false #橫／直排
-  `line_spacing:` 1 #行距
+  font_face: "HanaMinA, HanaMinB" #字體
+  font_point: 15 #字號
+  horizontal: false #橫／直排
+  line_spacing: 1 #行距
 ```
 
 # `Dict.yaml` 詳解
@@ -531,13 +534,12 @@ style:
 3. `max_phrase_length:` 配合`use_preset_vocabulary:`，設定導入詞條最大詞長
 4. `min_phrase_weight:` 配合`use_preset_vocabulary:`，設定導入詞條最小詞頻
 5. `columns:` 定義碼表以`Tab`分隔出的各列
-6. `import_tables:` 加載其它外部碼表
+6. `import_tables:` 加載其它外部碼表，可設`text`、`code`、`weight`、`stem`
 7. `encoder:` 形碼造詞規則
    1. `exclude_patterns:`
    2. `rules:` 可用`length_equal:`和`length_in_range:`定義。大寫字母表示字序，小寫字母表示其所跟隨的大寫字母所以表的字中的編碼序
    3. `tail_anchor:` 造詞碼包含結構分割符〔僅用於倉頡〕
    4. `exclude_patterns` 取消某編碼的造詞資格
-
 
    ####示例
    ```
@@ -593,3 +595,5 @@ style:
      * 受限於此網䈎格式，上表未用`Tab`，以空格代替   
    
 ===
+雪齋
+09-Nov-2013
