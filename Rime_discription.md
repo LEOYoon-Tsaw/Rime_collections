@@ -126,7 +126,7 @@
   - 此項可加載多個實例，後接`@`+濾鏡名〔如：`pinyin_lookup`、`jyutping_lookup`等〕
 
    ####示例
-   
+   cangjie6.schema.yaml
    ```
    engine:
      processors:
@@ -202,6 +202,7 @@ name:
 ```
 
    ####示例
+   luna_pinyin.schema.yaml
    ```
    speller:
      alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -235,7 +236,7 @@ name:
    <i>當`affix_segmentor`和`translator`重名時，兩者可併在一處配置，此處1-5條對應下面16-20條。`abc_segmentor`僅可設`extra_tags`</i>
 
    ####示例
-   
+   cangjie6.schema.yaml
    ```
    reverse_lookup:
      tag: reverse_lookup
@@ -276,6 +277,7 @@ name:
    ####示例
    
    蒼頡主翻譯器
+   cangjie6.schema.yaml
    ```
    translator:
      dictionary: cangjie6
@@ -296,6 +298,7 @@ name:
 ```
 
    拼音副翻譯器
+   cangjie6.schema.yaml
    ```
    pinyin:
      tag: pinyin
@@ -312,6 +315,7 @@ name:
 ```
 
    拼音・簡化字主翻譯器
+   pinyin_simp.schema.yaml
    ```
    translator:
      dictionary: luna_pinyin
@@ -331,6 +335,7 @@ name:
 4. `comment_format:` 自定義提示碼格式
 
    ####示例
+   cangjie6.schema.yaml
    ```
    pinyin_reverse_lookup: #該反查濾鏡名
      tags: [ pinyin_lookup ] #掛在這個tag所對應的翻譯器上
@@ -350,6 +355,7 @@ name:
 4. `tips:` 設定是否提示轉換前的字，可塡`none`〔或不塡〕、`char`〔僅對單字有效〕、`all`
 
    ####示例
+   modified from luna_pinyin_kunki.schema
    ```
    zh_tw:
      option_name: zh_tw
@@ -368,6 +374,7 @@ name:
 4. `prompt_format:` 並擊過程中套用的式樣，加方括弧
 
    ####示例
+   combo_pinyin.schema.yaml
    ```
    chord_composer:
      # 字母表，包含用於並擊的按鍵
@@ -459,6 +466,7 @@ name:
 4. `punctuator:`下設`full_shape:`和`half_shape:` 分别控制全角模式下的符號和半角模式下的符號，另有`use_space:`空格頂字
 
    ####示例
+   modified from cangjie6.schema.yaml
    ```
    key_binder:
      import_preset: default
@@ -498,7 +506,7 @@ menu:
   page_size: 5 #選單每䈎顯示個數
 
 style:
-  font_face: "HanaMinA, HanaMinB" #字體
+  font_face: "HanaMinA, HanaMinB" #字體〔小狼���毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
   font_point: 15 #字號
   horizontal: false #橫／直排
   line_spacing: 1 #行距
@@ -533,7 +541,7 @@ style:
 2. `use_preset_vocabulary:` 是否引入「八股文」〔含字詞頻、詞庫〕
 3. `max_phrase_length:` 配合`use_preset_vocabulary:`，設定導入詞條最大詞長
 4. `min_phrase_weight:` 配合`use_preset_vocabulary:`，設定導入詞條最小詞頻
-5. `columns:` 定義碼表以`Tab`分隔出的各列，可設`text`、`code`、`weight`、`stem`
+5. `columns:` 定義碼表以`Tab`分隔出的各列，可設`text`【文本】、`code`【碼】、`weight`【權重】、`stem`【造詞碼】
 6. `import_tables:` 加載其它外部碼表
 7. `encoder:` 形碼造詞規則
    1. `exclude_patterns:`
@@ -542,24 +550,25 @@ style:
    4. `exclude_patterns` 取消某編碼的造詞資格
 
    ####示例
+   cangjie6.extended.dict.yaml 
    ```
    sort: by_weight
    use_preset_vocabulary: false
    import_tables:
-     - cangjie6
-   columns:
-     - text
-     - weight
+     - cangjie6 #單字碼表由cangjie6.dict.yaml導入
+   columns: #此字典爲純詞典，無單字編碼，僅有字和詞頻
+     - text #字／詞
+     - weight #字／詞頻
    encoder:
      exclude_patterns:
        - '^z.*$'
      rules:
-       - length_equal: 2
-         formula: "AaAzBaBbBz"
-       - length_in_range: [3, 3]
-         formula: "AaAzBaYzZz"
-       - length_in_range: [4, 8]
-         formula: "AaBzCaYzZz"
+       - length_equal: 2 #對於二字詞
+         formula: "AaAzBaBbBz" #取第一字首尾碼、第二字首次尾碼
+       - length_in_equal: 3 #對於三字詞
+         formula: "AaAzBaYzZz" #取第一字首尾碼、第二字首尾碼、第三字尾碼
+       - length_in_range: [4, 5] #對於四至五字詞
+         formula: "AaBzCaYzZz" #取第一字首碼，第二字尾碼、第三字首碼、倒數第二字尾碼、最後一字尾碼
      tail_anchor: "'"
 ```
 
@@ -568,7 +577,7 @@ style:
   * 以`Tab`分隔各列，各列依`columns:`定義排列。
 
    ####示例
-   蒼頡
+   cangjie6.dict.yaml
    ```
    columns:
      - text #第一列字／詞
@@ -576,6 +585,7 @@ style:
      - weight #第三列字／詞頻
      - stem #第四列造詞碼
 ```   
+   cangjie6.dict.yaml
    ```
    個     owjr    246268     ow'jr
    看     hqbu    245668
