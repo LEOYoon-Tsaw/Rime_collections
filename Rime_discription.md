@@ -509,7 +509,7 @@ style:
 	
 	Rime dict
 	encoding: utf-8
-	〔你可以在這���裏註釋字典來源、變動記䤸等〕
+	〔你可以在這���裏註釋字典來源、變動記䤸等〕
 
 ### 描述檔
 ---
@@ -527,7 +527,7 @@ style:
 ---
 
 1. `sort:` 字典**初始**排序，可選`original`或`by_weight`
-2. `use_preset_vocabulary:` 是否引入���「八股文」〔含字詞頻、詞庫〕
+2. `use_preset_vocabulary:` 是否引入���「八股文」〔含字詞頻、詞庫〕
 3. `max_phrase_length:` 配合`use_preset_vocabulary:`，設定導入詞條最大詞長
 4. `min_phrase_weight:` 配合`use_preset_vocabulary:`，設定導入詞條最小詞頻
 5. `columns:` 定義碼表以`Tab`分隔出的各列
@@ -575,20 +575,20 @@ style:
      - stem #第四列造詞碼
 ```   
    ```
-   個	owjr	246268	ow'jr
-   看	hqbu	245668
-   中	l	243881
-   呢	rsp	242970
-   來	doo	235101
-   嗎	rsqf	221092
-   爲	bhnf	211340
-   會	owfa	209844
-   她	vpd	204725
-   與	xyc	203975
-   給	vfor	193007
-   等	hgdi	183340
-   這	yymr	181787
-   用	bq	168934	b'q
+   個     owjr    246268     ow'jr
+   看     hqbu    245668
+   中     l       243881
+   呢     rsp     242970
+   來     doo     235101
+   嗎     rsqf    221092
+   爲     bhnf    211340
+   會     owfa    209844
+   她     vpd     204725
+   與     xyc     203975
+   給     vfor    193007
+   等     hgdi    183340
+   這     yymr    181787
+   用     bq      168934     b'q
 ```
-
+     * 受限於此網䈎格式，上表未用`Tab`，以空格代替
 ===
