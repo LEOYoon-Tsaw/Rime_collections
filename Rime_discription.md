@@ -367,7 +367,7 @@ name:
 3. `output_format:` 並擊完成後套用的式樣，追加隔音符號
 4. `prompt_format:` 並擊過程中套用的式樣，加方括弧
 
-   ###示例
+   ####示例
    ```
    chord_composer:
      # 字母表，包含用於並擊的按鍵
