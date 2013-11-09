@@ -205,7 +205,33 @@ name:
        - derive/([iu])a(o|ng?)$/a$1$2/
 ```
 
-#### 二、`translator`
+#### 二、`segmentor`
+  * `segmentor`配合`recognizer`標記出`tag`。這裏會用到`affix_segmentor`和`abc_translator`。`tag`用在`translator`、`reverse_lookup_filter`、`simplifier`中用以標定各自作用範圍。如果不需要用到`extra_tags`則不需要單獨配置`segmentor`
+
+1. `tag:` 設定其`tag`
+2. `prefix:` 設定其前綴標識，可不塡，不塡則無前綴
+3. `suffix:` 設定其尾綴標識，可不塡，不塡則無尾綴
+4. `tips:` 設定其輸入前提示符，可不塡，不塡則無提示符
+5. `closing_tips:` 設定其結束輸入提示符，可不塡，不塡則無提示符
+6. `extra_tags:` 爲此`segmentor`所標記的段落插上其它`tag`
+
+   *當`affix_segmentor`和`translator`重名時，兩者可併在一處配置，此處1-5條對應下面16-20條。`abc_segmentor`僅可設`extra_tags`*
+
+   ####示例
+   
+   ```
+   reverse_lookup:
+     tag: reverse_lookup
+     prefix: "`"
+     suffix: ";"
+     tips: "【反查】"
+     closing_tips: "【蒼頡】"
+     extra_tags: 
+       - pinyin_lookup
+       - jyutping_lookup
+```
+
+#### 三、`translator`
   - 每個方案有一個主`translator`，在引擎列表中不以`@`+翻譯器名定義，在細項配置時直接以`translator:`命名。以下加粗項爲可在主`translator`中定義之項，其它可在副〔以`@`+翻譯器名命名〕`translator`中定義
 
 1. **`enable_charset_filter:`** 是否開啓字符集過濾
@@ -218,17 +244,17 @@ name:
   - 以上選塡`true`或`false`
 8. **`dictionary:`** 翻譯器將調取此字典文件
 9. **`prism:`** 設定由此主翻譯器的`speller`生成的棱鏡文件名，或此副編譯器調用的棱鏡名
-9. **`user_dict:`** 設定用戶詞典名 
-10. **`db_class:`** 設定用戶詞典類型
-11. **`preedit_format:`** 上屛碼自定義
-12. **`comment_format:`** 提示碼自定義
-13. **`spelling_hints:`** 設定多少字以內候選標註完整帶調拼音〔對`script_translator`有效〕
-14. **`initial_quality:`** 設定此翻譯器出字優先級
-15. `tag:` 設定此翻譯器針對的`tag`。可不塡，不塡則僅針對`abc`
-16. `prefix:` 設定此翻譯器的前綴標識，可不塡，不塡則無前綴
-17. `suffix:` 設定此翻譯器的尾綴標識，可不塡，不塡則無尾綴
-18. `tips:` 設定此翻譯器的輸入前提示符，可不塡，不塡則無提示符
-19. `closing_tips:` 設定此翻譯器的結束輸入提示符，可不塡，不塡則無提示符
+10. **`user_dict:`** 設定用戶詞典名 
+11. **`db_class:`** 設定用戶詞典類型
+12. **`preedit_format:`** 上屛碼自定義
+13. **`comment_format:`** 提示碼自定義
+14. **`spelling_hints:`** 設定多少字以內候選標註完整帶調拼音〔對`script_translator`有效〕
+15. **`initial_quality:`** 設定此翻譯器出字優先級
+16. `tag:` 設定此翻譯器針對的`tag`。可不塡，不塡則僅針對`abc`
+17. `prefix:` 設定此翻譯器的前綴標識，可不塡，不塡則無前綴
+18. `suffix:` 設定此翻譯器的尾綴標識，可不塡，不塡則無尾綴
+19. `tips:` 設定此翻譯器的輸入前提示符，可不塡，不塡則無提示符
+20. `closing_tips:` 設定此翻譯器的結束輸入提示符，可不塡，不塡則無提示符
 
    ####示例
    
@@ -281,3 +307,5 @@ name:
        - xform/([nl])ue/$1üe/
        - xform/([jqxy])v/$1u/
 ```
+
+#### 四、`reverse_lookup_filter`
