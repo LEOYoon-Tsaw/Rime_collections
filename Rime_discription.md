@@ -1,8 +1,8 @@
 `Schema.yaml` Instructions
 ========
 
- Rime schema
- encoding: utf-8
+	Rime schema
+	encoding: utf-8
 
 
 Schema list:
