@@ -5,3 +5,4 @@
 	
 	Rime schema
 	encoding: utf-8
+	
