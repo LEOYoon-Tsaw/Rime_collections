@@ -533,8 +533,8 @@ style:
 2. `use_preset_vocabulary:` 是否引入「八股文」〔含字詞頻、詞庫〕
 3. `max_phrase_length:` 配合`use_preset_vocabulary:`，設定導入詞條最大詞長
 4. `min_phrase_weight:` 配合`use_preset_vocabulary:`，設定導入詞條最小詞頻
-5. `columns:` 定義碼表以`Tab`分隔出的各列
-6. `import_tables:` 加載其它外部碼表，可設`text`、`code`、`weight`、`stem`
+5. `columns:` 定義碼表以`Tab`分隔出的各列，可設`text`、`code`、`weight`、`stem`
+6. `import_tables:` 加載其它外部碼表
 7. `encoder:` 形碼造詞規則
    1. `exclude_patterns:`
    2. `rules:` 可用`length_equal:`和`length_in_range:`定義。大寫字母表示字序，小寫字母表示其所跟隨的大寫字母所以表的字中的編碼序
