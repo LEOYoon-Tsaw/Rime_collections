@@ -343,7 +343,7 @@ name:
 
 1. `option_name:` 對應`swiches`中設定的切換項名
 2. `opencc_config:` 用字轉換定義文件
-3. `tags:` 設定轉換���範圍
+3. `tags:` 設定轉換範圍
 4. `tips:` 設定是否提示轉換前的字，可塡`none`〔或不塡〕、`char`〔僅對單字有效〕、`all`
 
    ####示例
@@ -356,7 +356,7 @@ name:
 ```
 
 
-#### 六、*`chord_composer`*
+#### *六、`chord_composer`*
   * 並擊把鍵盤分兩半，相當於兩塊鍵盤。兩邊同時擊鍵，系統默認在其中一半上按的鍵先於另一半，由此得出上屛碼
 
 1. `alphabet:` 字母表，包含用於並擊的按鍵。擊鍵雖有先後，形成並擊時，一律以字母表順序排列
@@ -450,7 +450,7 @@ name:
 #### 七、其它
   * 包括`recognizer`、`key_binder`、`punctuator`
 
-1. **`import_preset:` 由外部統一文件導入**
+1. **`import_preset:` **由外部統一文件導入
 2. `recognizer:`下設`patterns:` 配合`segmentor`的`prefix`和`suffix`完成段落劃分、`tag`分配
 3. `key_binder:`下設`bindings:` 設置功能性快捷鍵
 4. `punctuator:`下設`full_shape:`和`half_shape:` 分别控制全角模式下的符號和半角模式下的符號，另有`use_space:`空格頂字
