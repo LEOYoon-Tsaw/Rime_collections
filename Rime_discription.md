@@ -20,17 +20,17 @@
    #### 示例
 
 	```
-schema:
-  name: "蒼頡檢字法"
-  schema_id: cangjie6
-  author:
-    - "發明人 朱邦復先生、沈紅蓮女士"
-  dependencies:
-    - luna_pinyin
-    - jyutping
-    - zyenpheng
-  description: "第六代倉頡輸入法\x0a碼表由雪齋、惜緣和crazy4u整理\x0a"
-  version: 0.19
+   schema:
+     name: "蒼頡檢字法"
+     schema_id: cangjie6
+     author:
+       - "發明人 朱邦復先生、沈紅蓮女士"
+     dependencies:
+       - luna_pinyin
+       - jyutping
+       - zyenpheng
+     description: "第六代倉頡輸入法\x0a碼表由雪齋、惜緣和crazy4u整理\x0a"
+     version: 0.19
 ```
 
 ### 開關
@@ -63,16 +63,16 @@ schema:
 
    ####示例
 
-	```
-switches:
-  - name: ascii_mode
-    states: ["中文", "西文"]
-  - name: full_shape
-    states: ["半角", "全角"]
-  - name: extended_charset
-    states: ["通用", "增廣"]
-  - name: simplification
-    states: ["漢字", "汉字"]
+   ```
+   switches:
+     - name: ascii_mode
+       states: ["中文", "西文"]
+     - name: full_shape
+       states: ["半角", "全角"]
+     - name: extended_charset
+       states: ["通用", "增廣"]
+     - name: simplification
+       states: ["漢字", "汉字"]
 ```
 
 ### 引擎
@@ -127,40 +127,40 @@ switches:
    ####示例
    
    ```
-engine:
-  processors:
-    - ascii_composer
-    - recognizer
-    - key_binder
-    - speller
-    - punctuator
-    - selector
-    - navigator
-    - express_editor
-  segmentors:
-    - ascii_segmentor
-    - matcher
-    - affix_segmentor@pinyin
-    - affix_segmentor@jyutping
-    - affix_segmentor@pinyin_lookup
-    - affix_segmentor@jyutping_lookup
-    - affix_segmentor@reverse_lookup
-    - abc_segmentor
-    - punct_segmentor
-    - fallback_segmentor
-  translators:
-    - punct_translator
-    - table_translator
-    - script_translator@pinyin
-    - script_translator@jyutping
-    - script_translator@pinyin_lookup
-    - script_translator@jyutping_lookup
-  filters:
-    - simplifier@zh_simp
-    - uniquifier
-    - reverse_lookup_filter@middle_chinese
-    - reverse_lookup_filter@pinyin_reverse_lookup
-    - reverse_lookup_filter@jyutping_reverse_lookup
+   engine:
+     processors:
+       - ascii_composer
+       - recognizer
+       - key_binder
+       - speller
+       - punctuator
+       - selector
+       - navigator
+       - express_editor
+     segmentors:
+       - ascii_segmentor
+       - matcher
+       - affix_segmentor@pinyin
+       - affix_segmentor@jyutping
+       - affix_segmentor@pinyin_lookup
+       - affix_segmentor@jyutping_lookup
+       - affix_segmentor@reverse_lookup
+       - abc_segmentor
+       - punct_segmentor
+       - fallback_segmentor
+     translators:
+       - punct_translator
+       - table_translator
+       - script_translator@pinyin
+       - script_translator@jyutping
+       - script_translator@pinyin_lookup
+       - script_translator@jyutping_lookup
+     filters:
+       - simplifier@zh_simp
+       - uniquifier
+       - reverse_lookup_filter@middle_chinese
+       - reverse_lookup_filter@pinyin_reverse_lookup
+       - reverse_lookup_filter@jyutping_reverse_lookup
 ```
 
 ### 細項配置
@@ -178,5 +178,106 @@ name:
   branches:
     - configurations
 ```
+#### 一、`speller`
 
-#### 一、`translator`
+1. `alphabet:` 定義本方案輸入鍵
+2. `delimiter:` 上屛時的音節間分音符
+3. `algebra:` 拼寫運算規則，由之算出的拼寫匯入`prism`中
+
+   ####示例
+   ```
+   speller:
+     alphabet: zyxwvutsrqponmlkjihgfedcba
+     delimiter: " '"
+     algebra:
+       - erase/^xx$/
+       - abbrev/^([a-z]).+$/$1/
+       - abbrev/^([zcs]h).+$/$1/
+       - derive/^([nl])ve$/$1ue/
+       - derive/^([jqxy])u/$1v/
+       - derive/un$/uen/
+       - derive/ui$/uei/
+       - derive/iu$/iou/
+       - derive/([aeiou])ng$/$1gn/
+       - derive/([dtngkhrzcs])o(u|ng)$/$1o/
+       - derive/ong$/on/
+       - derive/ao$/oa/
+       - derive/([iu])a(o|ng?)$/a$1$2/
+```
+
+#### 二、`translator`
+  - 每個方案有一個主`translator`，在引擎列表中不以`@`+翻譯器名定義，在細項配置時直接以`translator:`命名。以下加粗項爲可在主`translator`中定義之項，其它可在副〔以`@`+翻譯器名命名〕`translator`中定義
+
+1. **`enable_charset_filter:`** 是否開啓字符集過濾
+2. **`enable_sentence:`** 是否開啓自動造句
+3. **`enable_encoder:`** 是否開啓自動造詞〔對`table`translator`有效〕
+4. **`encode_commit_history:`** 是否對已上屛詞自動成詞〔對`table`translator`有效〕
+5. **`max_phrase_length:`** 最大自動成詞詞長〔對`table`translator`有效〕
+6. **`enable_user_dict:`** 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
+7. **`disable_user_dict_for_patterns:`** 禁止某些編碼錄入用戶詞典
+  - 以上選塡`true`或`false`
+8. **`dictionary:`** 翻譯器將調取此字典文件
+9. **`prism:`** 設定由此主翻譯器的`speller`生成的棱鏡文件名，或此副編譯器調用的棱鏡名
+9. **`user_dict:`** 設定用戶詞典名 
+10. **`db_class:`** 設定用戶詞典類型
+11. **`preedit_format:`** 上屛碼自定義
+12. **`comment_format:`** 提示碼自定義
+13. **`spelling_hints:`** 設定多少字以內候選標註完整帶調拼音〔對`script_translator`有效〕
+14. **`initial_quality:`** 設定此翻譯器出字優先級
+15. `tag:` 設定此翻譯器針對的`tag`。可不塡，不塡則僅針對`abc`
+16. `prefix:` 設定此翻譯器的前綴標識，可不塡，不塡則無前綴
+17. `suffix:` 設定此翻譯器的尾綴標識，可不塡，不塡則無尾綴
+18. `tips:` 設定此翻譯器的輸入前提示符，可不塡，不塡則無提示符
+19. `closing_tips:` 設定此翻譯器的結束輸入提示符，可不塡，不塡則無提示符
+
+   ####示例
+   
+   蒼頡主翻譯器
+   ```
+   translator:
+     dictionary: &dict
+       cangjie6.extended
+     enable_charset_filter: true
+     enable_sentence: true
+     enable_encoder: true
+     encode_commit_history: true
+     max_phrase_length: 5
+     preedit_format:
+       - xform/^([a-z ]*)$/$1｜\U$1\E/
+       - xform/(?<=[a-z])\s(?=[a-z])//
+       - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片|"
+     comment_format:
+       - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片・|"
+       - xform/^[abcdefghijklmnopqrstuvwxyz~]+$//
+     disable_user_dict_for_patterns:
+       - "^z.*$"
+     initial_quality: 0.75
+```
+
+   拼音副翻譯器
+   ```
+   pinyin:
+     tag: pinyin
+     dictionary: luna_pinyin
+     enable_charset_filter: true
+     prefix: 'P'
+     suffix: ';'
+     preedit_format:
+       - "xform/([nl])v/$1ü/"
+       - "xform/([nl])ue/$1üe/"
+       - "xform/([jqxy])v/$1u/"
+     tips: "【漢拼】"
+     closing_tips: "【蒼頡】"
+     initial_quality: 0.2
+```
+
+   拼音・簡化字主翻譯器
+   ```
+   translator:
+     dictionary: luna_pinyin
+     prism: luna_pinyin_simp
+     preedit_format:
+       - xform/([nl])v/$1ü/
+       - xform/([nl])ue/$1üe/
+       - xform/([jqxy])v/$1u/
+```
