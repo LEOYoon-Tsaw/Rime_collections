@@ -309,3 +309,39 @@ name:
 ```
 
 #### 四、`reverse_lookup_filter`
+  * 此濾鏡須掛在`translator`上，不影響該`translator`工作
+  
+1. `tags:` 設定其作用���範圍
+2. `overwrite_comment:` 是否覆蓋其他提示
+3. `dictionary:` 反查所得提示碼之碼表
+4. `comment_format:` 自定義提示碼格式
+
+   ####示例
+   ```
+   pinyin_reverse_lookup: #該反查濾鏡名
+     tags: [ pinyin_lookup ] #掛在這個tag所對應的翻譯器上
+     overwrite_comment: true
+     dictionary: cangjie6 #反查所得爲蒼頡碼
+     comment_format:
+       - "xform/$/〕/"
+       - "xform/^/〔/"
+       - "xlit|abcdefghijklmnopqrstuvwxyz |日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片、|"
+```
+
+#### 五、`simplifier`
+
+1. `option_name:` 對應`swiches`中設定的切換項名
+2. `opencc_config:` 用字轉換定義文件
+3. `tags:` 設定轉換���範圍
+4. `tips:` 設定是否提示轉換前的字，可塡`none`〔或不塡〕、`char`〔僅對單字有效〕、`all`
+
+   ####示例
+   ```
+   zh_tw:
+     option_name: zh_tw
+     opencc_config: zht2zhtw_p.ini
+     tags: [ abc ] #abc對應abc_segmentor
+     tips: none
+```
+
+#### 七、其它
