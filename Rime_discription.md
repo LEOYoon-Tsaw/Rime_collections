@@ -252,7 +252,7 @@ name:
 2. **`enable_sentence:`** 是否開啓自動造句
 3. **`enable_encoder:`** 是否開啓自動造詞〔對`table`translator`有效〕
 4. **`encode_commit_history:`** 是否對已上屛詞自動成詞〔對`table`translator`有效〕
-5. **`max_phrase_length:`** 最大自動成詞詞長〔對`table`translator`有效〕
+5. **`max_phrase_length:`** 最大自動成詞詞長〔對`table_translator`有效〕
 6. **`enable_user_dict:`** 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
 7. **`disable_user_dict_for_patterns:`** 禁止某些編碼錄入用戶詞典
   - 以上選塡`true`或`false`
@@ -509,7 +509,7 @@ style:
 	
 	Rime dict
 	encoding: utf-8
-	〔你可以在這���裏註釋字典來源、變動記䤸等〕
+	〔你可以在這註釋字典來源、變動記䤸等〕
 
 ### 描述檔
 ---
@@ -527,7 +527,7 @@ style:
 ---
 
 1. `sort:` 字典**初始**排序，可選`original`或`by_weight`
-2. `use_preset_vocabulary:` 是否引入���「八股文」〔含字詞頻、詞庫〕
+2. `use_preset_vocabulary:` 是否引入「八股文」〔含字詞頻、詞庫〕
 3. `max_phrase_length:` 配合`use_preset_vocabulary:`，設定導入詞條最大詞長
 4. `min_phrase_weight:` 配合`use_preset_vocabulary:`，設定導入詞條最小詞頻
 5. `columns:` 定義碼表以`Tab`分隔出的各列
@@ -590,5 +590,6 @@ style:
    這     yymr    181787
    用     bq      168934     b'q
 ```
-     * 受限於此網䈎格式，上表未用`Tab`，以空格代替
+     * 受限於此網䈎格式，上表未用`Tab`，以空格代替   
+   
 ===
