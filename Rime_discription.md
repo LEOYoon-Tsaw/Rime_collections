@@ -322,7 +322,7 @@ name:
 #### 四、`reverse_lookup_filter`
   * 此濾鏡須掛在`translator`上，不影響該`translator`工作
   
-1. `tags:` 設定其作用���範圍
+1. `tags:` 設定其作用範圍
 2. `overwrite_comment:` 是否覆蓋其他提示
 3. `dictionary:` 反查所得提示碼之碼表
 4. `comment_format:` 自定義提示碼格式
