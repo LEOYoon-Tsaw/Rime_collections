@@ -503,3 +503,92 @@ style:
 
 # `Dict.yaml` 詳解
 ========
+
+### 開始之前
+---
+	
+	Rime dict
+	encoding: utf-8
+	〔你可以在這���裏註釋字典來源、變動記䤸等〕
+
+### 描述檔
+---
+
+1. `name:` 內部字典名，也即`schema`所引用的字典名，確保與文年的名相一致
+2. `version:` 如果發佈，請確保每次改動升版本號
+
+   ####示例
+   ```
+   name: "cangjie6.extended"
+   version: "0.1"
+```
+
+### 配置
+---
+
+1. `sort:` 字典**初始**排序，可選`original`或`by_weight`
+2. `use_preset_vocabulary:` 是否引入���「八股文」〔含字詞頻、詞庫〕
+3. `max_phrase_length:` 配合`use_preset_vocabulary:`，設定導入詞條最大詞長
+4. `min_phrase_weight:` 配合`use_preset_vocabulary:`，設定導入詞條最小詞頻
+5. `columns:` 定義碼表以`Tab`分隔出的各列
+6. `import_tables:` 加載其它外部碼表
+7. `encoder:` 形碼造詞規則
+   1. `exclude_patterns:`
+   2. `rules:` 可用`length_equal:`和`length_in_range:`定義。大寫字母表示字序，小寫字母表示其所跟隨的大寫字母所以表的字中的編碼序
+   3. `tail_anchor:` 造詞碼包含結構分割符〔僅用於倉頡〕
+   4. `exclude_patterns` 取消某編碼的造詞資格
+
+
+   ####示例
+   ```
+   sort: by_weight
+   use_preset_vocabulary: false
+   import_tables:
+     - cangjie6
+   columns:
+     - text
+     - weight
+   encoder:
+     exclude_patterns:
+       - '^z.*$'
+     rules:
+       - length_equal: 2
+         formula: "AaAzBaBbBz"
+       - length_in_range: [3, 3]
+         formula: "AaAzBaYzZz"
+       - length_in_range: [4, 8]
+         formula: "AaBzCaYzZz"
+     tail_anchor: "'"
+```
+
+### 碼表
+---
+  * 以`Tab`分隔各列，各列依`columns:`定義排列。
+
+   ####示例
+   蒼頡
+   ```
+   columns:
+     - text #第一列字／詞
+     - code #第二列碼
+     - weight #第三列字／詞頻
+     - stem #第四列造詞碼
+```   
+   ```
+   個	owjr	246268	ow'jr
+   看	hqbu	245668
+   中	l	243881
+   呢	rsp	242970
+   來	doo	235101
+   嗎	rsqf	221092
+   爲	bhnf	211340
+   會	owfa	209844
+   她	vpd	204725
+   與	xyc	203975
+   給	vfor	193007
+   等	hgdi	183340
+   這	yymr	181787
+   用	bq	168934	b'q
+```
+
+===
