@@ -450,7 +450,7 @@ name:
 #### 七、其它
   * 包括`recognizer`、`key_binder`、`punctuator`
 
-1. **`import_preset:` **由外部統一文件導入
+1. **`import_preset:`** 由外部統一文件導入
 2. `recognizer:`下設`patterns:` 配合`segmentor`的`prefix`和`suffix`完成段落劃分、`tag`分配
 3. `key_binder:`下設`bindings:` 設置功能性快捷鍵
 4. `punctuator:`下設`full_shape:`和`half_shape:` 分别控制全角模式下的符號和半角模式下的符號，另有`use_space:`空格頂字
