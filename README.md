@@ -1,4 +1,4 @@
-Rime_icons
+Rime Collections
 ==========
 
-Icon collection for Rime IME
+Deligate works for Rime IME
