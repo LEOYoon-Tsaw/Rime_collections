@@ -1,4 +1,4 @@
-# `Schema.yaml` Instructions
+# `Schema.yaml` 詳解
 ========
 
 ### 開始之前
@@ -104,6 +104,7 @@ switches:
 5. `fallback_segmentor` 標識其他未標識段落
 6. **`affix_segmentor`** 用戶自定義`tag`
   - 此項可加載多個實例，後接`@`+`tag`名
+
 #### 三、`translators`
   - 這批組件翻譯特定類型的編碼段爲一組候選文字
 
@@ -122,3 +123,60 @@ switches:
 2. `uniquifier` 過濾重複的候選字，有可能來自**`simplifier`**
 3. **`reverse_lookup_filter`** 反查濾鏡，以更靈活的方式反查，Rime1.0後替代*`reverse_lookup_translator`*
   - 此項可加載多個實例，後接`@`+濾鏡名〔如：`pinyin_lookup`、`jyutping_lookup`等〕
+
+   ####示例
+   
+   ```
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@pinyin
+    - affix_segmentor@jyutping
+    - affix_segmentor@pinyin_lookup
+    - affix_segmentor@jyutping_lookup
+    - affix_segmentor@reverse_lookup
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+    - script_translator@pinyin
+    - script_translator@jyutping
+    - script_translator@pinyin_lookup
+    - script_translator@jyutping_lookup
+  filters:
+    - simplifier@zh_simp
+    - uniquifier
+    - reverse_lookup_filter@middle_chinese
+    - reverse_lookup_filter@pinyin_reverse_lookup
+    - reverse_lookup_filter@jyutping_reverse_lookup
+```
+
+### 細項配置
+---
+
+引擎中所舉之加粗者均可在下方詳細描述，格式爲：
+
+```
+name:
+  branches: configurations
+```
+或
+```
+name:
+  branches:
+    - configurations
+```
+
+#### 一、`translator`
