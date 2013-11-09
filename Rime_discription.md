@@ -253,9 +253,9 @@ name:
 
 1. <b>`enable_charset_filter:`</b> 是否開啓字符集過濾
 2. <b>`enable_sentence:`</b> 是否開啓自動造句
-3. <b>`enable_encoder:`</b> 是否開啓自動造詞〔對`table`translator`有效〕
-4. <b>`encode_commit_history:`</b> 是否對已上屛詞自動成詞〔對`table`translator`有效〕
-5. <b>`max_phrase_length:`</b> 最大自動成詞詞長〔對`table_translator`有效〕
+3. <b>`enable_encoder:`</b> 是否開啓自動造詞〔僅`table_translator`有效〕
+4. <b>`encode_commit_history:`</b> 是否對已上屛詞自動成詞〔僅`table_translator`有效〕
+5. <b>`max_phrase_length:`</b> 最大自動成詞詞長〔僅`table_translator`有效〕
 6. <b>`enable_user_dict:`</b> 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
 7. <b>`disable_user_dict_for_patterns:`</b> 禁止某些編碼錄入用戶詞典
   - 以上選塡`true`或`false`
@@ -265,7 +265,7 @@ name:
 11. <b>`db_class:`</b> 設定用戶詞典類型，可設`stabledb`或`text`
 12. <b>`preedit_format:`</b> 上屛碼自定義
 13. <b>`comment_format:`</b> 提示碼自定義
-14. <b>`spelling_hints:`</b> 設定多少字以內候選標註完整帶調拼音〔對`script_translator`有效〕
+14. <b>`spelling_hints:`</b> 設定多少字以內候選標註完整帶調拼音〔僅`script_translator`有效〕
 15. <b>`initial_quality:`</b> 設定此翻譯器出字優先級
 16. `tag:` 設定此翻譯器針對的`tag`。可不塡，不塡則僅針對`abc`
 17. `prefix:` 設定此翻譯器的前綴標識，可不塡，不塡則無前綴
