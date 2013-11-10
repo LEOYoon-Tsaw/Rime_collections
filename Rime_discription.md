@@ -13,7 +13,7 @@
 1. `name:` 此處爲方案的顯示名偁〔即出現於方案選單中以示人的，通常爲中文〕
 2. `schema_id:` 此處爲方案內部名，在代碼中引用此方案時以此名爲正，通常由英文、數字、下劃線組成
 3. `author:` 這裏爲發明人、撰寫者。如果您對方案做出了修改，請保留原作者名，並將自己的名字加在後面。
-4. `description:` 請簡要描述方案歷史、碼表來源、該方案規則等
+4. `description:` 請簡要描述方案歷史、碼表來源、該方案規則等   
 5. `dependencies:` 如果本方案依賴於其它方案〔通常來說會依頼其它方案做爲反查，抑或是兩種或多種方案混用時〕
 6. `version:` 版本號，在發佈新版前請確保已陞版本號
 
@@ -29,7 +29,9 @@
        - luna_pinyin
        - jyutping
        - zyenpheng
-     description: "第六代倉頡輸入法\x0a碼表由雪齋、惜緣和crazy4u整理\x0a"
+     description: |
+       第六代倉頡輸入法
+       碼表由雪齋、惜緣和crazy4u整理
      version: 0.19
 ```
 
@@ -121,7 +123,7 @@
   - 這批組件過濾翻譯的結果
 
 1. <b>`simplifier`</b> 用字轉換
-2. `uniquifier` 過濾重複的候選字，有可能來<b>`simplifier`</b>
+2. `uniquifier` 過濾重複的候選字，有可能來自<b>`simplifier`</b>
 3. <b>`reverse_lookup_filter`</b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i>`reverse_lookup_translator`</i>
   - 此項可加載多個實例，後接`@`+濾鏡名〔如：`pinyin_lookup`、`jyutping_lookup`等〕
 
@@ -188,7 +190,7 @@ name:
 3. `algebra:` 拼寫運算規則，由之算出的拼寫匯入`prism`中
 4. `max_code_length:` 形碼最大碼長，超過則頂字上屛〔`number`〕
 5. `auto_select:` 自動上屛〔`true`或`false`〕
-6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，無重碼時半選而不上屏〔`true`或`false`〕
+6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，無重碼時半選而不上屛〔`true`或`false`〕
 7. `use_space:` 以空格作輸入碼〔`true`或`false`〕
 
     ```
