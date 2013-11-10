@@ -508,7 +508,7 @@ menu:
   page_size: 5 #選單每䈎顯示個數
 
 style:
-  font_face: "HanaMinA, HanaMinB" #字體〔小狼���毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
+  font_face: "HanaMinA, HanaMinB" #字體〔小狼毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
   font_point: 15 #字號
   horizontal: false #橫／直排
   line_spacing: 1 #行距
