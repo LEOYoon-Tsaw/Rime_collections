@@ -188,7 +188,7 @@ name:
 3. `algebra:` 拼寫運算規則，由之算出的拼寫匯入`prism`中
 4. `max_code_length:` 形碼最大碼長，超過則頂字上屛〔`number`〕
 5. `auto_select:` 自動上屛〔`true`或`false`〕
-6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，形碼無重碼自動上屛〔`true`或`false`〕
+6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，無重碼時半選而不上屏〔`true`或`false`〕
 7. `use_space:` 以空格作輸入碼〔`true`或`false`〕
 
     ```
