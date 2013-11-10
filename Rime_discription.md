@@ -59,7 +59,7 @@
     reset: 0
 ```
   - `states:` 可不寫，如不寫則此開關存在但不可見，可由快捷鍵操作
-  - `reset:` 設定默認狀態，`0`爲英文，`1`爲中文。〔`reset`可不寫，此時切換窗口時不會重置到默認狀
+  - `reset:` 設定默認狀態〔`reset`可不寫，此時切換窗口時不會重置到默認狀
 
    ####示例
 
@@ -186,10 +186,10 @@ name:
 1. `alphabet:` 定義本方案輸入鍵
 2. `delimiter:` 上屛時的音節間分音符
 3. `algebra:` 拼寫運算規則，由之算出的拼寫匯入`prism`中
-4. `max_code_length:` 形碼最大碼長，超過則頂字上屛
-5. `auto_select:` 自動上屛
-6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，形碼無重碼自動上屛
-7. `use_space:` 以空格作輸入碼
+4. `max_code_length:` 形碼最大碼長，超過則頂字上屛〔`number`〕
+5. `auto_select:` 自動上屛〔`true`或`false`〕
+6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，形碼無重碼自動上屛〔`true`或`false`〕
+7. `use_space:` 以空格作輸入碼〔`true`或`false`〕
 
     ```
     speller的演算包含：
@@ -364,7 +364,6 @@ name:
      tips: none
 ```
 
-
 #### <i>六、`chord_composer`</i>
   * 並擊把鍵盤分兩半，相當於兩塊鍵盤。兩邊同時擊鍵，系統默認在其中一半上按的鍵先於另一半，由此得出上屛碼
 
@@ -458,7 +457,7 @@ name:
 ```
 
 #### 七、其它
-  * 包括`recognizer`、`key_binder`、`punctuator`
+  * 包括`recognizer`、`key_binder`、`punctuator`。<b>標點</b>、<b>快捷鍵</b>、<b>二三選重</b>、<b>特殊字符</b>等均於此設置
 
 1. <b>`import_preset:`</b> 由外部統一文件導入
 2. `recognizer:`下設`patterns:` 配合`segmentor`的`prefix`和`suffix`完成段落劃分、`tag`分配
@@ -495,6 +494,7 @@ name:
        jyutping_lookup: "`J[a-z]*;?$"
        pinyin: "(?<!`)P[a-z']*;?$"
        jyutping: "(?<!`)J[a-z']*;?$"
+       punct: "/[a-z]*$" #配合symbols.yaml中的特殊字符輸入
 ```
 
 ###其它
