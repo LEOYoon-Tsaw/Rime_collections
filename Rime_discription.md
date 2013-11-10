@@ -190,7 +190,7 @@ name:
 3. `algebra:` 拼寫運算規則，由之算出的拼寫匯入`prism`中
 4. `max_code_length:` 形碼最大碼長，超過則頂字上屛〔`number`〕
 5. `auto_select:` 自動上屛〔`true`或`false`〕
-6. `auto_select_unique_candidate:` 和`auto_select:`配合使用，無重碼時半選而不上屛〔`true`或`false`〕
+6. <i>`auto_select_unique_candidate:`</i> 和`auto_select:`配合使用，無重碼時半選而不上屛〔`true`或`false`〕
 7. `use_space:` 以空格作輸入碼〔`true`或`false`〕
 
     ```
@@ -515,6 +515,7 @@ style:
   font_point: 15 #字號
   horizontal: false #橫／直排
   line_spacing: 1 #行距
+  inline_preedit: true #輸入碼內嵌
 ```
 
 # `Dict.yaml` 詳解
