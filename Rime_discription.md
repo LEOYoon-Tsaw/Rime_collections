@@ -355,6 +355,7 @@ name:
 2. `opencc_config:` 用字轉換定義文件
 3. `tags:` 設定轉換範圍
 4. `tips:` 設定是否提示轉換前的字，可塡`none`〔或不塡〕、`char`〔僅對單字有效〕、`all`
+5. <i>`excluded_types:`</i> 取消特定範圍〔一般爲<i>`reverse_lookup_translator`</i>〕轉化用字
 
    ####示例
    modified from luna_pinyin_kunki.schema
