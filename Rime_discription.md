@@ -1,4 +1,4 @@
-<h1><code>Schema.yaml</code> 詳解</h1>
+<h1><p align="center"><code>Schema.yaml</code> 詳解</p></h1>
 <h2></h2>
 <hr>
 
@@ -178,7 +178,7 @@
 <li><i><code>auto_select_unique_candidate:</code></i> 和<code>auto_select:</code>配合使用，無重碼時半選而不上屛〔<code>true</code>或<code>false</code>〕</li>
 <li><code>use_space:</code> 以空格作輸入碼〔<code>true</code>或<code>false</code>〕</li>
 </ol>
-<ul><ul><li>speller的演算包含：</li>
+<ul><ul><li><code>speller</code>的演算包含：</li>
 <pre><code>xform --改寫〔不保留原形〕
 derive --衍生〔保留原形〕
 abbrev --簡拼〔出字優先級較上兩組更低〕
@@ -440,7 +440,7 @@ style:
 </code></pre>
 
 <br>
-<h1><code>Dict.yaml</code> 詳解</h1>
+<h1><p align="center"><code>Dict.yaml</code> 詳解</p></h1>
 <h2></h2>
 <hr>
 
