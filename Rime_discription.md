@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1><p align="center"><code>Schema.yaml</code> 詳解</p></h1>
+<center><h1><code>Schema.yaml</code> 詳解</h1></center>
 <h2></h2>
 <hr>
 
@@ -469,7 +469,7 @@ style:
 
 <br>
 
-<h1><p align="center"><code>Dict.yaml</code> 詳解</p></h1>
+<center><h1><code>Dict.yaml</code> 詳解</h1></center>
 <h2></h2>
 <hr>
 
