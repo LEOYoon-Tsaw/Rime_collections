@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-<a href="http://www.boost.org/doc/libs/1_49_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html">「Rime詳解」</a>
-=======
-</head>
+<html>
 <body>
-<p align="center"><h1><code>Schema.yaml</code> 詳解</h1></p>
+<h1><p align="center"><code>Schema.yaml</code> 詳解</p></h1>
 <h2></h2>
 <hr>
 
@@ -44,7 +41,8 @@
 
 <ol><li><code>ascii_mode</code> 是中英文轉換開關。預設<code>0</code>爲英文，<code>1</code>爲中文</li>
 <li><code>full_shape</code> 是全角符號／半角符號開關。注意，開啓全角時英文字母亦爲全角。<code>0</code>爲半角，<code>1</code>爲全角</li>
-<li><code>extended_charset</code> 是字符集開關。<code>0</code>爲小字符集，<code>1</code>爲不限制字符集</li>
+<li><code>extended_charset</code> 是字符集開關。<code>0</code>爲CJK基本字符集，<code>1</code>爲CJK全字符集</li>
+<ul><li>僅<code>table_translator</code>可用</li></ul>
 <li><code>simplification</code> 是轉化字開關。一般情況下與上同，<code>0</code>爲不開啓轉化，<code>1</code>爲轉化。</li>
 </ol>
 
@@ -186,6 +184,8 @@
 <h3>一、<code>speller</code></h3>
 
 <ol><li><code>alphabet:</code> 定義本方案輸入鍵</li>
+<li><code>initials:</code> 定義僅作始碼之鍵</li>
+<li><code>finals:</code> 定義僅作末碼之鍵</li>
 <li><code>delimiter:</code> 上屛時的音節間分音符</li>
 <li><code>algebra:</code> 拼寫運算規則，由之算出的拼寫匯入<code>prism</code>中</li>
 <li><code>max_code_length:</code> 形碼最大碼長，超過則頂字上屛〔<code>number</code>〕</li>
@@ -257,13 +257,15 @@ erase --刪除
 <ul><li>每個方案有一個主<code>translator</code>，在引擎列表中不以<code>@</code>+翻譯器名定義，在細項配置時直接以<code>translator:</code>命名。以下加粗項爲可在主<code>translator</code>中定義之項，其它可在副〔以<code>@</code>+翻譯器名命名〕<code>translator</code>中定義</li>
 </ul>
 
-<ol><b><li><code>enable_charset_filter:</code></b> 是否開啓字符集過濾</li>
-<li><b><code>enable_sentence:</code></b> 是否開啓自動造句</li>
+<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>enable_encoder:</code></b> 是否開啓自動造詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長〔僅<code>table_translator</code>有效〕</li>
-<li><b><code>enable_user_dict:</code></b> 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕</li>
+<li><b><code>enable_completion:</code></b> 提前顯示尚未輸入完整碼的字〔僅<code>table_translator</code>有效〕</li>
+<li><b><code>strict_spelling:</code></b> 配合<code>speller</code>中的<code>fuzz</code>規則，僅以畧拼碼組詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>disable_user_dict_for_patterns:</code></b> 禁止某些編碼錄入用戶詞典</li>
+<li><b><code>enable_sentence:</code></b> 是否開啓自動造句</li>
+<li><b><code>enable_user_dict:</code></b> 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕</li>
 <ul><li>以上選塡<code>true</code>或<code>false</code></li></ul>
 <li><b><code>dictionary:</code></b> 翻譯器將調取此字典文件</li>
 <li><b><code>prism:</code></b> 設定由此主翻譯器的<code>speller</code>生成的棱鏡文件名，或此副編譯器調用的棱鏡名</li>
@@ -290,13 +292,13 @@ erase --刪除
   encode_commit_history: true
   max_phrase_length: 5
   preedit_format:
-    - xform/^([a-z ]*)$/$1｜\U$1\E/
+    - xform/^([a-z ]<em>)$/$1｜\U$1\E/
     - xform/(?&lt;=[a-z])\s(?=[a-z])//
     - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片|"
   comment_format:
     - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片・|"
   disable_user_dict_for_patterns:
-    - "^z.*$"
+    - "^z.</em>$"
   initial_quality: 0.75
 </code></pre>
 
@@ -467,7 +469,7 @@ style:
 
 <br>
 
-<p align="center"><h1><code>Dict.yaml</code> 詳解</h1></p>
+<h1><p align="center"><code>Dict.yaml</code> 詳解</p></h1>
 <h2></h2>
 <hr>
 
@@ -560,4 +562,6 @@ encoder:
 
 <p align="right">雪齋<br>
 09-Nov-2013</p>
->>>>>>> 46eddf363c9ee76dea5fb2dd8286ca4e4daee416
+
+</body>
+</html>
