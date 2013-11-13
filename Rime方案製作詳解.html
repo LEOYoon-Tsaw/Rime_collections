@@ -576,7 +576,7 @@ erase --刪除
 <li><b><code>dictionary:</code></b> 翻譯器將調取此字典文件</li>
 <li><b><code>prism:</code></b> 設定由此主翻譯器的<code>speller</code>生成的棱鏡文件名，或此副編譯器調用的棱鏡名</li>
 <li><b><code>user_dict:</code></b> 設定用戶詞典名 </li>
-<li><b><code>db_class:</code></b> 設定用戶詞典類型，可設<code>stabledb</code>或<code>text</code></li>
+<li><b><code>db_class:</code></b> 設定用戶詞典類型，可設<code>tabledb</code>〔文本〕或<code>userdb</code>〔二進制〕</li>
 <li><b><code>preedit_format:</code></b> 上屛碼自定義</li>
 <li><b><code>comment_format:</code></b> 提示碼自定義</li>
 <li><b><code>spelling_hints:</code></b> 設定多少字以內候選標註完整帶調拼音〔僅<code>script_translator</code>有效〕</li>
@@ -631,6 +631,16 @@ erase --刪除
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
+</code></pre>
+
+<p><small>luna_pinyin.schema.yaml 朙月拼音用戶短語</small></p>
+<pre><code>custom_phrase: #這是一個table_translator
+  dictionary: ""
+  user_dict: custom_phrase
+  db_class: tabledb
+  enable_sentence: false
+  enable_completion: false
+  initial_quality: 1
 </code></pre></ul>
 
 <h3>四、<code>reverse_lookup_filter</code></h3>
