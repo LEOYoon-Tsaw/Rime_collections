@@ -72,7 +72,6 @@
   - name: simplification
     states: ["漢字", "汉字"]
 </code></pre></ul>
-
 <h2>引擎</h2>
 <ul><li>以下<b>加粗</b>項爲可細配者，<i>斜體</i>者爲不常用者</li>
 </ul>
@@ -190,7 +189,6 @@
 <li><code>algebra:</code> 拼寫運算規則，由之算出的拼寫匯入<code>prism</code>中</li>
 <li><code>max_code_length:</code> 形碼最大碼長，超過則頂字上屛〔<code>number</code>〕</li>
 <li><code>auto_select:</code> 自動上屛〔<code>true</code>或<code>false</code>〕</li>
-<li><i><code>auto_select_unique_candidate:</code></i> 和<code>auto_select:</code>配合使用，無重碼時半選而不上屛〔<code>true</code>或<code>false</code>〕</li>
 <li><code>use_space:</code> 以空格作輸入碼〔<code>true</code>或<code>false</code>〕</li>
 </ol>
 
