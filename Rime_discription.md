@@ -520,7 +520,7 @@ encoder:
   rules:
     - length_equal: 2 #對於二字詞
       formula: "AaAzBaBbBz" #取第一字首尾碼、第二字首次尾碼
-    - length_in_equal: 3 #對於三字詞
+    - length_equal: 3 #對於三字詞
       formula: "AaAzBaYzZz" #取第一字首尾碼、第二字首尾碼、第三字尾碼
     - length_in_range: [4, 5] #對於四至五字詞
       formula: "AaBzCaYzZz" #取第一字首碼，第二字尾碼、第三字首碼、倒數第二字尾碼、最後一字尾碼
