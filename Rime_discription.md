@@ -260,6 +260,7 @@ erase --刪除
 <li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>enable_completion:</code></b> 提前顯示尚未輸入完整碼的字〔僅<code>table_translator</code>有效〕</li>
+<li><b><code>sentence_over_completion:</code></b> 在無全碼對應字而僅有逐鍵提示時也開啓智能組句〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>strict_spelling:</code></b> 配合<code>speller</code>中的<code>fuzz</code>規則，僅以畧拼碼組詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>disable_user_dict_for_patterns:</code></b> 禁止某些編碼錄入用戶詞典</li>
 <li><b><code>enable_sentence:</code></b> 是否開啓自動造句</li>
