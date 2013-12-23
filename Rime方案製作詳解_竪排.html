@@ -140,6 +140,8 @@ pre code {
   border-radius: 3px; }
 
 pre {
+  writing-mode: horizontal-tb;
+  -webkit-writing-mode: horizontal-tb; 
   background-color: #f8f8f8;
   border: 1px solid #cccccc;
   font-size: 13px;
@@ -171,8 +173,8 @@ pre {
 
 <ol><li><code>name:</code> 方案的顯示名偁〔即出現於方案選單中以示人的，通常爲中文〕</li>
 <li><code>schema_id:</code> 方案內部名，在代碼中引用此方案時以此名爲正，通常由英文、數字、下劃線組成</li>
-<li><code>author:</code> 發明人、撰寫者。如果您對方案做出了修改，請保留原作者名，並將自己的名字加在後面。</li>
-<li><code>description:</code> 請簡要描述方案歷史、碼表來源、該方案規則等   </li>
+<li><code>author:</code> 發明人、撰寫者。如果您對方案做出了修改，請保留原作者名，並將自己的名字加在後面</li>
+<li><code>description:</code> 請簡要描述方案歷史、碼表來源、該方案規則等</li>
 <li><code>dependencies:</code> 如果本方案依賴於其它方案〔通常來說會依頼其它方案做爲反查，抑或是兩種或多種方案混用時〕</li>
 <li><code>version:</code> 版本號，在發佈新版前請確保已陞版本號</li>
 </ol>
@@ -217,7 +219,8 @@ pre {
   reset: 0
 </code></pre></ul>
 <li><code>states:</code> 可不寫，如不寫則此開關存在但不可見，可由快捷鍵操作</li>
-<li><code>reset:</code> 設定默認狀態〔`reset`可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+<li><code>reset:</code> 設定默認狀態〔<code>reset</code>可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+
 <h4><strong>示例</strong></h4>
 <pre><code>switches:
   - name: ascii_mode
@@ -239,7 +242,7 @@ pre {
 <ul><li>這批組件處理各類按鍵消息</li></ul>
 
 <ol><li><code>ascii_composer</code> 處理西文模式及中西文切</li>
-<li><b><code>recognizer`</code></b> 與<code>matcher</code>搭配，處理符合特定規則的輸入碼，如網址、反查等<code>tags</code></li>
+<li><b><code>recognizer</code></b> 與<code>matcher</code>搭配，處理符合特定規則的輸入碼，如網址、反查等<code>tags</code></li>
 <li><b><code>key_binder</code></b> 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁、開關快捷鍵等</li>
 <li><b><code>speller</code></b> 拼寫處理器，接受字符按鍵，編輯輸入</li>
 <li><b><code>punctuator</code></b> 句讀處理器，將單個字符按鍵直接映射爲標點符號或文字</li>
@@ -283,12 +286,12 @@ pre {
 <li><code>uniquifier</code> 過濾重複的候選字，有可能來自<b><code>simplifier</code></b></li>
 <li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
 </ol>
-<ul><ul><li>此項可加載多個實例，後接`@`+濾鏡名〔如：`pinyin_lookup`、`jyutping_lookup`等〕</li>
+<ul><ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
 </ul></ul>
 
 <ul><h4><strong>示例</strong></h4>
-   <small>cangjie6.schema.yaml</small>
-   <pre><code>engine:
+<small>cangjie6.schema.yaml</small>
+<pre><code>engine:
   processors:
     - ascii_composer
     - recognizer
@@ -426,7 +429,7 @@ erase --刪除
 <ul><li>以上選塡<code>true</code>或<code>false</code></li></ul>
 <li><b><code>dictionary:</code></b> 翻譯器將調取此字典文件</li>
 <li><b><code>prism:</code></b> 設定由此主翻譯器的<code>speller</code>生成的棱鏡文件名，或此副編譯器調用的棱鏡名</li>
-<li><b><code>user_dict:</code></b> 設定用戶詞典名 </li>
+<li><b><code>user_dict:</code></b> 設定用戶詞典名</li>
 <li><b><code>db_class:</code></b> 設定用戶詞典類型，可設<code>tabledb</code>〔文本〕或<code>userdb</code>〔二進制〕</li>
 <li><b><code>preedit_format:</code></b> 上屛碼自定義</li>
 <li><b><code>comment_format:</code></b> 提示碼自定義</li>
@@ -675,7 +678,7 @@ version: "0.1"
 </ol></ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.extended.dict.yaml </small>
+<small>cangjie6.extended.dict.yaml</small>
 <pre><code>sort: by_weight
 use_preset_vocabulary: false
 import_tables:
@@ -728,7 +731,7 @@ encoder:
 <hr>
 
 <p align="right">雪齋<br>
-09-Nov-2013</p>
+歲在癸巳十月初七</p>
 
 </body>
 </html>
