@@ -132,7 +132,7 @@ pre code {
 
 pre {
   writing-mode: horizontal-tb;
-  -webkit-writing-mode: horizontal-tb; 
+  -webkit-writing-mode: horizontal-tb;
   background-color: #f8f8f8;
   border: 1px solid #cccccc;
   font-size: 13px;
@@ -140,11 +140,11 @@ pre {
   overflow: auto;
   padding: 6px 10px;
   border-radius: 3px; }
-  pre code, pre tt {
+
+pre code, pre tt {
     background-color: transparent;
     border: none; }
 
-}
 </style>
 <title>Rime方案製作詳解</title>
 
@@ -193,15 +193,16 @@ pre {
 <li><code>extended_charset</code> 是字符集開關。<code>0</code>爲CJK基本字符集，<code>1</code>爲CJK全字符集</li>
 <ul><li>僅<code>table_translator</code>可用</li></ul>
 <li><code>simplification</code> 是轉化字開關。一般情況下與上同，<code>0</code>爲不開啓轉化，<code>1</code>爲轉化。</li>
+<li><code>ascii_punct</code> 是中西文標點轉換開關，<code>0</code>爲中文句讀，<code>1</code>爲西文標點。</li>
 </ol>
 
 <ul><ul><li>此選項名偁可自定義，亦可添加多套替換用字方案：</li></ul>
 <ul><pre><code>- name: zh_cn
   states: ["漢字", "汉字"]
   reset: 0
-</code></pre></ul>
-<ul>或</ul>
-<ul><pre><code>- options: [ zh_trad, zh_cn, zh_mars ]
+</code></pre>
+<p>或</p>
+<pre><code>- options: [ zh_trad, zh_cn, zh_mars ]
   states:
     - 字型 → 漢字
     - 字型 → 汉字
@@ -214,6 +215,7 @@ pre {
 <h4><strong>示例</strong></h4>
 <pre><code>switches:
   - name: ascii_mode
+    reset: 0
     states: ["中文", "西文"]
   - name: full_shape
     states: ["半角", "全角"]
@@ -221,6 +223,8 @@ pre {
     states: ["通用", "增廣"]
   - name: simplification
     states: ["漢字", "汉字"]
+  - name: ascii_punct
+    states: ["句讀", "符號"]
 </code></pre></ul>
 
 <h2>引擎</h2>
@@ -274,6 +278,7 @@ pre {
 
 <ol><li><b><code>simplifier</code></b> 用字轉換</li>
 <li><code>uniquifier</code> 過濾重複的候選字，有可能來自<b><code>simplifier</code></b></li>
+<li><code>cjk_minifier</code> 字符集過濾〔用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li>
 <li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
 </ol>
 <ul><ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
@@ -312,6 +317,7 @@ pre {
   filters:
     - simplifier@zh_simp
     - uniquifier
+    - cjk_minifier
     - reverse_lookup_filter@middle_chinese
     - reverse_lookup_filter@pinyin_reverse_lookup
     - reverse_lookup_filter@jyutping_reverse_lookup
@@ -397,7 +403,7 @@ erase --刪除
   suffix: ";"
   tips: "【反查】"
   closing_tips: "【蒼頡】"
-  extra_tags: 
+  extra_tags:
     - pinyin_lookup
     - jyutping_lookup
 </code></pre></ul>
