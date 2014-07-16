@@ -255,6 +255,7 @@
 閘	zhaap6
 鈒	zhaap6
 鈒	saap3
+靸	saap3
 极	zhaap6
 极	kap1
 挿	chaap3
@@ -852,7 +853,9 @@
 冡	chung2
 塚	chung2
 寵	chung2
+𠖥	chung2
 銃	chung3
+㧤	chung3
 黜	zheot1
 絀	zheot1
 怵	zheot1
@@ -886,17 +889,20 @@
 沸	fai3
 肺	fai3
 芾	fai3
+疿	fai3
 吠	fai6
 快	faai3
 塊	faai3
 傀	faai3
 噲	faai3
+拂	faak3
 熏	fan1
 勲	fan1
 曛	fan1
 獯	fan1
 薰	fan1
 醺	fan1
+纁	fan1
 昏	fan1
 婚	fan1
 惛	fan1
@@ -931,6 +937,8 @@
 瞓	fan3
 訓	fan3
 糞	fan3
+噴	fan3	異讀音
+噴	fan5	異讀音
 番	faan1
 幡	faan1
 旛	faan1
@@ -946,6 +954,7 @@
 蕃	faan4
 藩	faan4
 轓	faan4
+蹯	faan4
 煩	faan4
 繁	faan4
 蘩	faan4
@@ -986,6 +995,7 @@
 發	faat3
 法	faat3
 髮	faat3
+沷	faat3
 伐	faat6
 筏	faat6
 閥	faat6
@@ -1002,6 +1012,7 @@
 芣	fau2
 阜	fau6
 埠	fau6
+𧌓	fau6
 覆	fau6
 非	fi1
 扉	fi1
@@ -1013,6 +1024,7 @@
 飛	fi1
 妃	fi1
 肥	fi4
+淝	fi4
 腓	fi4
 匪	fi2
 悱	fi2
@@ -1024,10 +1036,16 @@
 誹	fi2
 狒	fi6
 翡	fi6
+𠱥	jit6	噪
 𠱥	fik1	書中有音無字，掃飛義
-捹	fing6
+	fing1
+	fing3
+	fing6
+捹	pan3	揮手
+	fit
 科	fo1
 蚪	fo1
+窠	fo1
 火	fo2
 伙	fo2
 夥	fo2
@@ -1066,6 +1084,12 @@
 舫	fong2
 貺	fong2
 謊	fong2
+恍	fong2	異讀音
+恍	gwong2
+怳	fong2	異讀音
+怳	gwong2
+幌	fong2	異讀音
+幌	gwong2
 放	fong3
 况	fong3
 況	fong3
@@ -1074,27 +1098,37 @@
 纊	fong3
 夫	fu1
 砆	fu1
+玞	fu1
 趺	fu1
 鈇	fu1
 麩	fu1
+粰	fu1
+稃	fu1
 孚	fu1
 俘	fu1
 桴	fu1
 莩	fu1
+郛	fu1
 枹	fu1
 呼	fu1
 嘑	fu1
+滹	fu1
 敷	fu1
 痡	fu1
 膚	fu1
 柎	fu1
+怤	fu1
 枯	fu1
+骷	fu1
 箍	fu1
+刳	fu1
 符	fu4
 苻	fu4
 夫	fu4
 扶	fu4
 蚨	fu4
+芙	fu4
+颫	fu4
 鳬	fu4
 甫	fu2
 簠	fu2
@@ -1104,6 +1138,7 @@
 釜	fu2
 府	fu2
 俯	fu2
+俛	fu2	即俯
 撫	fu2
 拊	fu2
 腑	fu2
@@ -1123,6 +1158,7 @@
 鮒	fu6
 祔	fu6
 附	fu6
+跗	fu6
 腐	fu6
 輔	fu6
 仆	fu6
@@ -1138,10 +1174,12 @@
 詼	fui1
 悝	fui1
 虺	fui1
+虫	fui1	即虺
 賄	fui2
 鮪	fui2
 洧	fui2
 繪	fui2
+繢	fui2
 襘	fui2
 澮	fui2
 憒	fui2
@@ -1152,6 +1190,7 @@
 悔	fui3
 晦	fui3
 誨	fui3
+靧	fui3
 輻	fuk1
 幅	fuk1
 福	fuk1
@@ -1162,6 +1201,7 @@
 腹	fuk1
 覆	fuk1
 馥	fuk1
+複	fuk1
 服	fuk6
 復	fuk6
 伏	fuk6
@@ -1169,6 +1209,7 @@
 茯	fuk6
 寬	fun1
 歡	fun1
+懽	fun1
 貛	fun1
 欵	fun2
 窾	fun2
@@ -1180,6 +1221,7 @@
 封	fung1
 葑	fung1
 豐	fung1
+豊	fung1
 酆	fung1
 峯	fung1
 蜂	fung1
@@ -1190,6 +1232,8 @@
 逢	fung4
 縫	fung4
 馮	fung4
+渢	fung4
+渢	faan3	渢渢，平和之音
 俸	fung2
 捧	fung2
 諷	fung2
@@ -1200,9 +1244,11 @@
 蝦	haa1
 鰕	haa1
 瘕	haa1
+㗇	haa1
 遐	haa4
 瑕	haa4
 霞	haa4
+蕸	haa4
 下	haa5
 吓	haa5
 㗇	haa1
@@ -1230,11 +1276,11 @@
 懈	haai6
 薤	haai6
 齘	haai6
-黑	hak1	書面音
+黑	hak1	異讀音
 黑	haak1
-克	hak1	書面音
+克	hak1	異讀音
 克	haak1
-赫	hak1	書面音
+赫	hak1	異讀音
 赫	haak1
 客	haak3
 嚇	haak3
@@ -1268,9 +1314,10 @@
 僩	haan4
 瞯	haan4
 限	haan6
-閬	haan6
+𨵬	haan6
 亨	hang1
 哼	hang1
+脝	hang1
 鏗	hang1
 硜	hang1
 牼	hang1
@@ -1300,6 +1347,7 @@
 陝	haap6
 峽	haap6
 篋	haap6
+蛺	haap6
 掐	haap6
 歃	haap6
 乞	hat1
@@ -1319,13 +1367,16 @@
 篌	hau4
 餱	hau4
 瘊	hau4
+鍭	hau4	書中爲𬫺
 口	hau2
+	hau3
 後	hau6
 后	hau6
 逅	hau6
 鱟	hau6
 厚	hau6
 候	hau6
+堠	hau6
 敲	haau1
 拷	haau1
 磽	haau1
@@ -1343,19 +1394,19 @@
 恔	haau6
 校	haau6
 	he1
-香	heong1
-鄉	heong1
-享	heong2
-饗	heong2
-響	heong2
-响	heong2
-蠁	heong2
-餉	heong2
-晌	heong2
-珦	heong2
-嚮	heong2
-向	heong3
-曏	heong3
+香	hoeng1
+鄉	hoeng1
+享	hoeng2
+饗	hoeng2
+響	hoeng2
+响	hoeng2
+蠁	hoeng2
+餉	hoeng2
+晌	hoeng2
+珦	hoeng2
+嚮	hoeng2
+向	hoeng3
+曏	hoeng3
 欺	hi1
 希	hi1
 睎	hi1
@@ -1377,6 +1428,7 @@
 犠	hi1
 嚱	hi1
 僖	hi1
+蹊	hi1	蹺蹊
 喜	hi2
 豈	hi2
 起	hi2
@@ -1409,32 +1461,43 @@
 繾	hin2
 蜆	hin2
 憲	hin3
+幰	hin3
 獻	hin3
 讞	hin3
 興	hing1
 兄	hing1
 卿	hing1
 馨	hing1
-輕	hing1	書面音
+輕	hing1	異讀音
 輕	heng1
-罄	hing3	書面音
+罄	hing3	異讀音
 罄	heng3
-磬	hing3	書面音
+磬	hing3	異讀音
 磬	heng3
-謦	hing3	書面音
+謦	hing3	異讀音
 謦	heng3
 慶	hing3
 興	hing3
 㷫	hing3
 脅	hip3
-協	hip3
-叶	hip3
+脅	hip6	異讀音
+協	hip3	異讀音
+協	hip6
+拹	hip3	異讀音
+拹	hip6
+劦	hip3	異讀音
+劦	hip6
+叶	hip6
 愜	hip3
+愜	hip6	異讀音
 慊	hip3
 怯	hip3
 歉	hip3
-勰	hip3
-挾	hip3
+勰	si1	異讀音
+勰	hip3	異讀音
+勰	hip6
+挾	hip3	異讀音
+挾	hip6
 歇	hit3
 蝎	hit3
 囂	hiu1
@@ -1444,9 +1507,10 @@
 徼	hiu1
 嘵	hiu1
 驍	hiu1
+蹺	hiu1
 曉	hiu2
 竅	hiu3
-撬	hiu3	書中有音無字
+	hiu3	書中有音無字
 苛	ho1
 呵	ho1
 訶	ho1
@@ -1510,6 +1574,7 @@
 坎	hom2
 扻	hom2
 砍	hom2
+轗	hom2
 頷	hom5
 勘	hom3
 墈	hom3
@@ -1558,6 +1623,7 @@
 腔	hong1
 杭	hong4
 航	hong4
+頏	hong4
 降	hong4
 行	hong4
 炕	hong3
@@ -1587,8 +1653,8 @@
 詡	hyu2
 栩	hyu2
 冔	hyu2
-去	hyu2
-去	hyu3
+去	hyu2	除、脫
+去	hyu3	往、向、距、離
 靴	hoe1
 㗾	hoe1
 曲	huk1
@@ -1687,6 +1753,7 @@
 貽	ji4
 飴	ji4
 圯	ji4
+椸	ji4
 倚	ji2
 綺	ji2
 錡	ji2
@@ -1698,18 +1765,22 @@
 尔	ji5
 邇	ji5
 擬	ji5
+儗	ji5
 譺	ji5
 矣	ji5
 己	ji5
 以	ji5
 薿	ji5
 苡	ji5
+議	ji5
+迤	ji5
 薏	ji3
 意	ji3
 瘞	ji3
 㦤	ji3
 饐	ji3
 殪	ji3
+劓	ji3
 二	ji6
 弍	ji6
 貳	ji6
@@ -1857,7 +1928,7 @@
 家	gaa1
 加	gaa1
 咖	gaa1
-架	gaa1
+枷	gaa1
 珈	gaa1
 笳	gaa1
 袈	gaa1
@@ -1897,6 +1968,8 @@
 棨	kai2
 綮	kai2
 契	kai3
+蟿	kai3	蟿螽，蚱蜢
+蟿	gai3	鼃屬
 皆	gaai1
 偕	gaai1
 喈	gaai1
@@ -1924,6 +1997,7 @@
 屆	gaai3
 犗	gaai3
 楷	kaai2
+𠸉	kak1
 革	gaak3
 緙	gaak3
 挌	gaak3
@@ -1961,6 +2035,7 @@
 跟	gan1
 巾	gan1
 斤	gan1
+釿	gan1
 觔	gan1
 筋	gan1
 謹	gan2
@@ -1994,8 +2069,8 @@
 諫	gaan3
 間	gaan3
 澗	gaan3
-耕	gang1	書面音
-畊	gang1	書面音
+耕	gang1	異讀音
+畊	gang1	異讀音
 耕	gaang1
 畊	gaang1
 更	gang1
@@ -2009,9 +2084,9 @@
 骾	gang2
 鯁	gang2
 亙	gang2
-耿	gang2	書面音
+耿	gang2	異讀音
 耿	gwang2
-熲	gang2	書面音
+熲	gang2	異讀音
 熲	gwang2
 更	gang3
 掯	kang3
@@ -2030,6 +2105,7 @@
 甲	gaap3
 袷	gaap3
 韐	gaap3
+跲	gaap3
 夾	gaap3
 筴	gaap3
 莢	gaap3
@@ -2051,7 +2127,7 @@
 絇	gau1
 鳩	gau1
 樛	gau1
-鬮	gau1	書面音
+鬮	gau1	異讀音
 䰗	gau1
 九	gau2
 玖	gau2
@@ -2179,16 +2255,19 @@
 饑	gi1
 飢	gi1
 魕	gi1
+鐖	gi1
 基	gi1
 朞	gi1
 箕	gi1
 綦	gi1
 萁	gi1
+錤	gi1
 姬	gi1
 羈	gi1
 羇	gi1
 几	gi1
 奇	gi1
+乩	gi1
 己	gi2
 屺	gi2
 杞	gi2
@@ -2206,13 +2285,17 @@
 妓	gi6
 伎	gi6
 技	gi6
+芰	gi6
 忌	gi6
 惎	gi6
+𡜱	gi6
+跽	gi6
 崎	ki1
 碕	ki1
 攲	ki1
 觭	ki1
 畸	ki1
+犄	ki1
 其	ki4
 期	ki4
 碁	ki4
@@ -2258,7 +2341,7 @@
 棘	gik1
 襋	gik1
 繫	gek3	書中有音無字
-繫	gik3	書面音	書中有音無字
+繫	gik3	異讀音	書中有音無字
 亟	gik1
 極	gik6
 劇	kik6
@@ -2305,16 +2388,16 @@
 涇	ging1
 矜	ging1
 荆	ging1
-驚	ging1	書面音
+驚	ging1	異讀音
 驚	geng1
-頸	ging2	書面音
+頸	ging2	異讀音
 頸	geng2
 儆	ging2
 警	ging2
 景	ging2
 竟	ging2
 境	ging2
-鏡	ging3	書面音
+鏡	ging3	異讀音
 鏡	geng3
 敬	ging3
 俓	ging3
@@ -2368,9 +2451,12 @@
 繳	giu2
 皦	giu2
 蹻	giu2
+撬	giu2	掘
+撬	kiu5	捲
 轎	giu5
 呌	giu3
 叫	giu3
+噭	giu3
 橋	kiu4
 喬	kiu4
 僑	kiu4
@@ -2386,6 +2472,7 @@
 个	go3
 高	gou1
 篙	gou1
+犒	gou1
 膏	gou1
 羔	gou1
 糕	gou1
@@ -2408,7 +2495,10 @@
 垓	goi1
 陔	goi1
 荄	goi1
+侅	goi1
+賅	goi1
 改	goi2
+欬	goi2
 蓋	koi3
 盖	koi3
 嘅	koi3	歉意、嘆息
@@ -2463,8 +2553,9 @@
 幹	gon3
 骭	gon2
 岡	gong1
+崗	gong1
 剛	gong1
-綱	gong1	書中爲網
+綱	gong1
 鋼	gong1
 罡	gong1
 扛	gong1
@@ -2479,12 +2570,13 @@
 絳	gong3
 虹	gong3	山霧、綵虹
 杠	gong3
+抗	gong6	倔犟
 亢	kong1
 吭	kong2
 慷	kong2
 伉	kong3
 匟	kong3
-抗	kong3
+抗	kong3	禦、反擊
 合	gop3	十龠爲合，十合爲升。集也
 蛤	gop3
 鴿	gop3
@@ -2528,7 +2620,8 @@
 裾	gyu1
 椐	gyu1
 琚	gyu1
-車	gyu1	書面音	文讀
+据	gyu1
+車	gyu1	異讀音	文讀
 俱	gyu1
 舉	gyu2	書中爲𦦙
 㪯	gyu2
@@ -2538,9 +2631,9 @@
 踽	gyu2
 句	gyu3
 鋸	gyu3
-具	gyu3
-遽	gyu3
-窶	gyu3
+具	gyu6
+遽	gyu6
+窶	gyu6
 據	gyu3
 颶	gyu3
 鐻	gyu6
@@ -2550,10 +2643,12 @@
 詎	gyu6
 鉅	gyu6
 秬	gyu6
+炬	gyu6
 懼	gyu6
 俱	gyu6
 𥲤	gyu6
 椇	gyu6
+埧	gyu6
 屨	gyu6
 拘	kyu1
 駒	kyu1
@@ -2567,6 +2662,8 @@
 籧	kyu4
 蘧	kyu4
 劬	kyu4
+痀	kyu4
+朐	kyu4
 瞿	kyu4
 癯	kyu4
 衢	kyu4
@@ -2575,6 +2672,7 @@
 磲	kyu4
 蕖	kyu4
 渠	kyu4
+嶇	kyu2
 佢	kyu5
 拒	kyu5
 距	kyu5
@@ -2602,18 +2700,19 @@
 鞠	guk1
 鞫	guk1
 麴	guk1
-局	guk1
+	guk1	激、始、激怒
 跼	guk6
+局	guk6
 曲	kuk1
-娟	gyun1	書面音
+娟	gyun1	異讀音
 娟	jyun1
-蜎	gyun1	書面音
+蜎	gyun1	異讀音
 蜎	jyun1
-悁	gyun1	書面音
+悁	gyun1	異讀音
 悁	jyun1
-捐	gyun1	書面音
+捐	gyun1	異讀音
 捐	jyun1
-睊	gyun1	書面音
+睊	gyun1	異讀音
 睊	jyun1
 涓	gyun1
 鞙	gyun1
@@ -2649,6 +2748,7 @@
 痯	gun2
 館	gun2
 舘	gun2
+逭	gun2
 筦	gun2
 莞	gun2
 貫	gun3
@@ -2681,12 +2781,16 @@
 筇	kung4
 銎	kung4
 蛩	kung4
+敻	hyun3	謀、尋、爲
+敻	wing4	遠
+敻	kung4	簇
 決	gyut3
 决	gyut3
 訣	gyut3
 玦	gyut3
 缺	gyut3
 觖	gyut3
+抉	gyut3
 闋	gyut3
 𠄌	gyut3
 厥	gyut3
@@ -2696,15 +2800,18 @@
 獗	gyut3
 蟨	gyut3
 蹶	gyut3
+鱖	gyut3
 觼	gyut3
 譎	gyut3
+潏	gyut3
 鵙	gyut3
-佸	gut3
-括	gut3
-聒	gut3
-适	gut3
-蛞	gut3
-豁	gut3
+佸	kut3
+括	kut3
+聒	kut3
+适	kut3
+蛞	kut3
+鴰	kut3
+豁	kut3
 瓜	gwaa1
 寡	gwaa2
 卦	gwaa3
@@ -2745,6 +2852,7 @@
 桂	gwai3
 癸	gwai3
 瑰	gwai3
+庋	gwai3
 饋	gwai6
 餽	gwai6
 蕢	gwai6
@@ -2906,6 +3014,7 @@
 例	lai6
 栵	lai6
 荔	lai6
+捩	lai6
 孻	laai1
 拉	laai1
 𡃤	laai4
@@ -2915,7 +3024,7 @@
 䄤	laai6
 藾	laai6
 籟	laai6
-肋	lak3	書面音
+肋	lak3	異讀音
 肋	laak3
 扐	lak1
 勒	lak6
@@ -2939,6 +3048,7 @@
 籃	laam4
 藍	laam4
 襤	laam4
+𨅏	laam4	疾行
 欖	laam2	書中爲⿰木覧
 攬	laam5	書中爲⿰手覧
 擥	laam5
@@ -2950,6 +3060,8 @@
 	lan1
 攔	laan1
 躝	laan1
+囒	laan1
+欄	laan1	水沿
 欄	laan4
 蘭	laan4
 闌	laan4
@@ -2964,6 +3076,7 @@
 笠	lap1
 苙	lap1
 立	lap6
+	lap6	重複、邋遢
 㧜	laap3
 擸	laap6
 臘	laap6
@@ -2986,7 +3099,7 @@
 畱	lau4
 留	lau4
 榴	lau4
-𤠑	lau4	書面音
+𤠑	lau4	異讀音
 𤠑	lau1
 瘤	lau4
 飀	lau4
@@ -3005,11 +3118,14 @@
 綹	lau5
 陋	lau6
 漏	lau6
+瘺	lau6
+瘻	lau6
 溜	lau6
 遛	lau6
 撈	laau1
 哩	le1
 唎	le3
+	lek6	掰開
 掠	loek6
 畧	loek6
 略	loek6
@@ -3020,6 +3136,7 @@
 粮	loeng4
 踉	loeng4
 良	loeng4
+莨	loeng4
 凉	loeng4
 涼	loeng4
 両	loeng2
@@ -3064,7 +3181,7 @@
 梩	li5
 理	li5
 裡	li5
-裏	li5	書面音
+裏	li5	異讀音
 鯉	li5
 履	li5
 利	li6
@@ -3086,8 +3203,11 @@
 曆	lik6	書中爲⿸广𣈅
 歷	lik6	書中爲歴
 瀝	lik6
+瀝	lek6	淺灘、泊船之所
 癧	lik6
 鬲	lik6
+翮	lik6
+䰛	lik6
 力	lik6
 泐	lik6
 艻	lik6
@@ -3103,6 +3223,7 @@
 奩	lim4
 帘	lim4
 蘞	lim4
+舔	lim2	垂涏貌
 斂	lim5
 襝	lim5
 殮	lim5
@@ -3121,10 +3242,14 @@
 鍊	lin6
 煉	lin6
 楝	lin6
+拎	ling1	異讀音
+拎	leng1
 𫫿	ling1
 靈	ling4
 灵	ling4
 醽	ling4
+麢	ling4
+櫺	ling4
 凌	ling4
 陵	ling4
 稜	ling4
@@ -3143,19 +3268,20 @@
 翎	ling4
 鈴	ling4
 零	ling4
-零	leng4	書面音
+零	leng4	異讀音
 鴒	ling4
 齡	ling4
 囹	ling4
-鯪	ling4	書面音
+羚	ling4
+鯪	ling4	異讀音
 鯪	leng4
-領	ling5	書面音
+領	ling5	異讀音
 領	leng5
 袊	ling5
 嶺	ling5
 令	ling6
 另	ling6
-靚	ling6	書面音
+靚	ling6	異讀音
 靚	leng6
 獵	lip6
 擸	lip6
@@ -3231,6 +3357,7 @@
 鸕	lou4
 鱸	lou4
 醪	lou4
+嘐	lou4
 獠	lou2	同佬
 獠	liu4
 佬	lou2
@@ -3247,6 +3374,8 @@
 擄	lu5
 鹵	lou5
 鹵	lu5
+潦	lou5
+澇	lou5
 賂	lou6
 輅	lou6
 路	lou6
@@ -3293,7 +3422,9 @@
 稂	long4
 蜋	long4
 閬	long4
+𠺘	long2	書中有音無字
 朗	long5
+塱	long5
 埌	long6
 浪	long6
 浪	long4	滄浪
@@ -3312,6 +3443,7 @@
 慮	lyu6
 𧭜	lyu6
 鑢	lyu6
+濾	lyu6
 屢	lyu6
 窶	lyu6
 縷	lyu6
@@ -3349,7 +3481,7 @@
 蔂	lui4
 蔂	lo4	蔂梩
 羸	lui4
-碌	luk
+碌	luk1
 摝	luk1
 轆	luk1
 漉	luk1
@@ -3407,6 +3539,8 @@
 躙	leon6
 攣	lyun1
 欒	lyun1
+孌	lyun1
+臠	lyun1
 鸞	lyun4
 鑾	lyun4
 巒	lyun4
@@ -3454,8 +3588,10 @@
 劣	lyut3
 埒	lyut3
 捋	lyut3
-酹	lyut3	書面音
+酹	lyut3	異讀音
 酹	laai6
+	lyut3	狼吞虎嚥
+	lyut6	捋
 唔	m4
 孖	maa1
 媽	maa1
@@ -3474,7 +3610,7 @@
 禡	maa6
 咡	mai1
 迷	mai4
-埋	mai4	書面音	埋葬
+埋	mai4	異讀音	埋葬
 霾	mai4
 米	mai5
 咪	mai5
@@ -3544,18 +3680,19 @@
 蔓	maan6
 幔	maan6
 鰻	maan6
+熳	maan6
 𠵼	mang1
 萌	mang4
 盟	mang4
-猛	mang5	書面音
+猛	mang5	異讀音
 猛	maang5
-蜢	mang5	書面音
+蜢	mang5	異讀音
 蜢	maang5
-艋	mang5	書面音
+艋	mang5	異讀音
 艋	maang5
-掹	mang5	書面音
+掹	mang5	異讀音
 掹	maang5
-孟	mang5	書面音
+孟	mang5	異讀音
 孟	maang5
 繃	maang1
 盲	maang4
@@ -3584,7 +3721,9 @@
 牡	mau5
 茂	mau6
 懋	mau6
+瞀	mau6
 謬	mau6
+貿	mau6
 矛	maau4
 茅	maau4
 蝥	maau4
@@ -3649,7 +3788,7 @@
 麪	min6
 麵	min6
 明	ming4
-名	ming4	書面音
+名	ming4	異讀音
 名	meng4
 冥	ming4
 溟	ming4
@@ -3661,7 +3800,7 @@
 銘	ming5
 瞑	ming5
 皿	ming5
-命	ming6	書面音
+命	ming6	異讀音
 命	meng6
 搣	mit3
 烕	mit6
@@ -3669,6 +3808,8 @@
 蔑	mit6
 篾	mit6
 蠛	mit6
+㩢	mit6
+衊	mit6
 苗	miu4
 描	miu4
 猫	miu4
@@ -3697,9 +3838,11 @@
 髦	mou4
 旄	mou4
 芼	mou4
+酕	mou4
 模	mou4
 摹	mou4
 謨	mou4
+嫫	mou4
 毋	mou4
 無	mou4
 旡	mou4
@@ -3844,6 +3987,7 @@
 鼐	naai5
 𠮨	naai3
 疓	naai6
+𠮨	naai6
 𪙛	nak1
 腍	nam4
 稔	nam5
@@ -3858,7 +4002,7 @@
 揇	naam2
 腩	naam2
 𨅏	naam3
-𨅏	laam3
+𨅏	laam3	異讀音
 奶	nan1	喂奶
 㤻	nan1
 難	naan4	易之反
@@ -3872,12 +4016,14 @@
 褦	nang3	繫、紮
 粒	nap1
 凹	nap1
-湆	nap6
+湆	nap6	厭惡、苦疼
+湆	jap3	幽濕
 納	naap6
 衲	naap6
 軜	naap6
 嫐	nat1
 鈉	naat3	口語字，熨、鋪壓
+鈉	naap6	刻木耑所以入鑿
 捺	naat6
 嬲	nau1
 扭	nau2
@@ -3887,6 +4033,7 @@
 紐	nau2
 狃	nau2
 耨	nau6
+縟	nau6	口語字，順滑
 倃	nau6
 橈	naau4
 譊	naau4
@@ -3906,6 +4053,7 @@
 㕶	ng1
 吾	ng4
 梧	ng4
+牾	ng4
 鼯	ng4
 吳	ng4
 蜈	ng4
@@ -3916,6 +4064,7 @@
 迕	ng5
 悟	ng6
 寤	ng6
+啎	ng6
 誤	ng6
 悞	ng6
 忤	ng6
@@ -3936,6 +4085,8 @@
 麑	ngai4
 霓	ngai4
 輗	ngai4
+鯢	ngai4
+猊	ngai4
 巍	ngai4
 嵬	ngai4
 睨	ngai5
@@ -3987,6 +4138,7 @@
 吸	ngap1	今或爲噏
 揖	ngap6	書中爲⿰口揖
 𫫄	ngaap3
+扤	ngat1
 兀	ngat6
 卼	ngat6
 屼	ngat6
@@ -4012,9 +4164,10 @@
 殽	ngaau4
 崤	ngaau4
 咬	ngaau5	同齩
-咬	kaau1	書面音	鳥鳴
+咬	kaau1	異讀音	鳥鳴
 齩	ngaau5
 樂	ngaau6
+𡃀	nge4	書中有音無字
 𠼮	ngi1
 齧	ngit6
 囓	ngit6
@@ -4075,9 +4228,9 @@
 卬	ngong4
 昂	ngong4
 䭹	ngong4
-戇	ngong3	書面音
+戇	ngong3	異讀音
 戇	ong3
-𧆐	ngong3	書面音
+𧆐	ngong3	異讀音
 𧆐	ong3
 𨉖	ni1
 呢	ni1	是、此
@@ -4086,11 +4239,11 @@
 呢	ni4	呢喃
 怩	ni4
 彌	ni4
-彌	mi4	書面音
+彌	mi4	異讀音
 弥	ni4
-弥	mi4	書面音
+弥	mi4	異讀音
 瀰	ni4
-瀰	mi4	書面音
+瀰	mi4	異讀音
 獮	ni4
 麛	ni4
 你	ni5
@@ -4112,14 +4265,14 @@
 拈	nim1
 鮎	nim4
 黏	nim4
-粘	nim4	書面音
+粘	nim4	異讀音
 念	nim6
 𢆡	nin1	書中有音無字
 年	nin4
 臠	nin2	口語字，條〔肉〕
 臠	lyun2	肉條
 撚	nin2
-撚	nan2	書面音
+撚	nan2	異讀音
 擰	ning1
 寧	ning4
 𡨴	ning4
@@ -4127,9 +4280,11 @@
 檸	ning4
 嚀	ning4	囑
 嚀	ning5	蹣跚
+獰	ning4
 佞	ning6	書中爲⿰人⿱亠女
 寗	ning6
 濘	ning6
+	nip3
 捏	nip6
 揑	nip6	書中爲⿰手⿱臼土
 湼	nip6	書中爲⿰水⿱臼土
@@ -4147,6 +4302,8 @@
 嫋	niu5
 尿	niu6
 溺	niu6	即尿
+挼	no1
+挼	no4
 儺	no4
 揶	no4
 挼	no4
@@ -4161,6 +4318,7 @@
 孥	nou4
 帑	nou4
 駑	nou4
+伮	nou4
 惱	nou5
 匘	nou5
 腦	nou5
@@ -4180,6 +4338,7 @@
 攘	nong5
 女	nyu5
 女	nyu6	嫁女
+餒	neoi5
 忸	nuk1
 恧	nuk1
 衄	nuk1
@@ -4210,7 +4369,7 @@
 魺	o1
 屙	o1
 爊	ou1
-熬	ou1	書面音
+熬	ou1	異讀音
 鏖	ou1
 擙	ou1
 襖	ou2
@@ -4236,6 +4395,7 @@
 庵	om1
 𤲅	om1
 䳺	om1
+啽	om1
 掩	om2
 揞	om2
 諳	om2
@@ -4259,6 +4419,7 @@
 芭	baa1
 耙	baa1
 鈀	baa1
+笆	baa1
 把	baa2
 霸	baa3
 伯	baa3	即霸
@@ -4299,7 +4460,9 @@
 睥	pai5
 擺	baai2
 拜	baai3
+湃	baai3
 敗	baai6
+唄	baai6
 	paai1
 排	paai4
 俳	paai4
@@ -4359,7 +4522,7 @@
 斑	baan1
 斒	baan1
 螌	baan1
-扳	baan2
+板	baan2
 版	baan2
 昄	baan2
 扮	baan6
@@ -4377,6 +4540,7 @@
 朋	pang4
 鵬	pang4
 硼	pang4
+綳	pang4
 𠗦	pang4	倚靠、依據
 憑	pang4	即𠗦
 馮	pang4	渡
@@ -4403,7 +4567,7 @@
 鴄	pat1
 八	baat3
 捌	baat3
-拔	baat6	書面音
+拔	baat6	異讀音
 拔	bat6
 茇	baat6
 魃	baat6
@@ -4417,7 +4581,7 @@
 鮑	baau1
 飽	baau2
 爆	baau3
-爆	buk6	書面音
+爆	buk6	異讀音
 抛	paau1
 庖	paau4
 咆	paau4
@@ -4434,19 +4598,24 @@
 砲	paau3
 泡	paau3
 啤	be1
+𨃅	be5	書中有音無字
 嚊	be6
 卑	bi1
 碑	bi1
+萆	bi1
+𦱔	bi1
 磇	bi1
 悲	bi1
 陂	bi1
 羆	bi1
 屄	bi1
+匕	bi2
 比	bi2
 妣	bi2
 彼	bi2
 畀	bi2
 俾	bi2
+痞	bi2
 捭	bi2
 賁	bi3
 庇	bi3
@@ -4513,18 +4682,19 @@
 煏	bik1
 壁	bik1
 璧	bik1
-迫	bik1	書面音
+迫	bik1	異讀音
 迫	baak1
-廹	bik1	書面音
+廹	bik1	異讀音
 廹	baak1
 愎	bik1
 辟	pik1
 僻	pik1
-擗	pik3	書面音
+擗	pik1	異讀音
 擗	pek3
 闢	pik1
 霹	pik1
-劈	pik1
+劈	pik1	異讀音
+劈	pek3
 癖	pik1
 甓	pik1
 襞	pik1
@@ -4565,6 +4735,7 @@
 騙	pin3
 片	pin3
 兵	bing1
+浜	bing1
 冰	bing1
 掤	bing1
 丙	bing2
@@ -4577,18 +4748,18 @@
 箳	bing2
 摒	bing2
 鞞	bing2
-餅	bing2	書面音
+餅	bing2	異讀音
 餅	beng2
-柄	bing3	書面音
+柄	bing3	異讀音
 柄	beng3
 幷	bing3
 并	bing3
 並	bing3
-並	bing6	書面音
+並	bing6	異讀音
 竝	bing3
-竝	bing6	書面音
+竝	bing6	異讀音
 併	bing3
-病	bing6	書面音
+病	bing6	異讀音
 病	beng6
 抨	ping1	口語字，整理、孵化
 抨	peng1	口語字，撣
@@ -4602,10 +4773,11 @@
 苹	ping4
 萍	ping4
 評	ping4
+泙	ping4
 帡	ping4	書中爲帲
-瓶	ping4	書面音
+瓶	ping4	異讀音
 瓶	peng4
-缾	ping4	書面音
+缾	ping4	異讀音
 缾	peng4
 駢	ping4
 娉	ping3
@@ -4625,6 +4797,7 @@
 標	biu1
 縹	biu1
 鏢	biu1
+驃	biu1
 麃	biu1
 鑣	biu1
 儦	biu1
@@ -4640,6 +4813,7 @@
 飄	piu1
 漂	piu1
 嘌	piu1
+螵	piu1
 薸	piu4
 瓢	piu4
 嫖	piu4
@@ -4662,9 +4836,11 @@
 皤	po4
 鄱	po4
 婆	po4
+蔢	po4
 叵	po2
 尀	po2
 頗	po2
+跛	po2
 破	po3
 簸	po3
 哺	bou1
@@ -4672,6 +4848,7 @@
 晡	bou1
 逋	bou1
 酺	bou1
+鯆	bou1
 煲	bou1
 襃	bou1
 褒	bou1
@@ -4719,10 +4896,10 @@
 搏	bok3
 鎛	bok3
 膊	bok3
-剝	bok3	書面音
+剝	bok3	異讀音
 駁	bok3
 亳	bok3
-壆	bok3	書面音
+壆	bok3	異讀音
 壆	kok3
 薄	bok6
 泊	bok6
@@ -4734,6 +4911,7 @@
 扑	pok3
 樸	pok3
 朴	pok3
+仆	pok3
 璞	pok3
 粕	pok3
 㕨	pom1	書中有音無字
@@ -4758,12 +4936,14 @@
 雱	pong4
 螃	pong4
 䠙	pong4
+徬	pong4
 龐	pong4
 厖	pong4
 尨	pong4
 肨	pong5
 蚌	pong5
 謗	pong3
+	bop6
 杯	bui1
 桮	bui1
 盃	bui1
@@ -4788,6 +4968,7 @@
 配	pui3
 沛	pui3
 霈	pui3
+旆	pui3
 邶	pui3
 佩	pui3
 珮	pui3
@@ -4840,7 +5021,7 @@
 碰	bung3
 埲	bung6	書中有音無字
 塳	pung1	塵貌
-塳	fung1	書面音	塵貌
+塳	fung1	異讀音	塵貌
 塳	pung4	揚塵
 篷	pung4
 蓬	pung4
@@ -4984,15 +5165,16 @@
 逝	shai6
 筮	shai6
 噬	shai6
+	shaai4	味淡
 舐	shaai5
 曬	shaai3
 晒	shaai3
 殺	shaai3	減削
 鎩	shaai3
 索	shaak3
-索	shok3	書面音
+索	shok3	異讀音
 𢱢	shaak3
-𢱢	shok3	書面音
+𢱢	shok3	異讀音
 深	sham1
 琛	sham1
 森	sham1
@@ -5015,9 +5197,9 @@
 怎	sham2	怎麼
 滲	sham3
 甚	sham6
-罧	sham6	書面音
+罧	sham6	異讀音
 罧	lam6
-槮	sham6	書面音
+槮	sham6	異讀音
 槮	lam6
 彡	shaam1
 衫	shaam1
@@ -5035,6 +5217,7 @@
 腎	shan5
 呻	shan3
 愼	shan6
+蜃	shan6
 山	shaan1
 刪	shaan1
 珊	shaan1
@@ -5092,6 +5275,7 @@
 綬	shau6
 壽	shau6
 獸	shau6
+售	shau6
 梢	shaau1
 筲	shaau1
 弰	shaau1
@@ -5102,7 +5286,9 @@
 哨	shaau3
 賖	she1
 蛇	she4
-余	she4	姓
+佘	she4	姓
+畬	she4	火種
+畬	jyu4	耕
 闍	she4
 捨	she2
 社	she5
@@ -5185,11 +5371,11 @@
 栻	shik1
 食	shik6
 蝕	shik6
-石	shik6	書面音
+石	shik6	異讀音
 石	shek6
-碩	shik6	書面音
+碩	shik6	異讀音
 碩	shek6
-鼫	shik6	書面音
+鼫	shik6	異讀音
 鼫	shek6
 蟾	shim4
 贍	shim4
@@ -5223,11 +5409,11 @@
 昇	shing1
 陞	shing1
 勝	shing1	任、舉、堪
-聲	shing1	書面音
+聲	shing1	異讀音
 聲	sheng1
-声	shing1	書面音
+声	shing1	異讀音
 声	sheng1
-城	shing4	書面音
+城	shing4	異讀音
 城	sheng4
 成	shing4
 誠	shing4
@@ -5241,7 +5427,7 @@
 澠	shing4
 堘	shing4
 塍	shing4
-覡	shing2	書面音
+覡	shing2	異讀音
 覡	sheng2
 聖	shing3
 圣	shing3
@@ -5324,6 +5510,7 @@
 縮	shuk1
 倐	shuk1
 倏	shuk1
+謖	shuk1
 孰	shuk6
 熟	shuk6
 塾	shuk6
@@ -5383,7 +5570,7 @@
 仙	sin1
 僊	sin1
 褼	sin1
-涎	sin4	書面音
+涎	sin4	異讀音
 涎	jin4
 鮮	sin1	新、活、淨
 鮮	sin2	稀罕
@@ -5528,6 +5715,7 @@
 嵗	seoi3
 碎	seoi3
 繀	seoi3
+	seoi3
 崇	seoi6
 遂	seoi6
 䆳	seoi6
@@ -5610,6 +5798,7 @@
 蒜	syun3
 篆	syun6
 瑑	syun6
+鐫	syun6
 嵩	sung1
 崧	sung1
 鬆	sung1
@@ -5617,6 +5806,7 @@
 悚	sung2
 竦	sung2
 聳	sung2
+慫	sung2
 㩳	sung2
 送	sung3
 宋	sung3
@@ -5642,9 +5832,9 @@
 絲	si1
 私	si1
 蓗	si1
-蓗	shaai1	書面音
+蓗	shaai1	異讀音
 釃	si1
-釃	shaai1	書面音
+釃	shaai1	異讀音
 斯	si1
 厮	si1
 廝	si1
@@ -5716,7 +5906,7 @@
 蝭	shi4	蝭蛙，鳥名
 醍	tai4
 褆	tai4
-褆	shi6	書面音
+褆	shi6	異讀音
 題	tai4
 騠	tai4
 荑	tai4	同稊、草木初生貌
@@ -5794,7 +5984,7 @@
 餤	taam4
 覃	taam4
 燂	taam4
-燂	cam4	書面音
+燂	cam4	異讀音
 譚	taam4
 潭	taam4
 壜	taam4
@@ -5902,6 +6092,7 @@
 鬪	dau3
 鬦	dau3
 抖	dau3
+竇	dau3
 豆	dau6	亦用於老豆，即父
 荳	dau6
 痘	dau6
@@ -5945,15 +6136,15 @@
 廸	dik6
 翟	dik6
 籊	dik6
-笛	dik6	書面音
+笛	dik6	異讀音
 笛	dek6
-篴	dik6	書面音
+篴	dik6	異讀音
 篴	dek6
-糴	dik6	書面音
+糴	dik6	異讀音
 糴	dek6
-剔	tik3	書面音
+剔	tik3	異讀音
 剔	tek3
-踢	tik3	書面音
+踢	tik3	異讀音
 踢	tek3
 惕	tik1
 裼	tik1
@@ -6010,9 +6201,9 @@
 仃	ding1
 玎	ding1
 疔	ding1
-釘	ding1	書面音
+釘	ding1	異讀音
 釘	deng1
-頂	ding2	書面音
+頂	ding2	異讀音
 頂	deng2
 町	ding2
 酊	ding2
@@ -6023,19 +6214,19 @@
 碇	ding3
 䅍	ding3
 錠	ding6
-定	ding6	書面音
+定	ding6	異讀音
 定	deng6
-掟	ding6	書面音
+掟	ding6	異讀音
 掟	deng6
-廳	ting1	書面音	書中爲㕔
+廳	ting1	異讀音	書中爲㕔
 廳	teng1	書中爲㕔
-聽	ting1	書面音
+聽	ting1	異讀音
 聽	teng1
-聽	ting3	書面音	從、受、斷案
+聽	ting3	異讀音	從、受、斷案
 聽	teng3	從、受、斷案
-听	ting1	書面音
+听	ting1	異讀音
 听	teng1
-听	ting3	書面音	從、受、斷案
+听	ting3	異讀音	從、受、斷案
 听	teng3	從、受、斷案
 亭	ting4
 停	ting4
@@ -6049,7 +6240,7 @@
 挺	ting5
 梃	ting5
 脡	ting5
-艇	ting5	書面音
+艇	ting5	異讀音
 艇	teng5
 鋌	ting5
 頲	ting5
@@ -6128,9 +6319,9 @@
 糶	tiu3
 多	do1
 埵	do2
-朵	do2	書面音
+朵	do2	異讀音
 朵	doe2
-朶	do2	書面音
+朶	do2	異讀音
 朶	doe2
 垜	do2
 躱	do2
@@ -6474,11 +6665,11 @@
 鰌	cau1
 鰍	cau1
 鶖	cau1
-囚	cau4	書面音
+囚	cau4	異讀音
 囚	chau4
-酋	cau4	書面音
+酋	cau4	異讀音
 酋	chau4
-遒	cau4	書面音
+遒	cau4	異讀音
 遒	chau4
 凑	cau3
 湊	cau3
@@ -6550,9 +6741,9 @@
 畟	zik1	書中爲𤰯
 稷	zik1
 踖	zik1
-脊	zik3	書面音
+脊	zik3	異讀音
 脊	zek3
-席	zik6	書面音
+席	zik6	異讀音
 席	zek6
 蓆	zik6
 籍	zik6
@@ -6568,6 +6759,7 @@
 𤷫	cik1
 尖	zim1
 漸	zim6
+魙	zim6
 僉	cim1
 簽	cim1
 韱	cim1
@@ -6605,7 +6797,7 @@
 餞	zin3
 濺	zin3
 賤	zin6
-踐	zin6	書面音
+踐	zin6	異讀音
 踐	cin5
 千	cin1
 芊	cin1
@@ -6623,42 +6815,43 @@
 睛	zing1
 菁	zing1
 蜻	zing1
-精	zing1	書面音
+精	zing1	異讀音
 精	zeng1
-井	zing2	書面音
+井	zing2	異讀音
 井	zeng2
-淨	zing6	書面音
+淨	zing6	異讀音
 淨	zeng6
 靜	zing6
-靚	zing6	書面音
+靚	zing6	異讀音
 靖	zing6
 穽	zing6
 阱	zing6
-靑	cing1	書面音
+靑	cing1	異讀音
 靑	ceng1
-青	cing1	書面音
+青	cing1	異讀音
 青	ceng1
-清	cing1	書面音
+清	cing1	異讀音
 清	ceng1
-情	cing4	書面音
+情	cing4	異讀音
 情	ceng4
-晴	cing4	書面音
+晴	cing4	異讀音
 晴	ceng4
-請	cing2	書面音
+請	cing2	異讀音
 請	ceng2
 楫	zip3
 浹	zip3
-浹	haap3	書面音
-浹	hip3	書面音	即挾
+浹	haap3	異讀音
+浹	hip3	異讀音	即挾
 睫	zip3
 接	zip3
 妾	cip3
 節	zit3
 櫛	zit3
 癤	zit3
+婕	zit3
 截	zit6
 捷	zit6
-捷	zip6	書面音
+捷	zip6	異讀音
 切	cit3
 椒	ziu1
 蕉	ziu1
@@ -6691,7 +6884,7 @@
 傞	co1
 嵯	co1
 搓	co1
-艖	co1	書面音
+艖	co1	異讀音
 艖	chaa1
 蹉	co1
 瑳	co1
@@ -6742,6 +6935,7 @@
 懆	cou3
 燥	cou3
 躁	cou3
+譟	cou3
 厝	cou3
 措	cou3	扔、置、用、安排
 措	chaak3	隨
@@ -6851,9 +7045,9 @@
 俗	zuk6
 族	zuk6
 蔟	zuk6
-蔟	cau3	書面音
+蔟	cau3	異讀音
 簇	zuk6
-簇	cau3	書面音
+簇	cau3	異讀音
 鏃	zuk6
 鷟	zuk6
 續	zuk6
@@ -6995,7 +7189,7 @@
 錙	zi1
 貲	zi1
 資	zi1
-漬	zi1	書面音
+漬	zi1	異讀音
 漬	zik1
 咨	zi1
 諮	zi1
@@ -7115,7 +7309,7 @@
 遁	deon6
 豚	deon6	即遁
 沌	deon6
-鈍	deon6	書面音
+鈍	deon6	異讀音
 鈍	dyun6
 湍	teon1
 盾	teon5
@@ -7127,7 +7321,7 @@
 煆	dyun3
 鍜	dyun3
 斷	dyun3	決
-斷	dyun6	書面音	截、絕
+斷	dyun6	異讀音	截、絕
 斷	tyun5	截、絕
 叚	dyun6
 縀	dyun6
@@ -7144,7 +7338,7 @@
 董	dung2
 懂	dung2
 畽	dung2
-畽	dyun2	書面音
+畽	dyun2	異讀音
 挏	dung2
 凍	dung3
 棟	dung3
@@ -7175,6 +7369,7 @@
 瞳	tung4
 穜	tung4
 艟	tung4
+獞	tung4
 佟	tung4
 鼕	tung4
 彤	tung4
@@ -7183,6 +7378,7 @@
 桶	tung2
 統	tung2
 痛	tung3
+繓	dyut3
 奪	dyut6
 脫	tyut3
 烏	wu1
@@ -7305,7 +7501,7 @@
 裕	jyu6
 澦	jyu6
 鷽	jyu6
-茹	jyu4	書面音
+茹	jyu4	異讀音
 茹	jyu6
 譽	jyu6
 御	jyu6
@@ -7327,6 +7523,7 @@
 茴	wui4
 噲	wui5
 會	wui6
+會	kui2	會稽
 燴	wui6	書中併入會字
 匯	wui6
 屋	uk1
@@ -7341,6 +7538,7 @@
 盌	wun2
 椀	wun2
 腕	wun2
+剜	wun2
 睆	wun2
 澣	wun2
 浣	wun2
@@ -7359,7 +7557,7 @@
 完	jyun4
 玄	jyun4
 泫	jyun4
-眩	jyun6	書面音
+眩	jyun6	異讀音
 眩	jyun4
 衒	jyun4
 員	jyun4
@@ -7708,10 +7906,11 @@
 喑	jam1
 愔	jam1
 歆	jam1
+瘖	jam1
 欽	jam1
 嶔	jam1
 髧	daam6	髮垂
-髧	jam1	書面音	髮垂
+髧	jam1	異讀音	髮垂
 髧	jam4	垂布、英尋
 吟	jam4
 唫	jam4	即吟
@@ -7722,6 +7921,7 @@
 霪	jam4
 飲	jam2
 飲	jam3	喂水
+飲	jam5	同蘸
 妊	jam5
 恁	jam5
 紝	jam5
@@ -7755,6 +7955,7 @@
 訢	jan1
 昕	jan1
 盺	jan1
+紉	jan1
 夤	jan4
 寅	jan4
 人	jan4
@@ -7780,7 +7981,7 @@
 韌	jan6
 釁	jan6
 衅	jan6
-認	jan6	書面音
+認	jan6	異讀音
 泣	jap1
 揖	jap1
 挹	jap1
@@ -7805,11 +8006,11 @@
 鎰	jat6
 肸	jat6
 佾	jat6
-掖	jat6	書面音
+掖	jat6	異讀音
 掖	jik6
-液	jat6	書面音
+液	jat6	異讀音
 液	jik6
-腋	jat6	書面音
+腋	jat6	異讀音
 腋	jik6
 憂	jau1
 優	jau1
@@ -8001,9 +8202,10 @@
 營	jing4
 縈	jing4
 螢	jing4
+嶸	jing4
 凝	jing4
 嬴	jing4	書中爲𫲓
-贏	jing4	書面音
+贏	jing4	異讀音
 贏	jeng4
 瀛	jing4
 陾	jing4
@@ -8097,3 +8299,4 @@
 勇	jung5
 𧗴	jung5
 用	jung5
+慂	jung5
