@@ -39,7 +39,7 @@
 <h2>開關</h2>
 <p>通常包含以下四個：</p>
 
-<ol><li><code>ascii_mode</code> 是中英文轉換開關。預設<code>0</code>爲英文，<code>1</code>爲中文</li>
+<ol><li><code>ascii_mode</code> 是中英文轉換開關。預設<code>0</code>爲中文，<code>1</code>爲英文</li>
 <li><code>full_shape</code> 是全角符號／半角符號開關。注意，開啓全角時英文字母亦爲全角。<code>0</code>爲半角，<code>1</code>爲全角</li>
 <li><code>extended_charset</code> 是字符集開關。<code>0</code>爲CJK基本字符集，<code>1</code>爲CJK全字符集</li>
 <ul><li>僅<code>table_translator</code>可用</li></ul>
