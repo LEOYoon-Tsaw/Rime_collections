@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <style>
 body {
-  font-family: SourceSansPro-ExtraLight, SourceHanSansKR-ExtraLight, SourceHanSansJP-ExtraLight, SourceHanSansTWHK-ExtraLight;
+  font-family: Helvetica, arial, sans-serif;
   font-size: 14px;
   line-height: 1.6;
   padding-top: 10px;
@@ -35,6 +35,7 @@ a.anchor {
 h1, h2, h3, h4 {
   margin: 20px 0 10px;
   padding: 0;
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   cursor: text;
   position: relative; }
@@ -55,22 +56,18 @@ h4 tt, h4 code {
   font-size: inherit; }
 
 h1 {
-  font-family: SourceSansPro-Heavy, SourceHanSansKR-Heavy, SourceHanSansJP-Heavy, SourceHanSansTWHK-Heavy;
   font-size: 28px;
   color: black; }
 
 h2 {
-  font-family: SourceSansPro-Medium, SourceHanSansKR-Medium, SourceHanSansJP-Medium, SourceHanSansTWHK-Medium;
   font-size: 24px;
   border-bottom: 1px solid #cccccc;
   color: black; }
 
 h3 {
-  font-family: SourceSansPro-Normal, SourceHanSansKR-Normal, SourceHanSansJP-Normal, SourceHanSansTWHK-Normal;
   font-size: 18px; }
 
 h4 {
-  font-family: SourceSansPro-Light, SourceHanSansKR-Light, SourceHanSansJP-Light, SourceHanSansTWHK-Light;
   font-size: 16px; }
 
 p, blockquote, ul, ol, li, table, pre {
@@ -91,7 +88,7 @@ body > h2:first-child {
 body > h1:first-child {
   margin-top: 0;
   padding-top: 0; }
-  body > h1:first-child + h2 {
+body > h1:first-child + h2 {
     margin-top: 0;
     padding-top: 0; }
 body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
@@ -116,7 +113,6 @@ ul :first-child, ol :first-child {
   margin-top: 0; }
 
 code, tt {
-  font-family: SourceCodePro-Regular, SourceHanSansKR-Regular, SourceHanSansJP-Regular, SourceHanSansTWHK-Regular;
   margin: 0 2px;
   padding: 0 5px;
   white-space: nowrap;
@@ -125,7 +121,6 @@ code, tt {
   border-radius: 3px; }
 
 pre code {
-  font-family: SourceCodePro-Light, SourceHanSansKR-Light, SourceHanSansJP-Light, SourceHanSansTWHK-Light;
   margin: 0;
   padding: 0;
   white-space: pre;
@@ -142,7 +137,6 @@ pre code {
   border-radius: 3px; }
 
 pre {
-  font-family: SourceCodePro-ExtraLight, SourceHanSansKR-ExtraLight, SourceHanSansJP-ExtraLight, SourceHanSansTWHK-ExtraLight;
   background-color: #f8f8f8;
   border: 1px solid #cccccc;
   font-size: 13px;
@@ -150,11 +144,10 @@ pre {
   overflow: auto;
   padding: 6px 10px;
   border-radius: 3px; }
-  pre code, pre tt {
+
+pre code, pre tt {
     background-color: transparent;
     border: none; }
-
-}
 </style>
 <title>Rime方案製作詳解</title>
 
@@ -222,6 +215,7 @@ pre {
 </code></pre></ul>
 <li><code>states:</code> 可不寫，如不寫則此開關存在但不可見，可由快捷鍵操作</li>
 <li><code>reset:</code> 設定默認狀態〔<code>reset</code>可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+
 <h4><strong>示例</strong></h4>
 <pre><code>switches:
   - name: ascii_mode
@@ -356,6 +350,7 @@ pre {
 <li><code>algebra:</code> 拼寫運算規則，由之算出的拼寫匯入<code>prism</code>中</li>
 <li><code>max_code_length:</code> 形碼最大碼長，超過則頂字上屛〔<code>number</code>〕</li>
 <li><code>auto_select:</code> 自動上屛〔<code>true</code>或<code>false</code>〕</li>
+<li><code>auto_select_pattern:</code> 自動上屏規則，以正則表達式描述，當輸入串可以被匹配時自動頂字上屏。
 <li><code>use_space:</code> 以空格作輸入碼〔<code>true</code>或<code>false</code>〕</li>
 </ol>
 
@@ -422,7 +417,7 @@ erase --刪除
 <ul><li>每個方案有一個主<code>translator</code>，在引擎列表中不以<code>@</code>+翻譯器名定義，在細項配置時直接以<code>translator:</code>命名。以下加粗項爲可在主<code>translator</code>中定義之項，其它可在副〔以<code>@</code>+翻譯器名命名〕<code>translator</code>中定義</li>
 </ul>
 
-<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效〕</li>
+<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效。啓用<code>cjk_minifier</code>後可適用於<code>script_translator</code>〕</li>
 <li><b><code>enable_encoder:</code></b> 是否開啓自動造詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長〔僅<code>table_translator</code>有效〕</li>
