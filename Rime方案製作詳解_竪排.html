@@ -286,7 +286,7 @@ pre code, pre tt {
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml</small>
+<p><small>cangjie6.schema.yaml</small></p>
 <pre><code>engine:
   processors:
     - ascii_composer
@@ -361,7 +361,7 @@ erase --刪除
 </code></pre></ul></ul>
 
 <ul><h4><strong>示例</strong></h4>
-<small>luna_pinyin.schema.yaml</small>
+<p><small>luna_pinyin.schema.yaml</small></p>
 <pre><code>speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
@@ -398,7 +398,7 @@ erase --刪除
 <ul><strong>當<code>affix_segmentor</code>和<code>translator</code>重名時，兩者可併在一處配置，此處1-5條對應下面19-23條。<code>abc_segmentor</code>僅可設<code>extra_tags</code></strong></ul>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml</small>
+<p><small>cangjie6.schema.yaml</small></p>
 <pre><code>reverse_lookup:
   tag: reverse_lookup
   prefix: "`"
@@ -441,7 +441,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml  蒼頡主翻譯器</small></p>
+<p><small>cangjie6.schema.yaml  蒼頡主翻譯器</small></p>
 <pre><code>translator:
   dictionary: cangjie6
   enable_charset_filter: true
@@ -506,7 +506,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml</small>
+<p><small>cangjie6.schema.yaml</small></p>
 <pre><code>pinyin_reverse_lookup: #該反查濾鏡名
   tags: [ pinyin_lookup ] #掛在這個tag所對應的翻譯器上
   overwrite_comment: true
@@ -519,7 +519,7 @@ erase --刪除
 
 <h3>五、<code>simplifier</code></h3>
 
-<ol><li><code>option_name:</code> 對應<code>swiches</code>中設定的切換項名</li>
+<ol><li><code>option_name:</code> 對應<code>switches</code>中設定的切換項名</li>
 <li><code>opencc_config:</code> 用字轉換配置文件</li>
 <ul><li>位於：<code>rime_dir/opencc/</code>，自帶之配置文件含：</li>
 <ol><li>繁轉簡〔默認〕：<code>t2s.json</code></li>
@@ -533,7 +533,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>modified from luna_pinyin_kunki.schema</small>
+<p><small>修改自 luna_pinyin_kunki.schema</small></p>
 <pre><code>zh_tw:
   option_name: zh_tw
   opencc_config: t2tw.json
@@ -552,7 +552,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>combo_pinyin.schema.yaml</small>
+<p><small>combo_pinyin.schema.yaml</small></p>
 <pre><code>chord_composer:
   # 字母表，包含用於並擊的按鍵
   # 擊鍵雖有先後，形成並擊時，一律以字母表順序排列
@@ -593,7 +593,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>modified from cangjie6.schema.yaml</small>
+<p><small>修改自 cangjie6.schema.yaml</small></p>
 <pre><code>key_binder:
   import_preset: default
   bindings:
@@ -681,7 +681,7 @@ version: "0.1"
 </ol></ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.extended.dict.yaml</small>
+<p><small>cangjie6.extended.dict.yaml</small></p>
 <pre><code>sort: by_weight
 use_preset_vocabulary: false
 import_tables:
@@ -706,14 +706,14 @@ encoder:
 <ul><li>以<code>Tab</code>分隔各列，各列依<code>columns:</code>定義排列。</li></ul>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.dict.yaml</small>
+<p><small>cangjie6.dict.yaml</small></p>
 <pre><code>columns:
   - text #第一列字／詞
   - code #第二列碼
   - weight #第三列字／詞頻
   - stem #第四列造詞碼
 </code></pre>
-<small>cangjie6.dict.yaml</small>
+<p><small>cangjie6.dict.yaml</small></p>
 <pre><code>個	owjr	246268	ow'jr
 看	hqbu	245668
 中	l	243881
