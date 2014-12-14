@@ -284,9 +284,10 @@ pre code, pre tt {
 <li><code>uniquifier</code> 過濾重複的候選字，有可能來自<b><code>simplifier</code></b></li>
 <li><code>cjk_minifier</code> 字符集過濾〔用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li>
 <li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
+<ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
+</ul>
+<li><b><code>single_char_filter</code></b> 單字過濾器，如加載此組件，則屛敝詞典中的詞組〔僅<code>table_translator</code>有效〕</li>
 </ol>
-<ul><ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
-</ul></ul>
 
 <ul><h4><strong>示例</strong></h4>
 <small>cangjie6.schema.yaml</small>
@@ -523,7 +524,13 @@ erase --刪除
 <h3>五、<code>simplifier</code></h3>
 
 <ol><li><code>option_name:</code> 對應<code>swiches</code>中設定的切換項名</li>
-<li><code>opencc_config:</code> 用字轉換定義文件</li>
+<li><code>opencc_config:</code> 用字轉換配置文件</li>
+<ul><li>位於：<code>rime_dir/opencc/</code>，自帶之配置文件含：</li>
+<ol><li>繁轉簡〔默認〕：<code>t2s.json</code></li>
+<li>繁轉臺灣：<code>t2tw.json</code></li>
+<li>繁轉香港：<code>t2hk.json</code></li>
+<li>簡轉繁：<code>s2t.json</code></li>
+</ol></ul>
 <li><code>tags:</code> 設定轉換範圍</li>
 <li><code>tips:</code> 設定是否提示轉換前的字，可塡<code>none</code>〔或不塡〕、<code>char</code>〔僅對單字有效〕、<code>all</code></li>
 <li><i><code>excluded_types:</code></i> 取消特定範圍〔一般爲<i><code>reverse_lookup_translator</code></i>〕轉化用字</li>
