@@ -712,8 +712,22 @@ KP_8	小鍵板8
 KP_9	小鍵板9
 </ul></pre></code>
 </ul></ul></ul>
+<li><code>editor</code>用以訂製操作鍵〔不支持<code>import_preset:</code>〕，鍵板鍵名同<code>key_binder/bindings</code>中的<code>accept</code>和<code>send</code>，效果定義如下：</li>
+<ul><pre><code>confirm	上屏候選項
+commit_comment	上屏候選項備注
+commit_raw_input	上屏原始輸入
+commit_script_text	上屏變換後輸入
+commit_composition	語句流單字上屏
+revert	撤消上次輸入
+back	按字符回退
+back_syllable	按音節回退
+delete_candidate	刪除候選項
+delete	向後刪除
+cancel	取消輸入
+noop	空
+</code></pre></ul>
 <li><code>punctuator:</code> 下設<code>full_shape:</code>和<code>half_shape:</code>分别控制全角模式下的符號和半角模式下的符號，另有<code>use_space:</code>空格頂字〔<code>true</code>或<code>false</code>〕
-<ul><li>每條標點項可加<code>commit</code>直接上屏和<code>pair</code>交替上屏兩種關鍵字</li></ul>
+<ul><li>每條標點項可加<code>commit</code>直接上屏和<code>pair</code>交替上屏兩種模式，默認爲選單模式</li></ul>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -727,6 +741,10 @@ KP_9	小鍵板9
     - {accept: "Control+2", toggle: full_shape, when: always}
     - {accept: "Control+3", toggle: simplification, when: always}
     - {accept: "Control+4", toggle: extended_charset, when: always}
+
+editor:
+  bindings:
+    Return: commit_comment
 
 punctuator:
   import_preset: symbols
@@ -749,24 +767,10 @@ recognizer:
 </code></pre></ul>
 
 <h2>其它</h2>
-<ul><li>Rime還爲每個方案提供選單、操作鍵和一定的外觀訂製能力</li>
+<ul><li>Rime還爲每個方案提供選單和一定的外觀訂製能力</li>
 <li>通常情況下<code>menu</code>在<code>default.yaml</code>中定義〔或用戶修改檔<code>default.custom.yaml</code>〕，<code>style</code>在<code>squirrel.yaml</code>或<code>weasel.yaml</code>〔或用戶修改檔<code>squirrel.custom.yaml</code>或<code>weasel.custom.yaml</code>〕</li>
-<li><code>editor</code>用以訂製操作鍵，鍵板鍵名同<code>key_binder/bindings</code>中的<code>accept</code>和<code>send</code>，效果定義如下：
-<ul><pre><code>confirm	上屏候選項
-commit_comment	上屏候選項備注
-commit_raw_input	上屏原始輸入
-commit_script_text	上屏變換後輸入
-commit_composition	語句流單字上屏
-revert	撤消上次輸入
-back	按字符回退
-back_syllable	按音節回退
-delete_candidate	刪除候選項
-delete	向後刪除
-cancel	取消輸入
-noop	空
-</code></pre></ul></ul>
 
-<ul><h4><strong>示例</strong></h4>
+<h4><strong>示例</strong></h4>
 <pre><code>menu:
   alternative_select_keys: ASDFGHJKL #如編碼字符佔用數字鍵則須另設選字鍵
   page_size: 5 #選單每䈎顯示個數
@@ -777,11 +781,7 @@ style:
   horizontal: false #橫／直排
   line_spacing: 1 #行距
   inline_preedit: true #輸入碼內嵌
-
-editor:
-  bindings:
-    Return: commit_comment
-</code></pre>
+</code></pre></ul>
 
 <br>
 
