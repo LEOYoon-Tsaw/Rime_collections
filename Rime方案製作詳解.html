@@ -247,7 +247,7 @@ pre code, pre tt {
 <li><code>selector</code> 選字處理器，處理數字選字鍵〔可以換成別的哦〕、上、下候選定位、換頁</li>
 <li><code>navigator</code> 處理輸入欄內的光標移動</li>
 <li><code>express_editor</code> 編輯器，處理空格、回車上屏、回退鍵</li>
-<li><i><code>fluency_editor</code></i> 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換<code>express_editor</code></li>
+<li><i><code>fluid_editor</code></i> 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換<code>express_editor</code></li>
 <li><i><code>chord_composer</code></i> 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案</li>
 </ol>
 
@@ -592,8 +592,132 @@ erase --刪除
 
 <ol><li><b><code>import_preset:</code></b> 由外部統一文件導入
 <li><code>recognizer:</code> 下設<code>patterns:</code> 配合<code>segmentor</code>的<code>prefix</code>和<code>suffix</code>完成段落劃分、<code>tag</code>分配
+<ul><li><code>:</code>前字段可以爲以<code>affix_segmentor@someTag</code>定義的<code>Tag</code>名，或者<code>punct</code>、<code>reverse_lookup</code>兩個內設的字段。其它字段不調用輸入法引擎，輸入即輸出〔如<code>url</code>等字段〕</li></ul>
 <li><code>key_binder:</code> 下設<code>bindings:</code> 設置功能性快捷鍵
-<li><code>punctuator:</code> 下設<code>full_shape:</code>和<code>half_shape:</code>分别控制全角模式下的符號和半角模式下的符號，另有<code>use_space:</code>空格頂字
+<ul><li>每一條<code>binding</code>可能包含：<code>accept</code>實際所按之鍵、<code>send</code>輸出效果、<code>toggle</code>切換開關和<code>when</code>作用範圍〔<code>send</code>和<code>toggle</code>二選一〕</li>
+<ul>
+<li><code>toggle</code>可用字段包含五個開關名</li>
+<li><code>when</code>可用字段包含：</li>
+<ul><pre><code>paging	翻䈎用
+has_menu	操作候選項用
+composing	操作輸入碼用
+always	全域
+</code></pre></ul>
+<li><code>accept</code>和<code>send</code>可用字段除A-Za-z0-9外，還包含以下鍵板上實際有的鍵：</li>
+<ul><pre><code>BackSpace	退格
+Tab	水平定位符
+Linefeed	换行
+Clear	清除
+Return	回車
+Pause	暫停
+Sys_Req	印屏
+Escape	退出
+Delete	刪除
+Home	原位
+Left	左箭頭
+Up	上箭頭
+Right	右箭頭
+Down	下箭頭
+Prior、Page_Up	上翻
+Next、Page_Down	下翻
+End	末位
+Begin	始位
+Shift_L	左Shift
+Shift_R	右Shift
+Control_L	左Ctrl
+Control_R	右Ctrl
+Meta_L	左Meta
+Meta_R	右Meta
+Alt_L	左Alt
+Alt_R	右Alt
+Super_L	左Super
+Super_R	右Super
+Hyper_L	左Hyper
+Hyper_R	右Hyper
+Caps_Lock	大寫鎖
+Shift_Lock	上檔鎖
+Scroll_Lock	滾動鎖
+Num_Lock	小鍵板鎖
+Select	選定
+Print	列印
+Execute	執行
+Insert	插入
+Undo	還原
+Redo	重做
+Menu	菜單
+Find	蒐尋
+Cancel	取消
+Help	幫助
+Break	中斷
+
+space	 
+exclam	!
+quotedbl	"
+numbersign	#
+dollar	$
+percent	%
+ampersand	&
+apostrophe	'
+parenleft	(
+parenright	)
+asterisk	*
+plus	+
+comma	,
+minus	-
+period	.
+slash	/
+colon	:
+semicolon	;
+less	<
+equal	=
+greater	>
+question	?
+at	@
+bracketleft	[
+backslash	\
+bracketright	]
+asciicircum	^
+underscore	_
+grave	`
+braceleft	{
+bar	|
+braceright	}
+asciitilde	~
+
+KP_Space	小鍵板空格
+KP_Tab	小鍵板水平定位符
+KP_Enter	小鍵板回車
+KP_Delete	小鍵板刪除
+KP_Home	小鍵板原位
+KP_Left	小鍵板左箭頭
+KP_Up	小鍵板上箭頭
+KP_Right	小鍵板右箭頭
+KP_Down	小鍵板下箭頭
+KP_Prior、KP_Page_Up	小鍵板上翻
+KP_Next、KP_Page_Down	小鍵板下翻
+KP_End	小鍵板末位
+KP_Begin	小鍵板始位
+KP_Insert	小鍵板插入
+KP_Equal	小鍵板等於
+KP_Multiply	小鍵板乘號
+KP_Add	小鍵板加號
+KP_Subtract	小鍵板減號
+KP_Divide	小鍵板除號
+KP_Decimal	小鍵板小數點
+KP_0	小鍵板0
+KP_1	小鍵板1
+KP_2	小鍵板2
+KP_3	小鍵板3
+KP_4	小鍵板4
+KP_5	小鍵板5
+KP_6	小鍵板6
+KP_7	小鍵板7
+KP_8	小鍵板8
+KP_9	小鍵板9
+</ul></pre></code>
+</ul></ul></ul>
+<li><code>punctuator:</code> 下設<code>full_shape:</code>和<code>half_shape:</code>分别控制全角模式下的符號和半角模式下的符號，另有<code>use_space:</code>空格頂字〔<code>true</code>或<code>false</code>〕
+<ul><li>每條標點項可加<code>commit</code>直接上屏和<code>pair</code>交替上屏兩種關鍵字</li></ul>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -629,10 +753,24 @@ recognizer:
 </code></pre></ul>
 
 <h2>其它</h2>
-<ul><li>Rime還爲每個方案提供選單和一定的外觀訂製能力</li>
+<ul><li>Rime還爲每個方案提供選單、操作鍵和一定的外觀訂製能力</li>
 <li>通常情況下<code>menu</code>在<code>default.yaml</code>中定義〔或用戶修改檔<code>default.custom.yaml</code>〕，<code>style</code>在<code>squirrel.yaml</code>或<code>weasel.yaml</code>〔或用戶修改檔<code>squirrel.custom.yaml</code>或<code>weasel.custom.yaml</code>〕</li>
-</ul>
+<li><code>editor</code>用以訂製操作鍵，鍵板鍵名同<code>key_binder/bindings</code>中的<code>accept</code>和<code>send</code>，效果定義如下：
+<ul><pre><code>confirm	上屏候選項
+commit_comment	上屏候選項備注
+commit_raw_input	上屏原始輸入
+commit_script_text	上屏變換後輸入
+commit_composition	語句流單字上屏
+revert	撤消上次輸入
+back	按字符回退
+back_syllable	按音節回退
+delete_candidate	刪除候選項
+delete	向後刪除
+cancel	取消輸入
+noop	空
+</code></pre></ul></ul>
 
+<ul><h4><strong>示例</strong></h4>
 <pre><code>menu:
   alternative_select_keys: ASDFGHJKL #如編碼字符佔用數字鍵則須另設選字鍵
   page_size: 5 #選單每䈎顯示個數
@@ -643,6 +781,10 @@ style:
   horizontal: false #橫／直排
   line_spacing: 1 #行距
   inline_preedit: true #輸入碼內嵌
+
+editor:
+  bindings:
+    Return: commit_comment
 </code></pre>
 
 <br>
