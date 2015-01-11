@@ -1,6 +1,6 @@
 <html>
 <body>
-<center><h1><code>Schema.yaml</code> 詳解</h1></center>
+<h1><p align="center"><code>Schema.yaml</code> 詳解</p></h1>
 <h2></h2>
 <hr>
 
@@ -37,13 +37,14 @@
 </code></pre></ul>
 
 <h2>開關</h2>
-<p>通常包含以下四個：</p>
+<p>通常包含以下五個：</p>
 
-<ol><li><code>ascii_mode</code> 是中英文轉換開關。預設<code>0</code>爲中文，<code>1</code>爲英文</li>
+<ol><li><code>ascii_mode</code> 是中英文轉換開關。預設<code>0</code>爲英文，<code>1</code>爲中文</li>
 <li><code>full_shape</code> 是全角符號／半角符號開關。注意，開啓全角時英文字母亦爲全角。<code>0</code>爲半角，<code>1</code>爲全角</li>
 <li><code>extended_charset</code> 是字符集開關。<code>0</code>爲CJK基本字符集，<code>1</code>爲CJK全字符集</li>
 <ul><li>僅<code>table_translator</code>可用</li></ul>
 <li><code>simplification</code> 是轉化字開關。一般情況下與上同，<code>0</code>爲不開啓轉化，<code>1</code>爲轉化。</li>
+<li><code>ascii_punct</code> 是中西文標點轉換開關，<code>0</code>爲中文句讀，<code>1</code>爲西文標點。</li>
 </ol>
 
 <ul><ul><li>此選項名偁可自定義，亦可添加多套替換用字方案：</li></ul>
@@ -60,10 +61,12 @@
   reset: 0
 </code></pre></ul>
 <li><code>states:</code> 可不寫，如不寫則此開關存在但不可見，可由快捷鍵操作</li>
-<li><code>reset:</code> 設定默認狀態〔`reset`可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+<li><code>reset:</code> 設定默認狀態〔<code>reset</code>可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+
 <h4><strong>示例</strong></h4>
 <pre><code>switches:
   - name: ascii_mode
+    reset: 0
     states: ["中文", "西文"]
   - name: full_shape
     states: ["半角", "全角"]
@@ -71,7 +74,10 @@
     states: ["通用", "增廣"]
   - name: simplification
     states: ["漢字", "汉字"]
+  - name: ascii_punct
+    states: ["句讀", "符號"]
 </code></pre></ul>
+
 <h2>引擎</h2>
 <ul><li>以下<b>加粗</b>項爲可細配者，<i>斜體</i>者爲不常用者</li>
 </ul>
@@ -88,7 +94,7 @@
 <li><code>selector</code> 選字處理器，處理數字選字鍵〔可以換成別的哦〕、上、下候選定位、換頁</li>
 <li><code>navigator</code> 處理輸入欄內的光標移動</li>
 <li><code>express_editor</code> 編輯器，處理空格、回車上屏、回退鍵</li>
-<li><i><code>fluency_editor</code></i> 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換<code>express_editor</code></li>
+<li><i><code>fluid_editor</code></i> 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換<code>express_editor</code></li>
 <li><i><code>chord_composer</code></i> 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案</li>
 </ol>
 
@@ -123,13 +129,15 @@
 
 <ol><li><b><code>simplifier</code></b> 用字轉換</li>
 <li><code>uniquifier</code> 過濾重複的候選字，有可能來自<b><code>simplifier</code></b></li>
+<li><code>cjk_minifier</code> 字符集過濾〔用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li>
 <li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
+<ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
+</ul>
+<li><b><code>single_char_filter</code></b> 單字過濾器，如加載此組件，則屛敝詞典中的詞組〔僅<code>table_translator</code>有效〕</li>
 </ol>
-<ul><ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
-</ul></ul>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml</small>
+<p><small>cangjie6.schema.yaml</small></p>
 <pre><code>engine:
   processors:
     - ascii_composer
@@ -161,6 +169,7 @@
   filters:
     - simplifier@zh_simp
     - uniquifier
+    - cjk_minifier
     - reverse_lookup_filter@middle_chinese
     - reverse_lookup_filter@pinyin_reverse_lookup
     - reverse_lookup_filter@jyutping_reverse_lookup
@@ -189,6 +198,7 @@
 <li><code>algebra:</code> 拼寫運算規則，由之算出的拼寫匯入<code>prism</code>中</li>
 <li><code>max_code_length:</code> 形碼最大碼長，超過則頂字上屛〔<code>number</code>〕</li>
 <li><code>auto_select:</code> 自動上屛〔<code>true</code>或<code>false</code>〕</li>
+<li><code>auto_select_pattern:</code> 自動上屏規則，以正則表達式描述，當輸入串可以被匹配時自動頂字上屏。
 <li><code>use_space:</code> 以空格作輸入碼〔<code>true</code>或<code>false</code>〕</li>
 </ol>
 
@@ -202,7 +212,7 @@ erase --刪除
 </code></pre></ul></ul>
 
 <ul><h4><strong>示例</strong></h4>
-<small>luna_pinyin.schema.yaml</small>
+<p><small>luna_pinyin.schema.yaml</small></p>
 <pre><code>speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
@@ -236,17 +246,17 @@ erase --刪除
 <li><code>extra_tags:</code> 爲此<code>segmentor</code>所標記的段落插上其它<code>tag</code></li>
 </ol>
 
-<ul><strong>當<code>affix_segmentor</code>和<code>translator</code>重名時，兩者可併在一處配置，此處1-5條對應下面16-20條。<code>abc_segmentor</code>僅可設<code>extra_tags</code></strong></ul>
+<ul><strong>當<code>affix_segmentor</code>和<code>translator</code>重名時，兩者可併在一處配置，此處1-5條對應下面19-23條。<code>abc_segmentor</code>僅可設<code>extra_tags</code></strong></ul>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml</small>
+<p><small>cangjie6.schema.yaml</small></p>
 <pre><code>reverse_lookup:
   tag: reverse_lookup
   prefix: "`"
   suffix: ";"
   tips: "【反查】"
   closing_tips: "【蒼頡】"
-  extra_tags: 
+  extra_tags:
     - pinyin_lookup
     - jyutping_lookup
 </code></pre></ul>
@@ -255,7 +265,7 @@ erase --刪除
 <ul><li>每個方案有一個主<code>translator</code>，在引擎列表中不以<code>@</code>+翻譯器名定義，在細項配置時直接以<code>translator:</code>命名。以下加粗項爲可在主<code>translator</code>中定義之項，其它可在副〔以<code>@</code>+翻譯器名命名〕<code>translator</code>中定義</li>
 </ul>
 
-<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效〕</li>
+<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效。啓用<code>cjk_minifier</code>後可適用於<code>script_translator</code>〕</li>
 <li><b><code>enable_encoder:</code></b> 是否開啓自動造詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長〔僅<code>table_translator</code>有效〕</li>
@@ -269,7 +279,7 @@ erase --刪除
 <li><b><code>dictionary:</code></b> 翻譯器將調取此字典文件</li>
 <li><b><code>prism:</code></b> 設定由此主翻譯器的<code>speller</code>生成的棱鏡文件名，或此副編譯器調用的棱鏡名</li>
 <li><b><code>user_dict:</code></b> 設定用戶詞典名</li>
-<li><b><code>db_class:</code></b> 設定用戶詞典類型，可設<code>stabledb</code>或<code>text</code></li>
+<li><b><code>db_class:</code></b> 設定用戶詞典類型，可設<code>tabledb</code>〔文本〕或<code>userdb</code>〔二進制〕</li>
 <li><b><code>preedit_format:</code></b> 上屛碼自定義</li>
 <li><b><code>comment_format:</code></b> 提示碼自定義</li>
 <li><b><code>spelling_hints:</code></b> 設定多少字以內候選標註完整帶調拼音〔僅<code>script_translator</code>有效〕</li>
@@ -282,7 +292,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml  蒼頡主翻譯器</small></p>
+<p><small>cangjie6.schema.yaml  蒼頡主翻譯器</small></p>
 <pre><code>translator:
   dictionary: cangjie6
   enable_charset_filter: true
@@ -324,6 +334,16 @@ erase --刪除
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
+</code></pre>
+
+<p><small>luna_pinyin.schema.yaml 朙月拼音用戶短語</small></p>
+<pre><code>custom_phrase: #這是一個table_translator
+  dictionary: ""
+  user_dict: custom_phrase
+  db_class: tabledb
+  enable_sentence: false
+  enable_completion: false
+  initial_quality: 1
 </code></pre></ul>
 
 <h3>四、<code>reverse_lookup_filter</code></h3>
@@ -337,7 +357,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.schema.yaml</small>
+<p><small>cangjie6.schema.yaml</small></p>
 <pre><code>pinyin_reverse_lookup: #該反查濾鏡名
   tags: [ pinyin_lookup ] #掛在這個tag所對應的翻譯器上
   overwrite_comment: true
@@ -350,18 +370,24 @@ erase --刪除
 
 <h3>五、<code>simplifier</code></h3>
 
-<ol><li><code>option_name:</code> 對應<code>swiches</code>中設定的切換項名</li>
-<li><code>opencc_config:</code> 用字轉換定義文件</li>
+<ol><li><code>option_name:</code> 對應<code>switches</code>中設定的切換項名</li>
+<li><code>opencc_config:</code> 用字轉換配置文件</li>
+<ul><li>位於：<code>rime_dir/opencc/</code>，自帶之配置文件含：</li>
+<ol><li>繁轉簡〔默認〕：<code>t2s.json</code></li>
+<li>繁轉臺灣：<code>t2tw.json</code></li>
+<li>繁轉香港：<code>t2hk.json</code></li>
+<li>簡轉繁：<code>s2t.json</code></li>
+</ol></ul>
 <li><code>tags:</code> 設定轉換範圍</li>
 <li><code>tips:</code> 設定是否提示轉換前的字，可塡<code>none</code>〔或不塡〕、<code>char</code>〔僅對單字有效〕、<code>all</code></li>
 <li><i><code>excluded_types:</code></i> 取消特定範圍〔一般爲<i><code>reverse_lookup_translator</code></i>〕轉化用字</li>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>modified from luna_pinyin_kunki.schema</small>
+<p><small>修改自 luna_pinyin_kunki.schema</small></p>
 <pre><code>zh_tw:
   option_name: zh_tw
-  opencc_config: zht2zhtw_p.ini
+  opencc_config: t2tw.json
   tags: [ abc ] #abc對應abc_segmentor
   tips: none
 </code></pre></ul>
@@ -377,7 +403,7 @@ erase --刪除
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>combo_pinyin.schema.yaml</small>
+<p><small>combo_pinyin.schema.yaml</small></p>
 <pre><code>chord_composer:
   # 字母表，包含用於並擊的按鍵
   # 擊鍵雖有先後，形成並擊時，一律以字母表順序排列
@@ -413,12 +439,150 @@ erase --刪除
 
 <ol><li><b><code>import_preset:</code></b> 由外部統一文件導入
 <li><code>recognizer:</code> 下設<code>patterns:</code> 配合<code>segmentor</code>的<code>prefix</code>和<code>suffix</code>完成段落劃分、<code>tag</code>分配
+<ul><li><code>:</code>前字段可以爲以<code>affix_segmentor@someTag</code>定義的<code>Tag</code>名，或者<code>punct</code>、<code>reverse_lookup</code>兩個內設的字段。其它字段不調用輸入法引擎，輸入即輸出〔如<code>url</code>等字段〕</li></ul>
 <li><code>key_binder:</code> 下設<code>bindings:</code> 設置功能性快捷鍵
-<li><code>punctuator:</code> 下設<code>full_shape:</code>和<code>half_shape:</code>分别控制全角模式下的符號和半角模式下的符號，另有<code>use_space:</code>空格頂字
+<ul><li>每一條<code>binding</code>可能包含：<code>accept</code>實際所按之鍵、<code>send</code>輸出效果、<code>toggle</code>切換開關和<code>when</code>作用範圍〔<code>send</code>和<code>toggle</code>二選一〕</li>
+<ul>
+<li><code>toggle</code>可用字段包含五個開關名</li>
+<li><code>when</code>可用字段包含：</li>
+<ul><pre><code>paging	翻䈎用
+has_menu	操作候選項用
+composing	操作輸入碼用
+always	全域
+</code></pre></ul>
+<li><code>accept</code>和<code>send</code>可用字段除A-Za-z0-9外，還包含以下鍵板上實際有的鍵：</li>
+<ul><pre><code>BackSpace	退格
+Tab	水平定位符
+Linefeed	换行
+Clear	清除
+Return	回車
+Pause	暫停
+Sys_Req	印屏
+Escape	退出
+Delete	刪除
+Home	原位
+Left	左箭頭
+Up	上箭頭
+Right	右箭頭
+Down	下箭頭
+Prior、Page_Up	上翻
+Next、Page_Down	下翻
+End	末位
+Begin	始位
+Shift_L	左Shift
+Shift_R	右Shift
+Control_L	左Ctrl
+Control_R	右Ctrl
+Meta_L	左Meta
+Meta_R	右Meta
+Alt_L	左Alt
+Alt_R	右Alt
+Super_L	左Super
+Super_R	右Super
+Hyper_L	左Hyper
+Hyper_R	右Hyper
+Caps_Lock	大寫鎖
+Shift_Lock	上檔鎖
+Scroll_Lock	滾動鎖
+Num_Lock	小鍵板鎖
+Select	選定
+Print	列印
+Execute	執行
+Insert	插入
+Undo	還原
+Redo	重做
+Menu	菜單
+Find	蒐尋
+Cancel	取消
+Help	幫助
+Break	中斷
+
+space	 
+exclam	!
+quotedbl	"
+numbersign	#
+dollar	$
+percent	%
+ampersand	&
+apostrophe	'
+parenleft	(
+parenright	)
+asterisk	*
+plus	+
+comma	,
+minus	-
+period	.
+slash	/
+colon	:
+semicolon	;
+less	<
+equal	=
+greater	>
+question	?
+at	@
+bracketleft	[
+backslash	\
+bracketright	]
+asciicircum	^
+underscore	_
+grave	`
+braceleft	{
+bar	|
+braceright	}
+asciitilde	~
+
+KP_Space	小鍵板空格
+KP_Tab	小鍵板水平定位符
+KP_Enter	小鍵板回車
+KP_Delete	小鍵板刪除
+KP_Home	小鍵板原位
+KP_Left	小鍵板左箭頭
+KP_Up	小鍵板上箭頭
+KP_Right	小鍵板右箭頭
+KP_Down	小鍵板下箭頭
+KP_Prior、KP_Page_Up	小鍵板上翻
+KP_Next、KP_Page_Down	小鍵板下翻
+KP_End	小鍵板末位
+KP_Begin	小鍵板始位
+KP_Insert	小鍵板插入
+KP_Equal	小鍵板等於
+KP_Multiply	小鍵板乘號
+KP_Add	小鍵板加號
+KP_Subtract	小鍵板減號
+KP_Divide	小鍵板除號
+KP_Decimal	小鍵板小數點
+KP_0	小鍵板0
+KP_1	小鍵板1
+KP_2	小鍵板2
+KP_3	小鍵板3
+KP_4	小鍵板4
+KP_5	小鍵板5
+KP_6	小鍵板6
+KP_7	小鍵板7
+KP_8	小鍵板8
+KP_9	小鍵板9
+</ul></pre></code>
+</ul></ul></ul>
+<li><code>editor</code>用以訂製操作鍵〔不支持<code>import_preset:</code>〕，鍵板鍵名同<code>key_binder/bindings</code>中的<code>accept</code>和<code>send</code>，效果定義如下：</li>
+<ul><pre><code>confirm	上屏候選項
+commit_comment	上屏候選項備注
+commit_raw_input	上屏原始輸入
+commit_script_text	上屏變換後輸入
+commit_composition	語句流單字上屏
+revert	撤消上次輸入
+back	按字符回退
+back_syllable	按音節回退
+delete_candidate	刪除候選項
+delete	向後刪除
+cancel	取消輸入
+noop	空
+</code></pre></ul>
+<li><code>punctuator:</code> 下設<code>full_shape:</code>和<code>half_shape:</code>分别控制全角模式下的符號和半角模式下的符號，另有<code>use_space:</code>空格頂字〔<code>true</code>或<code>false</code>〕
+<ul><li>每條標點項可加<code>commit</code>直接上屏和<code>pair</code>交替上屏兩種模式，默認爲選單模式</li></ul>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>modified from cangjie6.schema.yaml</small>
+<p><small>修改自 cangjie6.schema.yaml</small></p>
 <pre><code>key_binder:
   import_preset: default
   bindings:
@@ -428,6 +592,10 @@ erase --刪除
     - {accept: "Control+2", toggle: full_shape, when: always}
     - {accept: "Control+3", toggle: simplification, when: always}
     - {accept: "Control+4", toggle: extended_charset, when: always}
+
+editor:
+  bindings:
+    Return: commit_comment
 
 punctuator:
   import_preset: symbols
@@ -452,8 +620,8 @@ recognizer:
 <h2>其它</h2>
 <ul><li>Rime還爲每個方案提供選單和一定的外觀訂製能力</li>
 <li>通常情況下<code>menu</code>在<code>default.yaml</code>中定義〔或用戶修改檔<code>default.custom.yaml</code>〕，<code>style</code>在<code>squirrel.yaml</code>或<code>weasel.yaml</code>〔或用戶修改檔<code>squirrel.custom.yaml</code>或<code>weasel.custom.yaml</code>〕</li>
-</ul>
 
+<h4><strong>示例</strong></h4>
 <pre><code>menu:
   alternative_select_keys: ASDFGHJKL #如編碼字符佔用數字鍵則須另設選字鍵
   page_size: 5 #選單每䈎顯示個數
@@ -464,11 +632,11 @@ style:
   horizontal: false #橫／直排
   line_spacing: 1 #行距
   inline_preedit: true #輸入碼內嵌
-</code></pre>
+</code></pre></ul>
 
 <br>
 
-<center><h1><code>Dict.yaml</code> 詳解</h1></center>
+<h1><p align="center"><code>Dict.yaml</code> 詳解</p></h1>
 <h2></h2>
 <hr>
 
@@ -507,7 +675,7 @@ version: "0.1"
 </ol></ol>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.extended.dict.yaml</small>
+<p><small>cangjie6.extended.dict.yaml</small></p>
 <pre><code>sort: by_weight
 use_preset_vocabulary: false
 import_tables:
@@ -532,14 +700,14 @@ encoder:
 <ul><li>以<code>Tab</code>分隔各列，各列依<code>columns:</code>定義排列。</li></ul>
 
 <ul><h4><strong>示例</strong></h4>
-<small>cangjie6.dict.yaml</small>
+<p><small>cangjie6.dict.yaml</small></p>
 <pre><code>columns:
   - text #第一列字／詞
   - code #第二列碼
   - weight #第三列字／詞頻
   - stem #第四列造詞碼
 </code></pre>
-<small>cangjie6.dict.yaml</small>
+<p><small>cangjie6.dict.yaml</small></p>
 <pre><code>個	owjr	246268	ow'jr
 看	hqbu	245668
 中	l	243881
