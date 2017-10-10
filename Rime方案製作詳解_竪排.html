@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <style>
 body {
-  font-family: Helvetica, arial, sans-serif;
+  font-family: SentyWen, Helvetica, arial, sans-serif;
   font-size: 14px;
   line-height: 1.6;
   padding-top: 10px;
@@ -161,11 +161,11 @@ pre code, pre tt {
 
 <h2>描述檔</h2>
 
-<ol><li><code>name:</code> 方案的顯示名偁〔即出現於方案選單中以示人的，通常爲中文〕</li>
+<ol><li><code>name:</code> 方案的顯示名稱︹即出現於方案選單中以示人的，通常爲中文︺</li>
 <li><code>schema_id:</code> 方案內部名，在代碼中引用此方案時以此名爲正，通常由英文、數字、下劃線組成</li>
 <li><code>author:</code> 發明人、撰寫者。如果您對方案做出了修改，請保留原作者名，並將自己的名字加在後面</li>
 <li><code>description:</code> 請簡要描述方案歷史、碼表來源、該方案規則等</li>
-<li><code>dependencies:</code> 如果本方案依賴於其它方案〔通常來說會依頼其它方案做爲反查，抑或是兩種或多種方案混用時〕</li>
+<li><code>dependencies:</code> 如果本方案依賴於其它方案︹通常來說會依頼其它方案做爲反查，抑或是兩種或多種方案混用時︺</li>
 <li><code>version:</code> 版本號，在發佈新版前請確保已陞版本號</li>
 </ol>
 
@@ -194,10 +194,9 @@ pre code, pre tt {
 <ul><li>僅<code>table_translator</code>可用</li></ul>
 <li><code>simplification</code> 是轉化字開關。一般情況下與上同，<code>0</code>爲不開啓轉化，<code>1</code>爲轉化。</li>
 <li><code>ascii_punct</code> 是中西文標點轉換開關，<code>0</code>爲中文句讀，<code>1</code>爲西文標點。</li>
-</ol>
-
-<ul><ul><li>此選項名偁可自定義，亦可添加多套替換用字方案：</li></ul>
-<ul><pre><code>- name: zh_cn
+<ul><li>此選項名稱可自定義，亦可添加多套替換用字方案：</li>
+</br>
+<pre><code>- name: zh_cn
   states: ["漢字", "汉字"]
   reset: 0
 </code></pre>
@@ -208,9 +207,10 @@ pre code, pre tt {
     - 字型 → 汉字
     - 字型 → 䕼茡
   reset: 0
-</code></pre></ul>
+</code></pre>
+</br>
 <li><code>states:</code> 可不寫，如不寫則此開關存在但不可見，可由快捷鍵操作</li>
-<li><code>reset:</code> 設定默認狀態〔<code>reset</code>可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+<li><code>reset:</code> 設定默認狀態︹<code>reset</code>可不寫，此時切換窗口時不會重置到默認狀態︺</li></ul></ol>
 
 <h4><strong>示例</strong></h4>
 <pre><code>switches:
@@ -240,7 +240,7 @@ pre code, pre tt {
 <li><b><code>key_binder</code></b> 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁、開關快捷鍵等</li>
 <li><b><code>speller</code></b> 拼寫處理器，接受字符按鍵，編輯輸入</li>
 <li><b><code>punctuator</code></b> 句讀處理器，將單個字符按鍵直接映射爲標點符號或文字</li>
-<li><code>selector</code> 選字處理器，處理數字選字鍵〔可以換成別的哦〕、上、下候選定位、換頁</li>
+<li><code>selector</code> 選字處理器，處理數字選字鍵︹可以換成別的哦︺、上、下候選定位、換頁</li>
 <li><code>navigator</code> 處理輸入欄內的光標移動</li>
 <li><code>express_editor</code> 編輯器，處理空格、回車上屏、回退鍵</li>
 <li><i><code>fluid_editor</code></i> 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換<code>express_editor</code></li>
@@ -250,26 +250,25 @@ pre code, pre tt {
 <h3>二、<code>segmentors</code></h3>
 <ul><li>這批組件識別不同內容類型，將輸入碼分段並加上<code>tag</code></li></ul>
 
-<ol><li><code>ascii_segmentor</code> 標識西文段落〔譬如在西文模式下〕字母直接上屛</li>
+<ol><li><code>ascii_segmentor</code> 標識西文段落︹譬如在西文模式下︺字母直接上屛</li>
 <li><code>matcher</code> 配合<code>recognizer</code>標識符合特定規則的段落，如網址、反查等，加上特定<code>tag</code></li>
 <li><b><code>abc_segmentor</code></b> 標識常規的文字段落，加上<code>abc</code>這個<code>tag</code></li>
-<li><code>punct_segmentor</code> 標識句讀段落〔鍵入標點符號用〕加上<code>punct</code>這個<code>tag</code></li>
+<li><code>punct_segmentor</code> 標識句讀段落︹鍵入標點符號用︺加上<code>punct</code>這個<code>tag</code></li>
 <li><code>fallback_segmentor</code> 標識其他未標識段落</li>
 <li><b><code>affix_segmentor</code></b> 用戶自定義<code>tag</code></li>
-</ol>
 
-<ul><ul><li>此項可加載多個實例，後接<code>@</code>+<code>tag</code>名</li>
-</ul></ul>
+<ul><li>此項可加載多個實例，後接<code>@</code>+<code>tag</code>名</li>
+</ul></ol>
 
 <h3>三、<code>translators</code></h3>
 <ul><li>這批組件翻譯特定類型的編碼段爲一組候選文字</li></ul>
 
-<ol><li><code>echo_translator</code> 沒有其他候選字時，回顯輸入碼〔輸入碼可以<code>Shift</code>+<code>Enter</code>上屛〕</li>
+<ol><li><code>echo_translator</code> 沒有其他候選字時，回顯輸入碼︹輸入碼可以<code>Shift</code>+<code>Enter</code>上屛︺</li>
 <li><code>punct_translator</code> 配合<code>punct_segmentor</code>轉換標點符號</li>
 <li><b><code>table_translator</code></b> 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案</li>
-  - 此項可加載多個實例，後接<code>@</code>+翻譯器名〔如：<code>cangjie</code>、<code>wubi</code>等〕</li>
+  - 此項可加載多個實例，後接<code>@</code>+翻譯器名︹如：<code>cangjie</code>、<code>wubi</code>等︺</li>
 <li><b><code>script_translator</code></b> 腳本翻譯器，用於拼音、粵拼等基於音節表的輸入方案</li>
-  - 此項可加載多個實例，後接<code>@</code>+翻譯器名〔如：<code>pinyin</code>、<code>jyutping</code>等〕</li>
+  - 此項可加載多個實例，後接<code>@</code>+翻譯器名︹如：<code>pinyin</code>、<code>jyutping</code>等︺</li>
 <li><i><code>reverse_lookup_translator</code></i> 反查翻譯器，用另一種編碼方案查碼</li>
 </ol>
 
@@ -278,11 +277,11 @@ pre code, pre tt {
 
 <ol><li><b><code>simplifier</code></b> 用字轉換</li>
 <li><code>uniquifier</code> 過濾重複的候選字，有可能來自<b><code>simplifier</code></b></li>
-<li><code>cjk_minifier</code> 字符集過濾〔用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li>
+<li><code>cjk_minifier</code> 字符集過濾︹用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關︺</li>
 <li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
-<ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
+<ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名︹如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等︺</li>
 </ul>
-<li><b><code>single_char_filter</code></b> 單字過濾器，如加載此組件，則屛敝詞典中的詞組〔僅<code>table_translator</code>有效〕</li>
+<li><b><code>single_char_filter</code></b> 單字過濾器，如加載此組件，則屛敝詞典中的詞組︹僅<code>table_translator</code>有效︺</li>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -325,7 +324,7 @@ pre code, pre tt {
 </code></pre></ul>
 
 <h2>細項配置</h2>
-<ul><li>凡<code>comment_format</code>、<code>preedit_format</code>、<code>speller/algebra</code>所用之正則表達式，請參閱<a href="http://www.boost.org/doc/libs/1_49_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html">「Perl正則表達式」</a></li>
+<ul><li>凡<code>comment_format</code>、<code>preedit_format</code>、<code>speller/algebra</code>所用之正則表達式，請參閱<a href="http://www.boost.org/doc/libs/1_49_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html">﹁Perl正則表達式﹂</a></li>
 </ul>
 <p><strong>引擎中所舉之加粗者均可在下方詳細描述，格式爲：</strong></p>
 
@@ -345,18 +344,18 @@ pre code, pre tt {
 <li><code>finals:</code> 定義僅作末碼之鍵</li>
 <li><code>delimiter:</code> 上屛時的音節間分音符</li>
 <li><code>algebra:</code> 拼寫運算規則，由之算出的拼寫匯入<code>prism</code>中</li>
-<li><code>max_code_length:</code> 形碼最大碼長，超過則頂字上屛〔<code>number</code>〕</li>
-<li><code>auto_select:</code> 自動上屛〔<code>true</code>或<code>false</code>〕</li>
+<li><code>max_code_length:</code> 形碼最大碼長，超過則頂字上屛︹<code>number</code>︺</li>
+<li><code>auto_select:</code> 自動上屛︹<code>true</code>或<code>false</code>︺</li>
 <li><code>auto_select_pattern:</code> 自動上屏規則，以正則表達式描述，當輸入串可以被匹配時自動頂字上屏。
-<li><code>use_space:</code> 以空格作輸入碼〔<code>true</code>或<code>false</code>〕</li>
+<li><code>use_space:</code> 以空格作輸入碼︹<code>true</code>或<code>false</code>︺</li>
 </ol>
 
 <ul><ul><li><code>speller</code>的演算包含：</li>
-<pre><code>xform --改寫〔不保留原形〕
-derive --衍生〔保留原形〕
-abbrev --簡拼〔出字優先級較上兩組更低〕
-fuzz --畧拼〔此種簡拼僅組詞，不出單字〕
-xlit --變換〔適合大量一對一變換〕
+<pre><code>xform --改寫︹不保留原形︺
+derive --衍生︹保留原形︺
+abbrev --簡拼︹出字優先級較上兩組更低︺
+fuzz --畧拼︹此種簡拼僅組詞，不出單字︺
+xlit --變換︹適合大量一對一變換︺
 erase --刪除
 </code></pre></ul></ul>
 
@@ -411,28 +410,28 @@ erase --刪除
 </code></pre></ul>
 
 <h3>三、<code>translator</code></h3>
-<ul><li>每個方案有一個主<code>translator</code>，在引擎列表中不以<code>@</code>+翻譯器名定義，在細項配置時直接以<code>translator:</code>命名。以下加粗項爲可在主<code>translator</code>中定義之項，其它可在副〔以<code>@</code>+翻譯器名命名〕<code>translator</code>中定義</li>
+<ul><li>每個方案有一個主<code>translator</code>，在引擎列表中不以<code>@</code>+翻譯器名定義，在細項配置時直接以<code>translator:</code>命名。以下加粗項爲可在主<code>translator</code>中定義之項，其它可在副︹以<code>@</code>+翻譯器名命名︺<code>translator</code>中定義</li>
 </ul>
 
-<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效。啓用<code>cjk_minifier</code>後可適用於<code>script_translator</code>〕</li>
-<li><b><code>enable_encoder:</code></b> 是否開啓自動造詞〔僅<code>table_translator</code>有效〕</li>
-<li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞〔僅<code>table_translator</code>有效〕</li>
-<li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長〔僅<code>table_translator</code>有效〕</li>
-<li><b><code>enable_completion:</code></b> 提前顯示尚未輸入完整碼的字〔僅<code>table_translator</code>有效〕</li>
-<li><b><code>sentence_over_completion:</code></b> 在無全碼對應字而僅有逐鍵提示時也開啓智能組句〔僅<code>table_translator</code>有效〕</li>
-<li><b><code>strict_spelling:</code></b> 配合<code>speller</code>中的<code>fuzz</code>規則，僅以畧拼碼組詞〔僅<code>table_translator</code>有效〕</li>
+<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾︹僅<code>table_translator</code>有效。啓用<code>cjk_minifier</code>後可適用於<code>script_translator</code>︺</li>
+<li><b><code>enable_encoder:</code></b> 是否開啓自動造詞︹僅<code>table_translator</code>有效︺</li>
+<li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞︹僅<code>table_translator</code>有效︺</li>
+<li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長︹僅<code>table_translator</code>有效︺</li>
+<li><b><code>enable_completion:</code></b> 提前顯示尚未輸入完整碼的字︹僅<code>table_translator</code>有效︺</li>
+<li><b><code>sentence_over_completion:</code></b> 在無全碼對應字而僅有逐鍵提示時也開啓智能組句︹僅<code>table_translator</code>有效︺</li>
+<li><b><code>strict_spelling:</code></b> 配合<code>speller</code>中的<code>fuzz</code>規則，僅以畧拼碼組詞︹僅<code>table_translator</code>有效︺</li>
 <li><b><code>disable_user_dict_for_patterns:</code></b> 禁止某些編碼錄入用戶詞典</li>
 <li><b><code>enable_sentence:</code></b> 是否開啓自動造句</li>
-<li><b><code>enable_user_dict:</code></b> 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕</li>
+<li><b><code>enable_user_dict:</code></b> 是否開啓用戶詞典︹用戶詞典記錄動態字詞頻、用戶詞︺</li>
 <ul><li>以上選塡<code>true</code>或<code>false</code></li></ul>
 <li><b><code>dictionary:</code></b> 翻譯器將調取此字典文件</li>
 <li><b><code>prism:</code></b> 設定由此主翻譯器的<code>speller</code>生成的棱鏡文件名，或此副編譯器調用的棱鏡名</li>
 <li><b><code>user_dict:</code></b> 設定用戶詞典名</li>
-<li><b><code>db_class:</code></b> 設定用戶詞典類型，可設<code>tabledb</code>〔文本〕或<code>userdb</code>〔二進制〕</li>
+<li><b><code>db_class:</code></b> 設定用戶詞典類型，可設<code>tabledb</code>︹文本︺或<code>userdb</code>︹二進制︺</li>
 <li><b><code>preedit_format:</code></b> 上屛碼自定義</li>
 <ul><li>可以<code>\t</code>標示光標位置</li></ul>
 <li><b><code>comment_format:</code></b> 提示碼自定義</li>
-<li><b><code>spelling_hints:</code></b> 設定多少字以內候選標註完整帶調拼音〔僅<code>script_translator</code>有效〕</li>
+<li><b><code>spelling_hints:</code></b> 設定多少字以內候選標註完整帶調拼音︹僅<code>script_translator</code>有效︺</li>
 <li><b><code>initial_quality:</code></b> 設定此翻譯器出字優先級</li>
 <li><code>tag:</code> 設定此翻譯器針對的<code>tag</code>。可不塡，不塡則僅針對<code>abc</code></li>
 <li><code>prefix:</code> 設定此翻譯器的前綴標識，可不塡，不塡則無前綴</li>
@@ -513,8 +512,8 @@ erase --刪除
   overwrite_comment: true
   dictionary: cangjie6 #反查所得爲蒼頡碼
   comment_format:
-    - "xform/$/〕/"
-    - "xform/^/〔/"
+    - "xform/$/︺/"
+    - "xform/^/︹/"
     - "xlit|abcdefghijklmnopqrstuvwxyz |日月金木水火土竹戈十大中一弓人心手口尸廿山女田止卜片、|"
 </code></pre></ul>
 
@@ -523,14 +522,14 @@ erase --刪除
 <ol><li><code>option_name:</code> 對應<code>switches</code>中設定的切換項名</li>
 <li><code>opencc_config:</code> 用字轉換配置文件</li>
 <ul><li>位於：<code>rime_dir/opencc/</code>，自帶之配置文件含：</li>
-<ol><li>繁轉簡〔默認〕：<code>t2s.json</code></li>
+<ol><li>繁轉簡︹默認︺：<code>t2s.json</code></li>
 <li>繁轉臺灣：<code>t2tw.json</code></li>
 <li>繁轉香港：<code>t2hk.json</code></li>
 <li>簡轉繁：<code>s2t.json</code></li>
 </ol></ul>
 <li><code>tags:</code> 設定轉換範圍</li>
-<li><code>tips:</code> 設定是否提示轉換前的字，可塡<code>none</code>〔或不塡〕、<code>char</code>〔僅對單字有效〕、<code>all</code></li>
-<li><i><code>excluded_types:</code></i> 取消特定範圍〔一般爲<i><code>reverse_lookup_translator</code></i>〕轉化用字</li>
+<li><code>tips:</code> 設定是否提示轉換前的字，可塡<code>none</code>︹或不塡︺、<code>char</code>︹僅對單字有效︺、<code>all</code></li>
+<li><i><code>excluded_types:</code></i> 取消特定範圍︹一般爲<i><code>reverse_lookup_translator</code></i>︺轉化用字</li>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -589,9 +588,9 @@ erase --刪除
 
 <ol><li><b><code>import_preset:</code></b> 由外部統一文件導入
 <li><code>recognizer:</code> 下設<code>patterns:</code> 配合<code>segmentor</code>的<code>prefix</code>和<code>suffix</code>完成段落劃分、<code>tag</code>分配
-<ul><li><code>:</code>前字段可以爲以<code>affix_segmentor@someTag</code>定義的<code>Tag</code>名，或者<code>punct</code>、<code>reverse_lookup</code>兩個內設的字段。其它字段不調用輸入法引擎，輸入即輸出〔如<code>url</code>等字段〕</li></ul>
+<ul><li><code>:</code>前字段可以爲以<code>affix_segmentor@someTag</code>定義的<code>Tag</code>名，或者<code>punct</code>、<code>reverse_lookup</code>兩個內設的字段。其它字段不調用輸入法引擎，輸入即輸出︹如<code>url</code>等字段︺</li></ul>
 <li><code>key_binder:</code> 下設<code>bindings:</code> 設置功能性快捷鍵
-<ul><li>每一條<code>binding</code>可能包含：<code>accept</code>實際所按之鍵、<code>send</code>輸出效果、<code>toggle</code>切換開關和<code>when</code>作用範圍〔<code>send</code>和<code>toggle</code>二選一〕</li>
+<ul><li>每一條<code>binding</code>可能包含：<code>accept</code>實際所按之鍵、<code>send</code>輸出效果、<code>toggle</code>切換開關和<code>when</code>作用範圍︹<code>send</code>和<code>toggle</code>二選一︺</li>
 <ul>
 <li><code>toggle</code>可用字段包含五個開關名</li>
 <li><code>when</code>可用字段包含：</li>
@@ -713,7 +712,7 @@ KP_8	小鍵板8
 KP_9	小鍵板9
 </ul></pre></code>
 </ul></ul></ul>
-<li><code>editor</code>用以訂製操作鍵〔不支持<code>import_preset:</code>〕，鍵板鍵名同<code>key_binder/bindings</code>中的<code>accept</code>和<code>send</code>，效果定義如下：</li>
+<li><code>editor</code>用以訂製操作鍵︹不支持<code>import_preset:</code>︺，鍵板鍵名同<code>key_binder/bindings</code>中的<code>accept</code>和<code>send</code>，效果定義如下：</li>
 <ul><pre><code>confirm	上屏候選項
 commit_comment	上屏候選項備注
 commit_raw_input	上屏原始輸入
@@ -727,7 +726,7 @@ delete	向後刪除
 cancel	取消輸入
 noop	空
 </code></pre></ul>
-<li><code>punctuator:</code> 下設<code>full_shape:</code>和<code>half_shape:</code>分别控制全角模式下的符號和半角模式下的符號，另有<code>use_space:</code>空格頂字〔<code>true</code>或<code>false</code>〕
+<li><code>punctuator:</code> 下設<code>full_shape:</code>和<code>half_shape:</code>分别控制全角模式下的符號和半角模式下的符號，另有<code>use_space:</code>空格頂字︹<code>true</code>或<code>false</code>︺
 <ul><li>每條標點項可加<code>commit</code>直接上屏和<code>pair</code>交替上屏兩種模式，默認爲選單模式</li></ul>
 </ol>
 
@@ -750,8 +749,8 @@ editor:
 punctuator:
   import_preset: symbols
   half_shape:
-    "'": {pair: ["「", "」"]} #第一次按是「，第二次是」
-    "(": ["〔", "［"] #彈出選單
+    "'": {pair: ["﹁", "﹂"]} #第一次按是﹁，第二次是﹂
+    "(": ["︹", "［"] #彈出選單
     .: {commit: "。"} #無選單，直接上屛。優先級最高
 
 recognizer:
@@ -769,7 +768,7 @@ recognizer:
 
 <h2>其它</h2>
 <ul><li>Rime還爲每個方案提供選單和一定的外觀訂製能力</li>
-<li>通常情況下<code>menu</code>在<code>default.yaml</code>中定義〔或用戶修改檔<code>default.custom.yaml</code>〕，<code>style</code>在<code>squirrel.yaml</code>或<code>weasel.yaml</code>〔或用戶修改檔<code>squirrel.custom.yaml</code>或<code>weasel.custom.yaml</code>〕</li>
+<li>通常情況下<code>menu</code>在<code>default.yaml</code>中定義︹或用戶修改檔<code>default.custom.yaml</code>︺，<code>style</code>在<code>squirrel.yaml</code>或<code>weasel.yaml</code>︹或用戶修改檔<code>squirrel.custom.yaml</code>或<code>weasel.custom.yaml</code>︺</li>
 
 <h4><strong>示例</strong></h4>
 <pre><code>menu:
@@ -777,7 +776,7 @@ recognizer:
   page_size: 5 #選單每䈎顯示個數
 
 style:
-  font_face: "HanaMinA, HanaMinB" #字體〔小狼毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
+  font_face: "HanaMinA, HanaMinB" #字體︹小狼毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字︺
   font_point: 15 #字號
   horizontal: false #橫／直排
   line_spacing: 1 #行距
@@ -793,7 +792,7 @@ style:
 
 <pre><code># Rime dict
 # encoding: utf-8
-〔你還可以在這註釋字典來源、變動記錄等〕
+︹你還可以在這註釋字典來源、變動記錄等︺
 </code></pre>
 
 <h2>描述檔</h2>
@@ -810,7 +809,7 @@ version: "0.1"
 <h2>配置</h2>
 
 <ol><li><code>sort:</code> 字典<b>初始</b>排序，可選<code>original</code>或<code>by_weight</code></li>
-<li><code>use_preset_vocabulary:</code> 是否引入「八股文」〔含字詞頻、詞庫〕</li>
+<li><code>use_preset_vocabulary:</code> 是否引入﹁八股文﹂︹含字詞頻、詞庫︺</li>
 <li><code>max_phrase_length:</code> 配合<code>use_preset_vocabulary:</code>，設定導入詞條最大詞長</li>
 <li><code>min_phrase_weight:</code> 配合<code>use_preset_vocabulary:</code>，設定導入詞條最小詞頻</li>
 <li><code>columns:</code> 定義碼表以<code>Tab</code>分隔出的各列，可設<code>text</code>【文本】、<code>code</code>【碼】、<code>weight</code>【權重】、<code>stem</code>【造詞碼】</li>
@@ -819,7 +818,7 @@ version: "0.1"
 <ol type="a">
 <li><code>exclude_patterns:</code></li>
 <li><code>rules:</code> 可用<code>length_equal:</code>和<code>length_in_range:</code>定義。大寫字母表示字序，小寫字母表示其所跟隨的大寫字母所以表的字中的編碼序</li>
-<li><code>tail_anchor:</code> 造詞碼包含結構分割符〔僅用於倉頡〕</li>
+<li><code>tail_anchor:</code> 造詞碼包含結構分割符︹僅用於倉頡︺</li>
 <li><code>exclude_patterns</code> 取消某編碼的造詞資格</li>
 </ol></ol>
 
