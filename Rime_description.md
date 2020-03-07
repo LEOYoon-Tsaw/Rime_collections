@@ -624,6 +624,7 @@ recognizer:
 
 <h4><strong>示例</strong></h4>
 <pre><code>menu:
+  alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨ ]  # 修改候選標籤
   alternative_select_keys: ASDFGHJKL #如編碼字符佔用數字鍵則須另設選字鍵
   page_size: 5 #選單每䈎顯示個數
 
