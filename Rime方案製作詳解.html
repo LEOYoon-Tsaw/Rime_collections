@@ -778,12 +778,14 @@ recognizer:
 
 <h4><strong>示例</strong></h4>
 <pre><code>menu:
+  alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨ ]  # 修改候選標籤
   alternative_select_keys: ASDFGHJKL #如編碼字符佔用數字鍵則須另設選字鍵
   page_size: 5 #選單每䈎顯示個數
 
 style:
   font_face: "HanaMinA, HanaMinB" #字體〔小狼毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
   font_point: 15 #字號
+  label_format: '%s'  # 候選標籤格式
   horizontal: false #橫／直排
   line_spacing: 1 #行距
   inline_preedit: true #輸入碼內嵌
