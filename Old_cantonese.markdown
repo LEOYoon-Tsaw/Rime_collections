@@ -32,6 +32,8 @@ sz、tsz、ts’z記爲si、zi、ci，/ɿ/，讀如普通話兹磁思
 
 ### 聲母
 
+![Initial](/Old_cantonese/initial.svg "聲母演變")
+
 有`zh`、`ch`、`sh`三組舌葉聲母，其字基本與普通話捲舌音字對應，但亦偶有例外，如：
 
 > 索〔索取〕：`shaak3` / `shok3`，古生母字   
@@ -46,7 +48,14 @@ sz、tsz、ts’z記爲si、zi、ci，/ɿ/，讀如普通話兹磁思
  澤、擇：`zhaak6`，古澄母字   
  仄、側：`zhak1`，古莊母字   
 
+牙音送氣與否發生改變
+
+> 儈、劊、檜、獪、膾、鱠、癐字由`gui`變爲`kui`   
+ 決、訣、玦、缺、闋、厥、蕨、潏、譎等字由`gyut`變爲`kyut`，僅極少數保留`gyut`的異讀
+
 ### 韻母
+
+![Final](/Old_cantonese/final.svg "韻母演變")
 
 部份`u`併入`ou`
 
@@ -71,14 +80,11 @@ sz、tsz、ts’z記爲si、zi、ci，/ɿ/，讀如普通話兹磁思
 > `bi`、`pi`、`mi`、`fi`、`di`、`ni`、`li`、`hi`韻變爲`ei`韻，如比、皮、未、飛、地、尼、理、氣等字，皆爲古止摄字      
  `zi`、`ci`、`si`三韻由`/tsɿ/`、`/tsʰɿ/`、`/sɿ/`變爲`/tsi/`、`/tsʰi/`、`/si/`，皆爲古止摄字
 
-### 其它變化
+### 聲調
 
-牙音送氣與否發生改變
+![Tone](/Old_cantonese/tone.svg "聲調演變")
 
-> 儈、劊、檜、獪、膾、鱠、癐字由`gui`變爲`kui`   
- 決、訣、玦、缺、闋、厥、蕨、潏、譎等字由`gyut`變爲`kyut`，僅極少數保留`gyut`的異讀
-
-音調發生改變
+陽上減少，併入陽去、陰去等調
 
 > 轎由`giu5`變爲`giu6`   
  睽由`kwai5`變爲`kwai1`   
@@ -109,6 +115,14 @@ sz、tsz、ts’z記爲si、zi、ci，/ɿ/，讀如普通話兹磁思
 * 現代粵語：105.88%
 
 現代粵語字音分散度略差，因爲三個捲舌聲母消失，且`ui`、`yu`、`eoi`韻部份歸併
+
+### 音節分佈
+
+爲便於展示，聲調未記入下表
+
+![Old sylable](/Old_cantonese/sylable_old.svg "晚清音節")
+
+![New sylable](/Old_cantonese/sylable_new.svg "當代音節")
 
 ======
 
