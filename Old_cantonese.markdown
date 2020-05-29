@@ -124,7 +124,7 @@ sz、tsz、ts’z記爲si、zi、ci，/ɿ/，讀如普通話兹磁思
 
 ![New sylable](/Old_cantonese/sylable_new.svg "當代音節")
 
-======
+---
 
 電子化由[雪齋](https://github.com/LEOYoon-Tsaw "雪齋")完成，可參看[英華分韻撮要文本版](https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/%E5%88%86%E9%9F%BB%E6%92%AE%E8%A6%81.txt "分韻撮要")   
 甲午年九月初一戊戌
