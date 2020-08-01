@@ -190,17 +190,16 @@ pre code, pre tt {
 </code></pre></ul>
 
 <h2>開關</h2>
-<p>通常包含以下五個：</p>
+<p>通常包含以下數個：</p>
 
 <ol><li><code>ascii_mode</code> 是中英文轉換開關。預設<code>0</code>爲英文，<code>1</code>爲中文</li>
 <li><code>full_shape</code> 是全角符號／半角符號開關。注意，開啓全角時英文字母亦爲全角。<code>0</code>爲半角，<code>1</code>爲全角</li>
 <li><code>extended_charset</code> 是字符集開關。<code>0</code>爲CJK基本字符集，<code>1</code>爲CJK全字符集</li>
 <ul><li>僅<code>table_translator</code>可用</li></ul>
-<li><code>simplification</code> 是轉化字開關。一般情況下與上同，<code>0</code>爲不開啓轉化，<code>1</code>爲轉化。</li>
 <li><code>ascii_punct</code> 是中西文標點轉換開關，<code>0</code>爲中文句讀，<code>1</code>爲西文標點。</li>
-</ol>
+<li><code>simplification</code> 是轉化字開關。一般情況下與上同，<code>0</code>爲不開啓轉化，<code>1</code>爲轉化。</li>
 
-<ul><ul><li>此選項名偁可自定義，亦可添加多套替換用字方案：</li></ul>
+<ul><li><code>simplification</code>選項名偁可自定義，亦可添加多套替換用字方案：</li></ul>
 <ul><pre><code>- name: zh_cn
   states: ["漢字", "汉字"]
   reset: 0
@@ -212,10 +211,35 @@ pre code, pre tt {
     - 字型 → 汉字
     - 字型 → 䕼茡
   reset: 0
-</code></pre></ul>
-<li><code>states:</code> 可不寫，如不寫則此開關存在但不可見，可由快捷鍵操作</li>
-<li><code>reset:</code> 設定默認狀態〔<code>reset</code>可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+</code></pre>
+<ul>
+<li><code>name</code>/<code>options</code>名：須與<code>simplifier</code>中<code>option_name</code>相同</li>
+<li><code>states</code>：可不寫，如不寫則此開關存在但不可見，可由快捷鍵操作</li>
+<li><code>reset</code>：設定默認狀態〔<code>reset</code>可不寫，此時切換窗口時不會重置到默認狀態〕</li>
+</ul>
+</ul>
+<li>字符集過濾。此選項沒有默認名偁，須配合<code>charset_filter</code>使用。採用<code>options</code>格式：</li>
+<pre><code>- name: gbk
+  states: [ 增廣, 常用 ]
+  reset: 0
+</code></pre>
+或
+<pre><code>- options: [ utf-8, big5hkscs, big5, gbk, gb2312 ]
+  states:
+    - 字集 → 全
+    - 字集 → 港臺
+    - 字集 → 臺
+    - 字集 → 大陸
+    - 字集 → 简体
+  reset: 0
+</code></pre>
+<ul>
+<li><code>name</code>/<code>options</code>名：須與<code>charset_filter</code><code>@</code>後的tag相同</li>
+<li>避免同時使用字符集過濾和<code>extended_charset</code></li>
+</ul>
+</ol>
 
+<ul>
 <h4><strong>示例</strong></h4>
 <pre><code>switches:
   - name: ascii_mode
@@ -279,14 +303,15 @@ pre code, pre tt {
 
 <h3>四、<code>filters</code></h3>
 <ul><li>這批組件過濾翻譯的結果</li></ul>
-
-<ol><li><b><code>simplifier</code></b> 用字轉換</li>
+<ol>
 <li><code>uniquifier</code> 過濾重複的候選字，有可能來自<b><code>simplifier</code></b></li>
-<li><code>cjk_minifier</code> 字符集過濾〔用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li>
-<li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
-<ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
-</ul>
+<li><code>cjk_minifier</code> 字符集過濾〔僅用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li>
 <li><b><code>single_char_filter</code></b> 單字過濾器，如加載此組件，則屛敝詞典中的詞組〔僅<code>table_translator</code>有效〕</li>
+<li><b><code>simplifier</code></b> 用字轉換</li>
+<li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
+<ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li></ul>
+<li><b><code>charset_filter</code></b> 字符集過濾</li>
+<ul><li>後接<code>@</code>+字符集名〔如：<code>utf-8</code>(無過濾)、<code>big5</code>、<code>big5hkscs</code>、<code>gbk</code>、<code>gb2312</code>〕</li></ul>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -323,6 +348,7 @@ pre code, pre tt {
     - simplifier@zh_simp
     - uniquifier
     - cjk_minifier
+    - charset_filter@gbk
     - reverse_lookup_filter@middle_chinese
     - reverse_lookup_filter@pinyin_reverse_lookup
     - reverse_lookup_filter@jyutping_reverse_lookup
