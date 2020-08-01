@@ -37,12 +37,22 @@
 </code></pre></ul>
 
 <h2>開關</h2>
-<p>通常包含以下五個：</p>
+<p>通常包含以下六個：</p>
 
 <ol><li><code>ascii_mode</code> 是中英文轉換開關。預設<code>0</code>爲中文，<code>1</code>爲英文</li>
 <li><code>full_shape</code> 是全角符號／半角符號開關。注意，開啓全角時英文字母亦爲全角。<code>0</code>爲半角，<code>1</code>爲全角</li>
 <li><code>extended_charset</code> 是字符集開關。<code>0</code>爲CJK基本字符集，<code>1</code>爲CJK全字符集</li>
 <ul><li>僅<code>table_translator</code>可用</li></ul>
+  <li>沒有<code>name</code>直接
+    <pre><code>
+    - options: [utf8, gbk, gb2312]    # 字符集选单 
+      reset: 1                        # 默认 GBK
+      states:                         # 可以通过切功能键，切至 UTF8 等超大字符集
+        - UTF-8
+        - GBK
+        - GB2312
+  </code></pre>可以透過charset_filter來指定字符集
+  </li>
 <li><code>simplification</code> 是轉化字開關。一般情況下與上同，<code>0</code>爲不開啓轉化，<code>1</code>爲轉化。</li>
 <li><code>ascii_punct</code> 是中西文標點轉換開關，<code>0</code>爲中文句讀，<code>1</code>爲西文標點。</li>
 </ol>
@@ -129,7 +139,10 @@
 
 <ol><li><b><code>simplifier</code></b> 用字轉換</li>
 <li><code>uniquifier</code> 過濾重複的候選字，有可能來自<b><code>simplifier</code></b></li>
-<li><code>cjk_minifier</code> 字符集過濾〔用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li>
+<li><s><code>cjk_minifier</code> 字符集過濾〔用於<code>script_translator</code>，使之支援<code>extended_charset</code>開關〕</li></s>
+<ul><li>此項已失效 請使用charset_filter</li></ul>
+<li><code>charset_filter</code>字符集過濾
+  <ul><li>需後加<code>@</code>+字符集名 如<code>@utf8</code><code>gbk</code><code>gbk2312</code>至<code>librime1.5.3</code>為止 該轉換是透過<code>boost::locale::conv::from_utf(text, charset, boost::locale::conv::method_type::stop)</code>實現的</li></ul>
 <li><b><code>reverse_lookup_filter</code></b> 反查濾鏡，以更靈活的方式反查，Rime1.0後替代<i><code>reverse_lookup_translator</code></i></li>
 <ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li>
 </ul>
@@ -265,7 +278,7 @@ erase --刪除
 <ul><li>每個方案有一個主<code>translator</code>，在引擎列表中不以<code>@</code>+翻譯器名定義，在細項配置時直接以<code>translator:</code>命名。以下加粗項爲可在主<code>translator</code>中定義之項，其它可在副〔以<code>@</code>+翻譯器名命名〕<code>translator</code>中定義</li>
 </ul>
 
-<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效。啓用<code>cjk_minifier</code>後可適用於<code>script_translator</code>〕</li>
+<ol><li><b><code>enable_charset_filter:</code></b> 是否開啓字符集過濾〔僅<code>table_translator</code>有效</li>
 <li><b><code>enable_encoder:</code></b> 是否開啓自動造詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長〔僅<code>table_translator</code>有效〕</li>
