@@ -273,6 +273,8 @@ pre code, pre tt {
 <li><code>express_editor</code> 編輯器，處理空格、回車上屏、回退鍵</li>
 <li><i><code>fluid_editor</code></i> 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換<code>express_editor</code></li>
 <li><i><code>chord_composer</code></i> 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案</li>
+<li><code>lua_processor</code> 使用<code>lua</code>自定義按鍵，後接<code>@</code>+<code>lua</code>函數名</li>
+<ul><li><code>lua</code>函數名即用戶文件夾內<code>rime.lua</code>中函數名，參數爲<code>(key, env)</code></li></ul>
 </ol>
 
 <h3>二、<code>segmentors</code></h3>
@@ -284,10 +286,9 @@ pre code, pre tt {
 <li><code>punct_segmentor</code> 標識句讀段落〔鍵入標點符號用〕加上<code>punct</code>這個<code>tag</code></li>
 <li><code>fallback_segmentor</code> 標識其他未標識段落</li>
 <li><b><code>affix_segmentor</code></b> 用戶自定義<code>tag</code></li>
+<ul><li>此項可加載多個實例，後接<code>@</code>+<code>tag</code>名</li></ul>
+<li><i><code>lua_segmentor</code></i> 使用<code>lua</code>自定義切分，後接<code>@</code>+<code>lua</code>函數名</li>
 </ol>
-
-<ul><ul><li>此項可加載多個實例，後接<code>@</code>+<code>tag</code>名</li>
-</ul></ul>
 
 <h3>三、<code>translators</code></h3>
 <ul><li>這批組件翻譯特定類型的編碼段爲一組候選文字</li></ul>
@@ -299,6 +300,9 @@ pre code, pre tt {
 <li><b><code>script_translator</code></b> 腳本翻譯器，用於拼音、粵拼等基於音節表的輸入方案</li>
   - 此項可加載多個實例，後接<code>@</code>+翻譯器名〔如：<code>pinyin</code>、<code>jyutping</code>等〕</li>
 <li><i><code>reverse_lookup_translator</code></i> 反查翻譯器，用另一種編碼方案查碼</li>
+<li><b><code>lua_translator</code></b> 使用<code>lua</code>自定義輸入，例如動態輸入當前日期、時間，後接<code>@</code>+<code>lua</code>函數名</li>
+<ul><li><code>lua</code>函數名即用戶文件夾內<code>rime.lua</code>中函數名，參數爲<code>(input, seg, env)</code></li>
+<li>可以<code>env.engine.context:get_option("option_name")</code>方式綁定到<code>switch</code>開關／<code>key_binder</code>快捷鍵</li></ul>
 </ol>
 
 <h3>四、<code>filters</code></h3>
@@ -312,6 +316,9 @@ pre code, pre tt {
 <ul><li>此項可加載多個實例，後接<code>@</code>+濾鏡名〔如：<code>pinyin_lookup</code>、<code>jyutping_lookup</code>等〕</li></ul>
 <li><b><code>charset_filter</code></b> 字符集過濾</li>
 <ul><li>後接<code>@</code>+字符集名〔如：<code>utf-8</code>(無過濾)、<code>big5</code>、<code>big5hkscs</code>、<code>gbk</code>、<code>gb2312</code>〕</li></ul>
+<li><b><code>lua_filter</code></b> 使用<code>lua</code>自定義過濾，例如過濾字符集、調整排序，後接<code>@</code>+<code>lua</code>函數名</li>
+<ul><li><code>lua</code>函數名即用戶文件夾內<code>rime.lua</code>中函數名，參數爲<code>(input, env)</code></li>
+<li>可以<code>env.engine.context:get_option("option_name")</code>方式綁定到<code>switch</code>開關／<code>key_binder</code>快捷鍵</li></ul>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -344,6 +351,7 @@ pre code, pre tt {
     - script_translator@jyutping
     - script_translator@pinyin_lookup
     - script_translator@jyutping_lookup
+    - lua_translator@get_date
   filters:
     - simplifier@zh_simp
     - uniquifier
@@ -352,6 +360,7 @@ pre code, pre tt {
     - reverse_lookup_filter@middle_chinese
     - reverse_lookup_filter@pinyin_reverse_lookup
     - reverse_lookup_filter@jyutping_reverse_lookup
+    - lua_filter@single_char_first
 </code></pre></ul>
 
 <h2>細項配置</h2>
@@ -614,7 +623,43 @@ erase --刪除
     - "xform/^(.*)$/[$1]/"
 </code></pre></ul>
 
-<h3>七、其它</h3>
+<h3>七、<code>lua</code></h3>
+<ul><li>請參攷<a href="https://github.com/hchunhui/librime-lua">hchunhui/librime-lua</a> 以尋求更多靈感。</li></ul>
+<ol>
+<li><code>lua_translator</code></li>
+<li><code>lua_filter</code></li>
+<li><code>lua_processor</code></li>
+<li><code>lua_segmentor</code></li>
+</ol>
+<ul><h4><strong>示例</strong></h4>
+<p><small>rime.lua</small></p>
+<pre><code>function get_date(input, seg, env)
+  --- 以 show_date 爲開關名或 key_binder 中 toggle 的對象
+  on = env.engine.context:get_option("show_date")
+  if (on and input == "date") then
+    --- Candidate(type, start, end, text, comment)
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), " 日期"))
+  end
+end
+
+function single_char_first(input, env)
+  --- 以 single_char 爲開關名或 key_binder 中 toggle 的對象
+  on = env.engine.context:get_option("single_char")
+  local cache = {}
+  for cand in input:iter() do
+    if (not on or utf8.len(cand.text) == 1) then
+      yield(cand)
+    else
+      table.insert(cache, cand)
+    end
+  end
+  for i, cand in ipairs(cache) do
+    yield(cand)
+  end
+end
+</code></pre></ul>
+
+<h3>八、其它</h3>
 <ul><li>包括<code>recognizer</code>、<code>key_binder</code>、<code>punctuator</code>。<b>標點</b>、<b>快捷鍵</b>、<b>二三選重</b>、<b>特殊字符</b>等均於此設置</li>
 </ul>
 
@@ -624,7 +669,7 @@ erase --刪除
 <li><code>key_binder:</code> 下設<code>bindings:</code> 設置功能性快捷鍵
 <ul><li>每一條<code>binding</code>可能包含：<code>accept</code>實際所按之鍵、<code>send</code>輸出效果、<code>toggle</code>切換開關和<code>when</code>作用範圍〔<code>send</code>和<code>toggle</code>二選一〕</li>
 <ul>
-<li><code>toggle</code>可用字段包含五個開關名</li>
+<li><code>toggle</code>可用字段包含各開關名</li>
 <li><code>when</code>可用字段包含：</li>
 <ul><pre><code>paging	翻䈎用
 has_menu	操作候選項用
