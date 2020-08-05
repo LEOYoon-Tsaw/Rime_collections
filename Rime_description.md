@@ -324,6 +324,9 @@ erase --刪除
 <li><code>suffix:</code> 設定此翻譯器的尾綴標識，可不塡，不塡則無尾綴</li>
 <li><code>tips:</code> 設定此翻譯器的輸入前提示符，可不塡，不塡則無提示符</li>
 <li><code>closing_tips:</code> 設定此翻譯器的結束輸入提示符，可不塡，不塡則無提示符</li>
+<li><code>contextual_suggestions:</code> 是否使用語言模型優化輸出結果〔需配合<code>grammar</code>使用〕</li>
+<li><code>max_homophones:</code> 最大同音簇長度〔需配合<code>grammar</code>使用〕</li>
+<li><code>max_homographs:</code> 最大同形簇長度〔需配合<code>grammar</code>使用〕</li>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -510,8 +513,13 @@ end
 </ul>
 
 <ol><li><b><code>import_preset:</code></b> 由外部統一文件導入
+<li><code>grammar:</code> 下設：
+<ul><li><code>language:</code> 取值<code>zh-han[ts]-t-essay-bg[wc]</code></li>
+<li><code>collocation_max_length:</code> 最大搭配長度（整句輸入可忽畧此項）</li>
+<li><code>collocation_min_length:</code> 最小搭配長度（整句輸入可忽畧此項）</li>
+</ul></li>
 <li><code>recognizer:</code> 下設<code>patterns:</code> 配合<code>segmentor</code>的<code>prefix</code>和<code>suffix</code>完成段落劃分、<code>tag</code>分配
-<ul><li><code>:</code>前字段可以爲以<code>affix_segmentor@someTag</code>定義的<code>Tag</code>名，或者<code>punct</code>、<code>reverse_lookup</code>兩個內設的字段。其它字段不調用輸入法引擎，輸入即輸出〔如<code>url</code>等字段〕</li></ul>
+<ul><li>前字段可以爲以<code>affix_segmentor@someTag</code>定義的<code>Tag</code>名，或者<code>punct</code>、<code>reverse_lookup</code>兩個內設的字段。其它字段不調用輸入法引擎，輸入即輸出〔如<code>url</code>等字段〕</li></ul></li>
 <li><code>key_binder:</code> 下設<code>bindings:</code> 設置功能性快捷鍵
 <ul><li>每一條<code>binding</code>可能包含：<code>accept</code>實際所按之鍵、<code>send</code>輸出效果、<code>toggle</code>切換開關和<code>when</code>作用範圍〔<code>send</code>和<code>toggle</code>二選一〕</li>
 <ul>
