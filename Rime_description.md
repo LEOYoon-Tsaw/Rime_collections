@@ -1,7 +1,4 @@
 <html>
-<title>Rime方案製作詳解</title>
-
-</head>
 <body>
 <h1 align="center"><code>Schema.yaml</code> 詳解</h1>
 <h2></h2>
