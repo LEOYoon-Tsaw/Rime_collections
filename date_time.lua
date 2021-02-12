@@ -572,12 +572,11 @@ local function date_translator(input, seg, env)
   local on = env.engine.context:get_option("show_date")
   assert(os.setlocale"en_US")
   if (on and input == "ona") then
-    local preedit = "人弓 日"
-    --- Candidate(type, start, end, text, comment)
+    -- 今日
     local date = string.gsub(os.date("%Y年%m月%d日"), "([^%d])0+", "%1")
     local weekday = chinese_weekday(os.date("%w"))
     local candidate = Candidate("date", seg.start, seg._end, date, weekday)
-    candidate.preedit = preedit
+    candidate.preedit = "人弓 日"
     yield(candidate)
     weekday = os.date("%a")
     candidate = Candidate("date", seg.start, seg._end, string.gsub(os.date("%b %d, %Y"), "([^%d])0+", "%1"), weekday)
@@ -589,6 +588,7 @@ local function date_translator(input, seg, env)
     candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "tmtjmhda") then
+    -- 華曆
     local chinese_date, celestrete_date = to_chinese_cal_local(os.time())
     local candidate = Candidate("date", seg.start, seg._end, chinese_date, celestrete_date)
     candidate.preedit = "廿一廿十 一竹木日"
@@ -600,6 +600,7 @@ local function date_translator(input, seg, env)
 --    candidate.preedit = "廿一廿十 一竹木日"
 --    yield(candidate)
   elseif (on and input == "tubybhg") then
+    -- 朔望
     local moon_phase_previous = moon_phase_in_year(tonumber(os.date("%Y")) - 1)
     local moon_phase, first_event = moon_phase_in_year(tonumber(os.date("%Y")))
     local moon_phase_next = moon_phase_in_year(tonumber(os.date("%Y")) + 1)
@@ -626,7 +627,7 @@ local function date_translator(input, seg, env)
     candidate.preedit = "廿山月 卜月竹土"
     yield(candidate)
   elseif (on and input == "hailonfd") then
-    --- Candidate(type, start, end, text, comment)
+    -- 節氣
     local solar_terms = solar_terms_in_year(tonumber(os.date("%Y")))
     local solar_terms_next = solar_terms_in_year(tonumber(os.date("%Y")) + 1)
     solar_terms = union(solar_terms, slice(solar_terms_next, 1, 2))
@@ -650,6 +651,7 @@ local function date_translator(input, seg, env)
     candidate.preedit = "竹日戈中 人弓火木"
     yield(candidate)
   elseif (on and input == "bjjobt") then
+    -- 月輪
     local moon_phase_previous = moon_phase_in_year(tonumber(os.date("%Y")) - 1)
     local moon_phase, first_event = moon_phase_in_year(tonumber(os.date("%Y")))
     local moon_phase_next = moon_phase_in_year(tonumber(os.date("%Y")) + 1)
@@ -669,23 +671,22 @@ local function date_translator(input, seg, env)
     candidate.preedit = "月 十十人月廿"
     yield(candidate)
   elseif (on and input == "onagdi") then
-    local preedit = "人弓 日土木戈"
-    --- Candidate(type, start, end, text, comment)
+    -- 今時
     local time = string.gsub(os.date("%H:%M"), "^0+", "")
     local time_discrpt = time_description_chinese(os.time())
     local candidate = Candidate("time", seg.start, seg._end, time, time_discrpt)
-    candidate.preedit = preedit
+    candidate.preedit = "人弓 日土木戈"
     yield(candidate)
     time = string.gsub(os.date("%I:%M %p"), "^0+", "")
     candidate = Candidate("time", seg.start, seg._end, time, time_discrpt)
     candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "agdisrrr") then
-    local preedit = "日土木戈 尸口口口"
+    -- 時區
     local timezone = utc_timezone(os.date("%z"))
     local timezone_discrpt = os.date("%Z")
     local candidate = Candidate("timezone", seg.start, seg._end, timezone, timezone_discrpt)
-    candidate.preedit = preedit
+    candidate.preedit = "日土木戈 尸口口口"
     yield(candidate)
   end
 end
