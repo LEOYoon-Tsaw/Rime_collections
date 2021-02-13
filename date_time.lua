@@ -10,6 +10,35 @@ local day_chinese = {"初一","初二","初三","初四","初五","初六","初�
 local celestial_stems = {"甲","乙","丙","丁","戊","己","庚","辛","壬","癸"}
 local terrestrial_branches = {"子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"}
 
+local function get_percent_day_chinese()
+  local i = 0
+  local j = 0
+  local k = 0
+  local percent_days = {}
+  local chinese_numbers = {"一", "二", "三", "四"}
+  local chinese_half_hours = {"初", "正"}
+  while (i < 100) and (j < 25) do
+    if (864 * i < 3600 * j) then
+      k = k + 1
+    elseif (864 * i == 3600 * j) then
+      j = j + 1
+      k = 0
+    else
+      j = j + 1
+      k = 1
+    end
+    i = i + 1
+    percent_day = {terrestrial_branches[j % 24 // 2 + 1] .. chinese_half_hours[j % 2 + 1]}
+    if (k > 0) then
+      table.insert(percent_day, chinese_numbers[k] .. "刻")
+    end
+    table.insert(percent_days, percent_day)
+  end
+  return percent_days
+end
+
+local percent_day_chinese = get_percent_day_chinese()
+
 local function getJD(yyyy,mm,dd)
   local m1 = mm
   local yy = yyyy
@@ -435,9 +464,22 @@ local function time_to_num(time)
 end
 
 local function time_description_chinese(time)
-  local time_str = string.gsub(os.date("%H:%M", time), "^0+", "")
-  local time_num = math.floor((time_to_num(time_str) / 60 + 1) / 2) % 12 + 1
-  return terrestrial_branches[time_num]
+  local time_table = os.date("*t", time)
+  local time_in_seconds = time_table["hour"] * 3600 + time_table["min"] * 60 + time_table["sec"]
+  local time_in_hours = time_in_seconds // 3600
+  local chinese_half_hours = {"初", "正"}
+  local chinese_hour = terrestrial_branches[(time_in_hours + 1) % 24 // 2 + 1] .. chinese_half_hours[(time_in_hours + 1) % 2 + 1]
+  local percent_day = time_in_seconds // 864
+  percent_day = percent_day_chinese[percent_day + 1]
+  if (chinese_hour == percent_day[1]) then
+    if (#percent_day > 1) then
+      return  percent_day[1] .. percent_day[2]
+    else
+       return percent_day[1]
+    end
+  else
+    return chinese_hour
+  end
 end
 
 local function to_chinese_cal_local(time)
@@ -573,10 +615,11 @@ local function date_translator(input, seg, env)
   assert(os.setlocale"en_US")
   if (on and input == "ona") then
     -- 今日
+    local preedit = "人弓 日"
     local date = string.gsub(os.date("%Y年%m月%d日"), "([^%d])0+", "%1")
     local weekday = chinese_weekday(os.date("%w"))
     local candidate = Candidate("date", seg.start, seg._end, date, weekday)
-    candidate.preedit = "人弓 日"
+    candidate.preedit = preedit
     yield(candidate)
     weekday = os.date("%a")
     candidate = Candidate("date", seg.start, seg._end, string.gsub(os.date("%b %d, %Y"), "([^%d])0+", "%1"), weekday)
@@ -601,6 +644,7 @@ local function date_translator(input, seg, env)
 --    yield(candidate)
   elseif (on and input == "tubybhg") then
     -- 朔望
+    local preedit = "廿山月 卜月竹土"
     local moon_phase_previous = moon_phase_in_year(tonumber(os.date("%Y")) - 1)
     local moon_phase, first_event = moon_phase_in_year(tonumber(os.date("%Y")))
     local moon_phase_next = moon_phase_in_year(tonumber(os.date("%Y")) + 1)
@@ -613,21 +657,22 @@ local function date_translator(input, seg, env)
     local date_diff_to_previous = datetime_to_date(os.time()) - datetime_to_date(to_local_timezone(moon_phase[index], 8))
     date_diff_to_previous = math.floor(date_diff_to_previous // 3600 //24 + 0.5)
     date_diff_to_previous = date_diff_chinese(-date_diff_to_previous)
-    date_diff_to_previous = date_diff_to_previous .. time_description_chinese(to_local_timezone(moon_phase[index], 8)) .. "時"
+    date_diff_to_previous = date_diff_to_previous .. time_description_chinese(to_local_timezone(moon_phase[index], 8))
     local candidate = Candidate("date", seg.start, seg._end, previous_lunar_event, date_diff_to_previous)
-    candidate.preedit = "廿山月 卜月竹土"
+    candidate.preedit = preedit
     yield(candidate)
 
     local approching_lunar_event = luna_event_names[(first_event + index) % 2 + 1]
     local date_diff_to_approaching = datetime_to_date(to_local_timezone(moon_phase[index+1], 8)) - datetime_to_date(os.time())
     date_diff_to_approaching = math.floor(date_diff_to_approaching // 3600 //24 + 0.5)
     date_diff_to_approaching = date_diff_chinese(date_diff_to_approaching)
-    date_diff_to_approaching = date_diff_to_approaching .. time_description_chinese( to_local_timezone(moon_phase[index+1], 8)) .. "時"
+    date_diff_to_approaching = date_diff_to_approaching .. time_description_chinese( to_local_timezone(moon_phase[index+1], 8))
     candidate = Candidate("date", seg.start, seg._end, approching_lunar_event, date_diff_to_approaching)
-    candidate.preedit = "廿山月 卜月竹土"
+    candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "hailonfd") then
     -- 節氣
+    local preedit = "竹日戈中 人弓火木"
     local solar_terms = solar_terms_in_year(tonumber(os.date("%Y")))
     local solar_terms_next = solar_terms_in_year(tonumber(os.date("%Y")) + 1)
     solar_terms = union(solar_terms, slice(solar_terms_next, 1, 2))
@@ -637,18 +682,18 @@ local function date_translator(input, seg, env)
     local date_diff_to_previous = datetime_to_date(os.time()) - datetime_to_date(to_local_timezone(solar_terms[index], 8))
     date_diff_to_previous = math.floor(date_diff_to_previous // 3600 //24 + 0.5)
     date_diff_to_previous = date_diff_chinese(-date_diff_to_previous)
-    date_diff_to_previous = date_diff_to_previous .. time_description_chinese(to_local_timezone(solar_terms[index], 8)) .. "時"
+    date_diff_to_previous = date_diff_to_previous .. time_description_chinese(to_local_timezone(solar_terms[index], 8))
     local candidate = Candidate("date", seg.start, seg._end, previous_solar_event, date_diff_to_previous)
-    candidate.preedit = "竹日戈中 人弓火木"
+    candidate.preedit = preedit
     yield(candidate)
 
     local approching_solar_event = solar_term_chinese[index+1]
     local date_diff_to_approaching = datetime_to_date(to_local_timezone(solar_terms[index+1], 8)) - datetime_to_date(os.time())
     date_diff_to_approaching = math.floor(date_diff_to_approaching // 3600 //24 + 0.5)
     date_diff_to_approaching = date_diff_chinese(date_diff_to_approaching)
-    date_diff_to_approaching = date_diff_to_approaching .. time_description_chinese( to_local_timezone(solar_terms[index+1], 8)) .. "時"
+    date_diff_to_approaching = date_diff_to_approaching .. time_description_chinese( to_local_timezone(solar_terms[index+1], 8))
     candidate = Candidate("date", seg.start, seg._end, approching_solar_event, date_diff_to_approaching)
-    candidate.preedit = "竹日戈中 人弓火木"
+    candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "bjjobt") then
     -- 月輪
@@ -672,13 +717,15 @@ local function date_translator(input, seg, env)
     yield(candidate)
   elseif (on and input == "onagdi") then
     -- 今時
-    local time = string.gsub(os.date("%H:%M"), "^0+", "")
-    local time_discrpt = time_description_chinese(os.time())
-    local candidate = Candidate("time", seg.start, seg._end, time, time_discrpt)
-    candidate.preedit = "人弓 日土木戈"
+    local preedit = "人弓 日土木戈"
+    local time = os.time()
+    local time_string = string.gsub(os.date("%H:%M", time), "^0+", "")
+    local time_discrpt = time_description_chinese(time)
+    local candidate = Candidate("time", seg.start, seg._end, time_string, time_discrpt)
+    candidate.preedit = preedit
     yield(candidate)
-    time = string.gsub(os.date("%I:%M %p"), "^0+", "")
-    candidate = Candidate("time", seg.start, seg._end, time, time_discrpt)
+    time_string = string.gsub(os.date("%I:%M %p", time), "^0+", "")
+    candidate = Candidate("time", seg.start, seg._end, time_string, time_discrpt)
     candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "agdisrrr") then
