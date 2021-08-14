@@ -284,7 +284,7 @@ end
 
 local function stride(old_table, steplength)
   local new_table = {}
-  local i = 0
+  local i = 1
   while i < #old_table do
     table.insert(new_table, old_table[i])
     i = i + 2
@@ -396,6 +396,9 @@ local function chinese_calendar_months(year)
   local month_in_year = i
   if (month_in_year == 14) then
     months = slice(union(month_chinese, month_chinese), 1, #moon_phase)
+    for i=1, #months do
+      months[i] = months[i] .. "月"
+    end
   elseif (month_in_year == 15) then
     local i = 1
     local j = 1
@@ -610,6 +613,14 @@ local function date_diff_chinese(diff)
   return desp
 end
 
+local function clock_face(time)
+  local faces = {"🕛", "🕧", "🕐", "🕜", "🕑", "🕝", "🕒", "🕞", "🕓", "🕟", "🕔", "🕠", "🕕", "🕡", "🕖", "🕢", "🕗", "🕣", "🕘", "🕤", "🕙", "🕥", "🕚", "🕦"}
+  local time_table = os.date("*t", time)
+  local time_in_minutes = time_table["hour"] * 60 + time_table["min"]
+  local clock_face_index = ((time_in_minutes + 15) % (60 * 24) // 30 % 24) + 1
+  return faces[clock_face_index]
+end
+
 local function date_translator(input, seg, env)
   local on = env.engine.context:get_option("show_date")
   assert(os.setlocale"en_US")
@@ -712,7 +723,7 @@ local function date_translator(input, seg, env)
     end
     local moon_phase_emojis = {"🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"}
     local choice = math.floor((moon_phase_fraction * 8 + 0.5) % 8.0) + 1
-    local candidate = Candidate("date", seg.start, seg._end, moon_phase_emojis[choice], string.format("%.f °", moon_phase_fraction * 360))
+    local candidate = Candidate("date", seg.start, seg._end, moon_phase_emojis[choice], string.format("%.f°", moon_phase_fraction * 360))
     candidate.preedit = "月 十十人月廿"
     yield(candidate)
   elseif (on and input == "onagdi") then
@@ -724,8 +735,9 @@ local function date_translator(input, seg, env)
     local candidate = Candidate("time", seg.start, seg._end, time_string, time_discrpt)
     candidate.preedit = preedit
     yield(candidate)
-    time_string = string.gsub(os.date("%I:%M %p", time), "^0+", "")
-    candidate = Candidate("time", seg.start, seg._end, time_string, time_discrpt)
+    local current_clock_face = clock_face(time)
+    local time_string = string.gsub(os.date("%I:%M %p", time), "^0+", "")
+    candidate = Candidate("time", seg.start, seg._end, time_string, " " .. current_clock_face)
     candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "agdisrrr") then
