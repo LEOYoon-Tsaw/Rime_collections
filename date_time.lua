@@ -318,7 +318,7 @@ end
 local function ranked_index(date, dates)
   local i = 1
   while i <= #dates do
-    if (to_local_timezone(dates[i], 8) > date) then
+    if (datetime_to_date(to_local_timezone(dates[i], 8)) > datetime_to_date(date)) then
       break
     end
     i = i + 1
@@ -485,6 +485,52 @@ local function time_description_chinese(time)
   end
 end
 
+local function to_celeterre_date(time)
+  --西曆每月初已歷天数
+  local month_cum_passed_days = {0,31,59,90,120,151,181,212,243,273,304,334}
+  local curr_year = tonumber(os.date("%Y", time))
+  local curr_month = tonumber(os.date("%m", time))
+  local curr_day = tonumber(os.date("%d", time))
+  local days_since_reference_day = (curr_year - 1921) * 365 + math.floor((curr_year - 1921) / 4) + curr_day + month_cum_passed_days[curr_month] - 38
+  if (((curr_year % 4) == 0) and (curr_month > 2)) then
+    days_since_reference_day = days_since_reference_day + 1
+  end
+  local date_index = days_since_reference_day + 37
+  local celeterre_date = celestial_stems[date_index % 10 + 1] .. terrestrial_branches[date_index % 12 + 1]
+
+  --干支年月
+  local solar_terms = solar_terms_in_year(curr_year)
+  local solar_terms_next_year = solar_terms_in_year(curr_year + 1)
+  solar_terms = union(solar_terms, solar_terms_next_year)
+  solar_terms = stride(slice(solar_terms, 4), 2) --立春爲始
+  local year_index = (curr_year - 4) % 60
+  if time < to_local_timezone(solar_terms[1], 8) then
+    year_index = (year_index - 1) % 60
+  end
+  local celeterre_year = celestial_stems[year_index % 10 + 1] .. terrestrial_branches[year_index % 12 + 1]
+
+  local i = 1
+  while i <= #solar_terms do
+    if (to_local_timezone(solar_terms[i], 8) > time) then
+      break
+    end
+    i = i + 1
+  end
+  local month_index = i - 1
+  month_index = month_index + 12 * (year_index % 5) + 1
+  local celeterre_month = celestial_stems[month_index % 10 + 1] .. terrestrial_branches[month_index % 12 + 1]
+
+  --干支時
+  local hour = tonumber(os.date("%H", time))
+  local hour_index = (hour + 1) % 24 // 2
+  if hour >= 23 then
+    date_index = date_index + 1
+  end
+  hour_index = hour_index + 12 * (date_index % 5)
+  local chinese_hour = celestial_stems[hour_index % 10 + 1] .. terrestrial_branches[hour_index % 12 + 1]
+  return celeterre_year .. celeterre_month .. celeterre_date .. chinese_hour
+end
+
 local function to_chinese_cal_local(time)
   --西曆每月初已歷天数
   local month_cum_passed_days = {0,31,59,90,120,151,181,212,243,273,304,334}
@@ -499,13 +545,16 @@ local function to_chinese_cal_local(time)
 
   local eclipse, months = chinese_calendar_months(tonumber(os.date("%Y", time)))
   local month_index, day_index = ranked_index(time, eclipse)
+  local month_length = math.floor((datetime_to_date(to_local_timezone(eclipse[month_index+1],8)) - datetime_to_date(to_local_timezone(eclipse[month_index],8))) / (24 * 60 * 60))
+  local month_length_des = {"小", "大"}
+  month_length = month_length_des[month_length-28]
   local chinese_month = months[month_index]
   local chinese_day = day_chinese[day_index+1]
   if ((chinese_month == "冬月") or (chinese_month == "閏冬月") or (chinese_month == "臘月") or (chinese_month == "閏臘月")) then
     curr_year = curr_year - 1
   end
   local chinese_year = celestial_stems[(((curr_year - 4) % 60) % 10)+1] .. terrestrial_branches[(((curr_year - 4) % 60) % 12) + 1] .. "年"
-  return chinese_year .. chinese_month .. chinese_day, celeterre_date
+  return chinese_year .. chinese_month .. chinese_day, month_length .. " " .. celeterre_date
 end
 
 local function to_chinese_cal(year, month, day)
@@ -653,6 +702,18 @@ local function date_translator(input, seg, env)
 --    local candidate = Candidate("date", seg.start, seg._end, date, day)
 --    candidate.preedit = "廿一廿十 一竹木日"
 --    yield(candidate)
+  elseif (on and input == "etlomhda") then
+    -- 漢曆
+    local chinese_date, celestrete_date = to_chinese_cal_local(os.time())
+    local candidate = Candidate("date", seg.start, seg._end, chinese_date, celestrete_date)
+    candidate.preedit = "水廿中人 一竹木日"
+    yield(candidate)
+  elseif (on and input == "hojnd") then
+    -- 八字
+    local celeterre_date = to_celeterre_date(os.time())
+    local candidate = Candidate("date", seg.start, seg._end, celeterre_date, "")
+    candidate.preedit = "竹人 十弓木"
+    yield(candidate)
   elseif (on and input == "tubybhg") then
     -- 朔望
     local preedit = "廿山月 卜月竹土"
