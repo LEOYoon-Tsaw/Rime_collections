@@ -10,35 +10,6 @@ local day_chinese = {"初一","初二","初三","初四","初五","初六","初�
 local celestial_stems = {"甲","乙","丙","丁","戊","己","庚","辛","壬","癸"}
 local terrestrial_branches = {"子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"}
 
-local function get_percent_day_chinese()
-  local i = 0
-  local j = 0
-  local k = 0
-  local percent_days = {}
-  local chinese_numbers = {"一", "二", "三", "四"}
-  local chinese_half_hours = {"初", "正"}
-  while (i < 100) and (j < 25) do
-    if (864 * i < 3600 * j) then
-      k = k + 1
-    elseif (864 * i == 3600 * j) then
-      j = j + 1
-      k = 0
-    else
-      j = j + 1
-      k = 1
-    end
-    i = i + 1
-    percent_day = {terrestrial_branches[j % 24 // 2 + 1] .. chinese_half_hours[j % 2 + 1]}
-    if (k > 0) then
-      table.insert(percent_day, chinese_numbers[k] .. "刻")
-    end
-    table.insert(percent_days, percent_day)
-  end
-  return percent_days
-end
-
-local percent_day_chinese = get_percent_day_chinese()
-
 local function getJD(yyyy,mm,dd)
   local m1 = mm
   local yy = yyyy
@@ -469,20 +440,34 @@ end
 local function time_description_chinese(time)
   local time_table = os.date("*t", time)
   local time_in_seconds = time_table["hour"] * 3600 + time_table["min"] * 60 + time_table["sec"]
-  local time_in_hours = time_in_seconds // 3600
+  local time_in_chinese_minutes = time_in_seconds / 144
+  local chinese_hour_index = time_in_chinese_minutes // 25
+  local residual = time_in_chinese_minutes % 25
+  residual = residual + (chinese_hour_index % 6)
+  local percent_day = residual // 6
   local chinese_half_hours = {"初", "正"}
-  local chinese_hour = terrestrial_branches[(time_in_hours + 1) % 24 // 2 + 1] .. chinese_half_hours[(time_in_hours + 1) % 2 + 1]
-  local percent_day = time_in_seconds // 864
-  percent_day = percent_day_chinese[percent_day + 1]
-  if (chinese_hour == percent_day[1]) then
-    if (#percent_day > 1) then
-      return  percent_day[1] .. percent_day[2]
-    else
-       return percent_day[1]
-    end
+  local chinese_hour = terrestrial_branches[(chinese_hour_index + 1) % 24 // 2 + 1] .. chinese_half_hours[(chinese_hour_index + 1) % 2 + 1]
+  local total_minutes = time_in_chinese_minutes % 25
+  local percent_day_chinese
+  local residual_minutes
+  if (percent_day > 0) then
+    percent_day_chinese = chinese_number(math.floor(percent_day)) .. "刻"
+    residual_minutes = time_in_chinese_minutes % 6
   else
-    return chinese_hour
+    percent_day_chinese = "初刻"
+    residual_minutes = total_minutes
   end
+  local residual_minutes_chinese = ""
+  if (residual_minutes > 0) then
+    residual_minutes_chinese = chinese_number(math.floor(residual_minutes))
+  end
+  local total_minutes_chinese = chinese_number(math.floor(total_minutes))
+  if (total_minutes > 20) and (total_minutes < 30) then
+    total_minutes_chinese = "廿" .. chinese_number(math.floor(residual_minutes % 10))
+  elseif total_minutes_chinese == "" then
+    total_minutes_chinese = "正"
+  end
+  return chinese_hour .. percent_day_chinese .. residual_minutes_chinese, total_minutes_chinese
 end
 
 local function to_celeterre_date(time)
@@ -720,13 +705,16 @@ local function date_translator(input, seg, env)
     -- 今時
     local preedit = "人弓 日土木戈"
     local time = os.time()
-    local time_string = string.gsub(os.date("%H:%M", time), "^0", "")
-    local time_discrpt = time_description_chinese(time)
-    local candidate = Candidate("time", seg.start, seg._end, time_string, time_discrpt)
+    local time_chinese, chinese_minutes = time_description_chinese(time)
+    local candidate = Candidate("time", seg.start, seg._end, time_chinese, chinese_minutes)
     candidate.preedit = preedit
     yield(candidate)
-    local current_clock_face = clock_face(time)
+    local time_string = string.gsub(os.date("%H:%M", time), "^0", "")
+    local candidate = Candidate("time", seg.start, seg._end, time_string, "")
+    candidate.preedit = preedit
+    yield(candidate)
     local time_string = string.gsub(os.date("%I:%M %p", time), "^0", "")
+    local current_clock_face = clock_face(time)
     candidate = Candidate("time", seg.start, seg._end, time_string, " " .. current_clock_face)
     candidate.preedit = preedit
     yield(candidate)
