@@ -557,91 +557,6 @@ local function to_chinese_cal_local(time)
   return chinese_year .. chinese_month .. chinese_day, month_length .. " " .. celeterre_date
 end
 
-local function to_chinese_cal(year, month, day)
-  --西曆每月初已歷天数
-  local month_cum_passed_days = {0,31,59,90,120,151,181,212,243,273,304,334}
-  --華曆數據
-  local chinese_cal_data = {2635,333387,1701,1748,267701,694,2391,133423,1175,396438
-  ,3402,3749,331177,1453,694,201326,2350,465197,3221,3402
-  ,400202,2901,1386,267611,605,2349,137515,2709,464533,1738
-  ,2901,330421,1242,2651,199255,1323,529706,3733,1706,398762
-  ,2741,1206,267438,2647,1318,204070,3477,461653,1386,2413
-  ,330077,1197,2637,268877,3365,531109,2900,2922,398042,2395
-  ,1179,267415,2635,661067,1701,1748,398772,2742,2391,330031
-  ,1175,1611,200010,3749,527717,1452,2742,332397,2350,3222
-  ,268949,3402,3493,133973,1386,464219,605,2349,334123,2709
-  ,2890,267946,2773,592565,1210,2651,395863,1323,2707,265877}
-
-  local curr_year, curr_month, curr_day;
-  local days_since_reference_day, is_end, m, k, n, i, bit;
-  local chinese_year, chinese_date, celeterre_date;
-  --取西曆年、月、日
-  local curr_year = tonumber(year);
-  local curr_month = tonumber(month);
-  local curr_day = tonumber(day);
-  --計算自1921年2月8日正月初一已歷天數
-  local days_since_reference_day = (curr_year - 1921) * 365 + math.floor((curr_year - 1921) / 4) + curr_day + month_cum_passed_days[curr_month] - 38
-  if (((curr_year % 4) == 0) and (curr_month > 2)) then
-    days_since_reference_day = days_since_reference_day + 1
-  end
-
-  --干支計日
-  local celeterre_date = celestial_stems[(days_since_reference_day - 3) % 10 + 1] .. terrestrial_branches[(days_since_reference_day + 1) % 12 + 1]
-  --計算華曆天干、地支、月、日
-  local is_end = 0;
-  local m = 0;
-  while is_end ~= 1 do
-    if chinese_cal_data[m+1] < 4095 then
-      k = 11;
-    else
-      k = 12;
-    end
-    n = k;
-    while n >= 0 do
-      --獲取chinese_cal_data(m)的第n個二進制位值
-      bit = chinese_cal_data[m + 1];
-      for i=1, n do
-        bit = math.floor(bit / 2);
-      end
-      bit = bit % 2;
-      if days_since_reference_day <= (29 + bit) then
-        is_end = 1;
-        break
-      end
-      days_since_reference_day = days_since_reference_day - 29 - bit;
-      n = n - 1;
-    end
-    if is_end ~= 0 then
-      break;
-    end
-    m = m + 1;
-  end
-
-  curr_year = 1921 + m;
-  curr_month = k - n + 1;
-  curr_day = days_since_reference_day;
-  if k == 12 then
-    if curr_month == math.floor(chinese_cal_data[m+1] / 65536) + 1 then
-      curr_month = 1 - curr_month;
-    elseif curr_month > math.floor(chinese_cal_data[m+1] / 65536) + 1 then
-      curr_month = curr_month - 1;
-    end
-  end
-  curr_day = math.floor(curr_day)
-  --華曆天干、地支 -> chinese_year
-  chinese_year = celestial_stems[(((curr_year - 4) % 60) % 10)+1] .. terrestrial_branches[(((curr_year - 4) % 60) % 12) + 1] .. "年"
-
-  --華曆月、日 -> chinese_date
-  if curr_month < 1 then
-    chinese_date = "閏" .. month_chinese[(-1 * curr_month) + 1]
-  else
-    chinese_date = month_chinese[curr_month+1]
-  end
-
-  chinese_date = chinese_date .. "月" .. day_chinese[curr_day+1]
-  return chinese_year .. chinese_date, celeterre_date
-end
-
 local function date_diff_chinese(diff)
   local desp
   if (diff > 2) then
@@ -697,13 +612,6 @@ local function date_translator(input, seg, env)
     local candidate = Candidate("date", seg.start, seg._end, chinese_date, celestrete_date)
     candidate.preedit = preedit
     yield(candidate)
---  elseif (on and input == "tmtjmhda") then
-    --- Candidate(type, start, end, text, comment)
---    local preedit = "廿一廿十 一竹木日"
---    local date, day = to_chinese_cal(os.date("%Y"), os.date("%m"), os.date("%d"))
---    local candidate = Candidate("date", seg.start, seg._end, date, day)
---    candidate.preedit = preedit
---    yield(candidate)
   elseif (on and input == "etlomhda") then
     -- 漢曆
     local preedit = "水廿中人 一竹木日"
@@ -729,7 +637,7 @@ local function date_translator(input, seg, env)
     candidate.preedit = preedit
     yield(candidate)
 
-    local date = string.gsub(os.date("%Y年%m月%d日 %H:%M", time), "([^%d])0", "%1")
+    local date = string.gsub(os.date("%Y年%m月%d日 %H:%M", time), "([^%d:])0", "%1")
     local weekday = chinese_weekday(os.date("%w", time))
     candidate = Candidate("date", seg.start, seg._end, date, weekday)
     candidate.preedit = preedit
