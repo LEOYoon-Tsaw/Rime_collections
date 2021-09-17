@@ -692,27 +692,47 @@ local function date_translator(input, seg, env)
     yield(candidate)
   elseif (on and input == "tmtjmhda") then
     -- 華曆
+    local preedit = "廿一廿十 一竹木日"
     local chinese_date, celestrete_date = to_chinese_cal_local(os.time())
     local candidate = Candidate("date", seg.start, seg._end, chinese_date, celestrete_date)
-    candidate.preedit = "廿一廿十 一竹木日"
+    candidate.preedit = preedit
     yield(candidate)
 --  elseif (on and input == "tmtjmhda") then
     --- Candidate(type, start, end, text, comment)
+--    local preedit = "廿一廿十 一竹木日"
 --    local date, day = to_chinese_cal(os.date("%Y"), os.date("%m"), os.date("%d"))
 --    local candidate = Candidate("date", seg.start, seg._end, date, day)
---    candidate.preedit = "廿一廿十 一竹木日"
+--    candidate.preedit = preedit
 --    yield(candidate)
   elseif (on and input == "etlomhda") then
     -- 漢曆
+    local preedit = "水廿中人 一竹木日"
     local chinese_date, celestrete_date = to_chinese_cal_local(os.time())
     local candidate = Candidate("date", seg.start, seg._end, chinese_date, celestrete_date)
-    candidate.preedit = "水廿中人 一竹木日"
+    candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "hojnd") then
     -- 八字
+    local preedit = "竹人 十弓木"
     local celeterre_date = to_celeterre_date(os.time())
     local candidate = Candidate("date", seg.start, seg._end, celeterre_date, "")
-    candidate.preedit = "竹人 十弓木"
+    candidate.preedit = preedit
+    yield(candidate)
+  elseif (on and input == "aagdi") then
+    -- 日時
+    local preedit = "日 日土木戈"
+    local time = os.time()
+    local chinese_date, _ = to_chinese_cal_local(time)
+    local time_discrpt = time_description_chinese(time)
+    local celeterre_date = to_celeterre_date(time)
+    local candidate = Candidate("date", seg.start, seg._end, chinese_date .. time_discrpt, celeterre_date)
+    candidate.preedit = preedit
+    yield(candidate)
+
+    local date = string.gsub(os.date("%Y年%m月%d日 %H:%M", time), "([^%d])0", "%1")
+    local weekday = chinese_weekday(os.date("%w", time))
+    candidate = Candidate("date", seg.start, seg._end, date, weekday)
+    candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "tubybhg") then
     -- 朔望
@@ -769,6 +789,7 @@ local function date_translator(input, seg, env)
     yield(candidate)
   elseif (on and input == "bjjobt") then
     -- 月輪
+    local preedit = "月 十十人月廿"
     local moon_phase_previous = moon_phase_in_year(tonumber(os.date("%Y")) - 1)
     local moon_phase, first_event = moon_phase_in_year(tonumber(os.date("%Y")))
     local moon_phase_next = moon_phase_in_year(tonumber(os.date("%Y")) + 1)
@@ -785,28 +806,29 @@ local function date_translator(input, seg, env)
     local moon_phase_emojis = {"🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"}
     local choice = math.floor((moon_phase_fraction * 8 + 0.5) % 8.0) + 1
     local candidate = Candidate("date", seg.start, seg._end, moon_phase_emojis[choice], string.format("%.f°", moon_phase_fraction * 360))
-    candidate.preedit = "月 十十人月廿"
+    candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "onagdi") then
     -- 今時
     local preedit = "人弓 日土木戈"
     local time = os.time()
-    local time_string = string.gsub(os.date("%H:%M", time), "^0+", "")
+    local time_string = string.gsub(os.date("%H:%M", time), "^0", "")
     local time_discrpt = time_description_chinese(time)
     local candidate = Candidate("time", seg.start, seg._end, time_string, time_discrpt)
     candidate.preedit = preedit
     yield(candidate)
     local current_clock_face = clock_face(time)
-    local time_string = string.gsub(os.date("%I:%M %p", time), "^0+", "")
+    local time_string = string.gsub(os.date("%I:%M %p", time), "^0", "")
     candidate = Candidate("time", seg.start, seg._end, time_string, " " .. current_clock_face)
     candidate.preedit = preedit
     yield(candidate)
   elseif (on and input == "agdisrrr") then
     -- 時區
+    local preedit = "日土木戈 尸口口口"
     local timezone = utc_timezone(os.date("%z"))
     local timezone_discrpt = os.date("%Z")
     local candidate = Candidate("timezone", seg.start, seg._end, timezone, timezone_discrpt)
-    candidate.preedit = "日土木戈 尸口口口"
+    candidate.preedit = preedit
     yield(candidate)
   end
 end
