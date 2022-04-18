@@ -545,10 +545,10 @@ erase --刪除
 <ul><li>此濾鏡須掛在<code>translator</code>上，不影響該<code>translator</code>工作</li>
 </ul>
 
-<ol><li><code>tags:</code> 設定其作用範圍
-<li><code>overwrite_comment:</code> 是否覆蓋其他提示
-<li><code>dictionary:</code> 反查所得提示碼之碼表
-<li><code>comment_format:</code> 自定義提示碼格式
+<ol><li><code>tags:</code> 設定其作用範圍</li>
+<li><code>overwrite_comment:</code> 是否覆蓋其他提示</li>
+<li><code>dictionary:</code> 反查所得提示碼之碼表</li>
+<li><code>comment_format:</code> 自定義提示碼格式</li>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
@@ -575,6 +575,8 @@ erase --刪除
 </ol></ul>
 <li><code>tags:</code> 設定轉換範圍</li>
 <li><code>tips:</code> 設定是否提示轉換前的字，可塡<code>none</code>〔或不塡〕、<code>char</code>〔僅對單字有效〕、<code>all</code></li>
+<li><code>comment_format:</code> 自定義提示碼格式</li>
+<li><code>allow_erase_comment:</code> 是否允許返回空提示碼〔默認<code>false</code>〕</li>
 <li><code>show_in_comment:</code> 設定是否僅將轉換結果顯示在備注中
 <li><i><code>excluded_types:</code></i> 取消特定範圍〔一般爲<i><code>reverse_lookup_translator</code></i>〕轉化用字</li>
 </ol>
@@ -586,6 +588,9 @@ erase --刪除
   opencc_config: t2tw.json
   tags: [ abc ] #abc對應abc_segmentor
   tips: none
+  allow_erase_comment: true
+  comment_format:
+    - xform/.*//
 </code></pre></ul>
 
 <h3><i>六、<code>chord_composer</code></i></h3>
