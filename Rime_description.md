@@ -473,7 +473,7 @@ erase --刪除
     yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), " 日期"))
   end
 end
-
+---
 function single_char_first(input, env)
   --- 以 single_char 爲開關名或 key_binder 中 toggle 的對象
   on = env.engine.context:get_option("single_char")
@@ -649,7 +649,8 @@ noop	空
 
 <ul><h4><strong>示例</strong></h4>
 <p><small>修改自 cangjie6.schema.yaml</small></p>
-<pre><code>key_binder:
+<pre><code>
+key_binder:
   import_preset: default
   bindings:
     - {accept: semicolon, send: 2, when: has_menu} #分號選第二重碼
@@ -658,18 +659,15 @@ noop	空
     - {accept: "Control+2", toggle: full_shape, when: always}
     - {accept: "Control+3", toggle: simplification, when: always}
     - {accept: "Control+4", toggle: extended_charset, when: always}
-
 editor:
   bindings:
     Return: commit_comment
-
 punctuator:
   import_preset: symbols
   half_shape:
     "'": {pair: ["「", "」"]} #第一次按是「，第二次是」
     "(": ["〔", "［"] #彈出選單
     .: {commit: "。"} #無選單，直接上屛。優先級最高
-
 recognizer:
   import_preset: default
   patterns:
@@ -688,11 +686,11 @@ recognizer:
 <li>通常情況下<code>menu</code>在<code>default.yaml</code>中定義〔或用戶修改檔<code>default.custom.yaml</code>〕，<code>style</code>在<code>squirrel.yaml</code>或<code>weasel.yaml</code>〔或用戶修改檔<code>squirrel.custom.yaml</code>或<code>weasel.custom.yaml</code>〕</li>
 
 <h4><strong>示例</strong></h4>
-<pre><code>menu:
+<pre><code>
+menu:
   alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨ ]  # 修改候選標籤
   alternative_select_keys: ASDFGHJKL #如編碼字符佔用數字鍵則須另設選字鍵
   page_size: 5 #選單每䈎顯示個數
-
 style:
   font_face: "HanaMinA, HanaMinB" #字體〔小狼毫得且僅得設一個字體；鼠鬚管得設多個字體，後面的字體自動補前面字體不含的字〕
   font_point: 15 #字號
