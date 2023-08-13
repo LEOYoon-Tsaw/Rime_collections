@@ -728,6 +728,7 @@ version: "0.1"
 
 <ol><li><code>sort:</code> 字典<b>初始</b>排序，可選<code>original</code>或<code>by_weight</code></li>
 <li><code>use_preset_vocabulary:</code> 是否引入「八股文」〔含字詞頻、詞庫〕</li>
+<li><code>vocabulary:</code> 引入其他詞庫〔含字詞頻、詞庫〕 (use_preset_vocabulary  不可設定為 true)</li>
 <li><code>max_phrase_length:</code> 配合<code>use_preset_vocabulary:</code>，設定導入詞條最大詞長</li>
 <li><code>min_phrase_weight:</code> 配合<code>use_preset_vocabulary:</code>，設定導入詞條最小詞頻</li>
 <li><code>columns:</code> 定義碼表以<code>Tab</code>分隔出的各列，可設<code>text</code>【文本】、<code>code</code>【碼】、<code>weight</code>【權重】、<code>stem</code>【造詞碼】</li>
