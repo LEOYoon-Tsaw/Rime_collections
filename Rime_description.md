@@ -128,6 +128,11 @@
 <li><b><code>script_translator</code></b> 腳本翻譯器，用於拼音、粵拼等基於音節表的輸入方案</li>
   - 此項可加載多個實例，後接<code>@</code>+翻譯器名〔如：<code>pinyin</code>、<code>jyutping</code>等〕</li>
 <li><i><code>reverse_lookup_translator</code></i> 反查翻譯器，用另一種編碼方案查碼</li>
+<li><i><code>history_translator</code></i> 產生commit歷史候選</li>
+<ul><li>tag:  同 Translator 說明 </li>
+  <li>initial_quality: 同 Translator 說明</li>
+  <li> size: 設定候選記錄量，預設: 0 等同(commit_record最大儲存量 20）</li>
+  <li>input: 觸發此翻譯器的字串 </li></ul>
 <li><b><code>lua_translator</code></b> 使用<code>lua</code>自定義輸入，例如動態輸入當前日期、時間，後接<code>@</code>+<code>lua</code>函數名</li>
 <ul><li><code>lua</code>函數名即用戶文件夾內<code>rime.lua</code>中函數名，參數爲<code>(input, seg, env)</code></li>
 <li>可以<code>env.engine.context:get_option("option_name")</code>方式綁定到<code>switch</code>開關／<code>key_binder</code>快捷鍵</li></ul>
