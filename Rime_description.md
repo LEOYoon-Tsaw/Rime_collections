@@ -377,6 +377,7 @@ erase --刪除
 <li><code>overwrite_comment:</code> 是否覆蓋其他提示</li>
 <li><code>dictionary:</code> 反查所得提示碼之碼表</li>
 <li><code>comment_format:</code> 自定義提示碼格式</li>
+<li><code>apply_comment:</code> 加入其他提示之後,overwrite_comment 須要設為 false（librime v1.9.0) </li>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
