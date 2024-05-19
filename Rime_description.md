@@ -264,7 +264,7 @@ erase --刪除
 <li><code>extra_tags:</code> 爲此<code>segmentor</code>所標記的段落插上其它<code>tag</code></li>
 </ol>
 
-<ul><strong>當<code>affix_segmentor</code>和<code>translator</code>重名時，兩者可併在一處配置，此處1-5條對應下面19-23條。<code>abc_segmentor</code>僅可設<code>extra_tags</code></strong></ul>
+<ul><strong>當<code>affix_segmentor</code>和<code>translator</code>重名時，兩者可併在一處配置，此處1-5條對應下面21-25條。<code>abc_segmentor</code>僅可設<code>extra_tags</code></strong></ul>
 
 <ul><h4><strong>示例</strong></h4>
 <p><small>cangjie6.schema.yaml</small></p>
@@ -288,6 +288,7 @@ erase --刪除
 <li><b><code>encode_commit_history:</code></b> 是否對已上屛詞自動成詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>max_phrase_length:</code></b> 最大自動成詞詞長〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>enable_completion:</code></b> 提前顯示尚未輸入完整碼的字〔僅<code>table_translator</code>有效〕</li>
+<li><b><code>enable_correction:</code></b> 啓用自動糾錯〔僅<code>script_translator</code>有效〕</li>
 <li><b><code>sentence_over_completion:</code></b> 在無全碼對應字而僅有逐鍵提示時也開啓智能組句〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>strict_spelling:</code></b> 配合<code>speller</code>中的<code>fuzz</code>規則，僅以畧拼碼組詞〔僅<code>table_translator</code>有效〕</li>
 <li><b><code>disable_user_dict_for_patterns:</code></b> 禁止某些編碼錄入用戶詞典</li>
@@ -301,6 +302,7 @@ erase --刪除
 <li><b><code>preedit_format:</code></b> 上屛碼自定義</li>
 <li><b><code>comment_format:</code></b> 提示碼自定義</li>
 <li><b><code>spelling_hints:</code></b> 設定多少字以內候選標註完整帶調拼音〔僅<code>script_translator</code>有效〕</li>
+<li><b><code>always_show_comments:</code></b> 始終顯示提示碼〔僅<code>script_translator</code>有效〕</li>
 <li><b><code>initial_quality:</code></b> 設定此翻譯器出字優先級</li>
 <li><code>tag:</code> 設定此翻譯器針對的<code>tag</code>。可不塡，不塡則僅針對<code>abc</code></li>
 <li><code>prefix:</code> 設定此翻譯器的前綴標識，可不塡，不塡則無前綴</li>
@@ -375,6 +377,7 @@ erase --刪除
 <li><code>overwrite_comment:</code> 是否覆蓋其他提示</li>
 <li><code>dictionary:</code> 反查所得提示碼之碼表</li>
 <li><code>comment_format:</code> 自定義提示碼格式</li>
+<li><code>apply_comment:</code> </li>
 </ol>
 
 <ul><h4><strong>示例</strong></h4>
