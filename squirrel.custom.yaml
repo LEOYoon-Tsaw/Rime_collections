@@ -1,0 +1,187 @@
+# squirrel.custom.yaml
+
+patch:
+  app_options/+:
+    com.wolfram.Mathematica:
+      ascii_mode: true
+    com.tencent.qq:
+      no_inline: true
+
+  keyboard_layout: USExtended
+
+  style:
+    candidate_format: "[label] [candidate]  [comment]"
+    font_face: "SourceSans3VF-Roman, SourceHanSansKVF-Light, SourceHanSansVF-Light, SourceHanSansTCVF-Light, SourceHanSansSCVF-Light, PlangothicP1, PlangothicP2"
+#    label_font_face: "ChMathSymbol-Light, SourceSans3Roman-Light"
+    font_point: 15
+    comment_font_point: 15
+    label_font_point: 12
+    border_height: -5
+    border_width: -5
+    mutual_exclusive: false
+    memorize_size: false
+    inline_preedit: true
+    inline_candidate: true
+    candidate_list_layout: stacked # stacked    | linear
+    text_orientation: vertical     # horizontal | vertical
+    corner_radius: 16
+    hilited_corner_radius: 13
+#    surrounding_extra_expansion: -3
+    line_spacing: 7
+    base_offset: 0
+    spacing: 5
+    shadow_size: 5
+    translucency: true
+    color_scheme: solarized-light
+    color_scheme_dark: solarized-dark
+
+  preset_color_schemes/+:
+    solarized-dark:
+      name: "曬經・月／Solarized Dark"
+      author: "based on Aben's 曬經石／solarized_rock,  original artwork by ethanschoonover's solarized"
+      color_space: display_p3
+      back_color: 0x66352A0A                  #Lab 15 ,-12,-12
+      border_color: 0x2A1F00                  #Lab 10 ,-12,-12
+      preedit_back_color: 0xD7E8ED            #Lab 92 , 0 , 10
+      candidate_text_color: 0x7389FF          #Lab 75 , 65, 45
+      label_color: 0x478DF4                   #Lab 70 , 45, 65
+      comment_text_color: 0xC38AFF            #Lab 75 , 65,-5
+      text_color: 0x756E5D                    #Lab 45 ,-7 ,-7
+      hilited_back_color: 0xC9DADF            #Lab 87 , 0 , 10
+      hilited_candidate_back_color: 0x403516  #Lab 20 ,-12,-12
+      hilited_candidate_text_color: 0x989F52  #Lab 60 ,-35,-5
+      hilited_candidate_label_color: 0xCC8947 #Lab 55 ,-10,-45
+      hilited_comment_text_color: 0x289989    #Lab 60 ,-20, 65
+      hilited_text_color: 0xBE706D            #Lab 50 , 15,-45
+
+    solarized-light:
+      name: "曬經・日／Solarized Light"
+      author: "based on Aben's 曬經石／solarized_rock,  original artwork by ethanschoonover's solarized"
+      color_space: display_p3
+      back_color: 0x66E5F6FB                  #Lab 97 , 0 , 10
+      border_color: 0xEDFFFF                  #Lab 100, 0 , 10
+      preedit_back_color: 0x403516            #Lab 20 ,-12,-12
+      candidate_text_color: 0x595E00          #Lab 35 ,-35,-5
+      label_color: 0xA36407                   #Lab 40 ,-10,-45
+      comment_text_color: 0x005947            #Lab 35 ,-20, 65
+      text_color: 0xA1A095                    #Lab 65 ,-5 ,-2
+      hilited_back_color: 0x4C4022            #Lab 25 ,-12,-12
+      hilited_candidate_back_color: 0xD7E8ED  #Lab 92 , 0 , 10
+      hilited_candidate_text_color: 0x3942CB  #Lab 50 , 65, 45
+      hilited_candidate_label_color: 0x2566C6 #Lab 55 , 45, 65
+      hilited_comment_text_color: 0x8144C2    #Lab 50 , 65,-5
+      hilited_text_color: 0x2C8BAE            #Lab 60 , 10, 65
+
+    flat-light:
+      name: 扁平明／Flat Light
+      author: 雪齋
+      color_space: display_p3
+      translucency: true
+      back_color: 0x1AFFFFFF
+      candidate_text_color: 0xB3000000
+      comment_text_color: 0x80333333
+      label_color: 0xBB333333
+      hilited_candidate_back_color: 0x4DFFFFFF
+  #    candidate_back_color: 0x2DFFFFFF
+      hilited_candidate_text_color: 0x000000
+      hilited_comment_text_color: 0xBF333333
+      hilited_candidate_label_color: 0x000000
+      preedit_back_color: 0x1A000000
+      text_color: 0xBF323232
+      hilited_back_color: 0x0D000000
+      hilited_text_color: 0xBF1A1A1A
+
+    flat-dark":
+      name: 扁平闇／Flat Dark
+      author: 雪齋
+      color_space: display_p3
+      translucency: true
+      back_color: 0x1A000000
+      candidate_text_color: 0xB3FFFFFF
+      comment_text_color: 0x80CCCCCC
+      label_color: 0xBBCCCCCC
+      hilited_candidate_back_color: 0x4D000000
+  #    candidate_back_color: 0x2D000000
+      hilited_candidate_text_color: 0xFFFFFF
+      hilited_comment_text_color: 0xBFCCCCCC
+      hilited_candidate_label_color: 0xFFFFFF
+      preedit_back_color: 0x1AFFFFFF
+      text_color: 0xBFE5E5E5
+      hilited_back_color: 0x0D000000
+      hilited_text_color: 0xBFFFFFFF
+
+    simple:
+      name: 簡明／Simple
+      author: 雪齋
+      back_color: 0xff333333
+      border_color: 0x333333
+      preedit_back_color: 0xf0423607
+      hilited_back_color: 0x712f78
+      hilited_candidate_back_color: 0x712f78
+      text_color: 0xe3e3e3
+      candidate_text_color: 0xe3e3e3
+      label_color: 0x98a12a
+      comment_text_color: 0x888888
+      hilited_comment_text_color: 0xaaaaaa
+      hilited_text_color: 0xffffff
+      hilited_candidate_text_color: 0xffffff
+      hilited_candidate_label_color: 0xc4716c
+
+    sakura:
+      name: "櫻／Sakura"
+      author: "雪齋"
+      text_color: 0xffffff
+      candidate_text_color: 0x9d4f89
+      back_color: 0xdda783e3
+      comment_text_color: 0xfadeff
+      hilited_text_color: 0x4235a8
+      hilited_candidate_text_color: 0xffc37c
+      hilited_candidate_back_color: 0xaa7d2f89
+      hilited_candidate_label_color: 0xfad5e2
+      label_color: 0x7a5f9d
+
+    westland:
+      name: "西域／Westland"
+      author: "雪齋"
+      candidate_text_color: 0x296a84
+      back_color: 0xee92e5f1
+      comment_text_color: 0x718ba2
+      hilited_text_color: 0x4235a8
+      hilited_candidate_text_color: 0x1bd5dc
+      hilited_back_color: 0x11000000
+      hilited_candidate_back_color: 0xdd2a4485
+      hilited_comment_text_color: 0xffffff
+      hilited_candidate_label_color: 0x11134c
+      label_color: 0x62b39d
+      label_font_point: 12
+      font_point": 15
+
+    flamingo:
+      name: "焳／Flamingo"
+      author: "变态的兔子〔花瓣網〕found on Design Seeds (design-seeds.com)"
+      text_color: 0x322d42
+      back_color: 0xcdd3f0
+      label_color: 0x4890a6
+      hilited_label_color: 0x322d42
+      hilited_text_color: 0x5358ba
+      hilited_back_color: 0x00000000
+      candidate_text_color: 0x4890a6
+      comment_text_color: 0x8bc5d0
+      hilited_candidate_text_color: 0x322d42
+      hilited_comment_text_color: 0x5358ba
+      hilited_candidate_back_color: 0x8f9eeb
+
+    cherry:
+      name: "蘡／Cherry"
+      author: "花瓣網http://huaban.com/pins/56145194/"
+      back_color: 0xdd251b54
+      text_color: 0x3229ac
+      hilited_back_color: 0x00000000
+      hilited_text_color: 0x575edf
+      candidate_text_color: 0xae84b0
+      label_color: 0xae84b0
+      comment_text_color: 0x7a6196
+      hilited_candidate_back_color: 0x003229ac
+      hilited_candidate_text_color: 0xc9dae0
+      hilited_label_color: 0xc9dae0
+      hilited_comment_text_color: 0xa6e3d4
